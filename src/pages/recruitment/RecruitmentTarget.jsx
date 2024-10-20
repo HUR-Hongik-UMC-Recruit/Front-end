@@ -15,7 +15,7 @@ const RecruitmentTarget = () => {
     <BackgroundContainer>
       <ContentWrapper>
         <Section>
-          <SectionTitle>모집 분야</SectionTitle>
+          <SectionTitle>모집 대상</SectionTitle>
           <RecruitmentText>Recruitment Target</RecruitmentText>
         </Section>
         <CardContainer>
@@ -119,7 +119,6 @@ const CardText = styled.p`
   text-align: center;
   color: #E1E9EA;
   width: 100%;
-  white-space: pre-wrap; /* 텍스트 내 줄바꿈(\n) 적용 */
 `;
 
 const GraduationException = styled.span`
