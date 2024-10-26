@@ -25,7 +25,7 @@ export default RecruitmentClosed;
 
 const BackgroundContainer = styled.div`
   width: 100%;
-  height: 37rem;
+  min-height: 37rem;
   background-image: url(${BackgroundSvg});
   background-size: cover;
   background-position: center top;

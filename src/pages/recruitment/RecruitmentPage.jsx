@@ -1,6 +1,7 @@
 import RecruitmentClosed from './RecruitmentClosed';
 import RecruitmentPart from './RecruitmentPart';
 import RecruitmentTarget from './RecruitmentTarget';
+import RecruitmentSchedule from './RecruitmentSchedule';
 
 const RecruitmentPage = () => {
   return (
@@ -8,6 +9,7 @@ const RecruitmentPage = () => {
       <RecruitmentClosed />
       <RecruitmentTarget />
       <RecruitmentPart />
+      <RecruitmentSchedule/>
     </div>
   );
 };
