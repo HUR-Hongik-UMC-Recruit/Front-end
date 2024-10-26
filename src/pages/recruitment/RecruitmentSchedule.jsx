@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import SectionHeader from "../../components/recruitment/SectionHeader";
+import React from "react";
+import styled from "styled-components";
+import SectionHeader from "../../components/common/SectionHeader";
 
 const RecruitmentSchedule = () => {
   const scheduleData = [
     { title: "서류 접수", date: "08.26 (월) ~ 09.06 (금)" },
     { title: "1차 발표", date: "09.08 (일)" },
     { title: "면접", date: "09.09 (월) ~ 09.11 (수)" },
-    { title: "최종 발표", date: "09.13 (금)" }
+    { title: "최종 발표", date: "09.13 (금)" },
   ];
 
   return (
@@ -19,9 +19,11 @@ const RecruitmentSchedule = () => {
             <TimelineBar>
               <TimelineLine />
               <TimelinePoints>
-                {Array(4).fill(null).map((_, index) => (
-                  <TimelinePoint key={index} />
-                ))}
+                {Array(4)
+                  .fill(null)
+                  .map((_, index) => (
+                    <TimelinePoint key={index} />
+                  ))}
               </TimelinePoints>
             </TimelineBar>
             <ScheduleItems>
@@ -103,7 +105,7 @@ const TimelinePoints = styled.div`
 const TimelinePoint = styled.div`
   width: 1rem;
   height: 1rem;
-  background: #90E6C9;
+  background: #90e6c9;
   border-radius: 50%;
 `;
 
@@ -129,7 +131,7 @@ const ScheduleTitle = styled.h3`
   line-height: 135%;
   text-align: center;
   letter-spacing: -0.01em;
-  color: #EDF4F5;
+  color: #edf4f5;
   width: 13.188rem;
 `;
 
@@ -139,7 +141,7 @@ const ScheduleDate = styled.p`
   line-height: 140%;
   text-align: center;
   letter-spacing: -0.01em;
-  color: #E1E9EA;
+  color: #e1e9ea;
   width: 13.188rem;
   margin-top: 0.5rem;
 `;
@@ -150,7 +152,7 @@ const Note = styled.p`
   line-height: 140%;
   text-align: right;
   letter-spacing: -0.01em;
-  color: #BCC6C6;
+  color: #bcc6c6;
   width: 100%;
   margin-top: 6.75rem;
 `;

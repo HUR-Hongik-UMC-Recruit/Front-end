@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import SectionHeader from "../../components/recruitment/SectionHeader";
+import SectionHeader from "../../components/common/SectionHeader";
 
 const RecruitmentTarget = () => {
   const targetDetails = [
@@ -9,7 +9,7 @@ const RecruitmentTarget = () => {
     "방학동안 나만의\n앱과 웹을 만들기 위해\n최선을 다할 사람",
     "각종 공식 행사\n(해커톤, 아이디어톤 등)에\n성실하게 참여할 사람",
     "활동 기간동안 개인적으로\n하루에 6시간 이상\n투자할 수 있는 사람",
-    "UMC와 함께 도전하고\n성장하고 싶은 사람"
+    "UMC와 함께 도전하고\n성장하고 싶은 사람",
   ];
 
   return (
@@ -81,7 +81,7 @@ const Card = styled.div`
   gap: 0.625rem;
   width: 20rem;
   height: 11.813rem;
-  background: #1D201E;
+  background: #1d201e;
   border: 1px solid #353838;
   border-radius: 10px;
 `;
@@ -91,7 +91,7 @@ const CardText = styled.p`
   font-size: 20px;
   line-height: 140%;
   text-align: center;
-  color: #E1E9EA;
+  color: #e1e9ea;
   width: 100%;
 `;
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Requirements from "../../components/recruitment/PartRequirements";
 import Qualifications from "../../components/recruitment/PartQualifications";
-import SectionHeader from "../../components/recruitment/SectionHeader";
+import SectionHeader from "../../components/common/SectionHeader";
 
 const RecruitmentPart = () => {
   const [activePart, setActivePart] = useState("Plan");
