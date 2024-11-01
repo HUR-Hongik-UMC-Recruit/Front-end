@@ -59,10 +59,10 @@ const RecruitButton = styled.button`
 
   border-radius: 5rem;
   border: 1px solid #90e6c9;
-  background: var(--Grey-100, #fcffff);
+  background: #fcffff;
   box-shadow: 0px 0px 33.3px 0px rgba(144, 224, 230, 0.2);
 
-  color: var(--Grey-850, #353838);
+  color: #353838;
   font-family: "Pretendard Variable";
   font-size: 1.375rem;
   font-style: normal;
