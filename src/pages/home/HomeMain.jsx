@@ -76,7 +76,7 @@ const NextButton = styled.button`
   border: none;
 `;
 
-const BreakTheRules = () => {
+const HomeMain = () => {
   const nextClick = () => {
     console.log("next");
   };
@@ -105,4 +105,4 @@ const BreakTheRules = () => {
   );
 };
 
-export default BreakTheRules;
+export default HomeMain;
