@@ -1,9 +1,13 @@
-import BreakTheRules from "../../components/home/BreakTheRules";
+import HomeMain from "./HomeMain";
+import HomeService from "./HomeService";
+import HomeUMC from "./HomeUMC";
 
 const HomePage = () => {
   return (
     <div>
-      <BreakTheRules></BreakTheRules>
+      <HomeMain />
+      <HomeUMC />
+      <HomeService />
     </div>
   );
 };
