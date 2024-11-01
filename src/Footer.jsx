@@ -1,26 +1,21 @@
 import { styled } from "styled-components";
 
 const FooterContainer = styled.div`
+  background: #111412;
   width: 100%;
   height: 10.0625rem;
 `;
 
 const FooterWrapper = styled.div`
   display: flex;
-  background-color: #111412;
-  padding: 2.875rem 10.625rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.625rem;
-  flex-shrink: 0;
-  align-self: stretch;
+  padding: 2.875rem 10.625rem;
 `;
 
 const FooterUMC = styled.div`
-  color: var(--Grey-500, #bcc6c6);
-
-  /* Headline 1/semibold */
-  font-family: "Pretendard Variable";
+  color: #bcc6c6;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 600;
@@ -28,11 +23,7 @@ const FooterUMC = styled.div`
 `;
 
 const FooterCopyright = styled.div`
-  color: var(--Grey-500, #bcc6c6);
-  font-feature-settings: "ss10" on;
-
-  /* Headline 2 */
-  font-family: "Pretendard Variable";
+  color: #bcc6c6;
   font-size: 1.0625rem;
   font-style: normal;
   font-weight: 600;
