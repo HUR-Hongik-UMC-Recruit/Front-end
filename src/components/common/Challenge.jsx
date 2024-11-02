@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import arrowNext from "../../assets/icons/ArrowNext.png";
 
 const ChallengeContainer = styled.div`
   width: 100%;
@@ -61,7 +62,9 @@ const Challenge = () => {
           지금, UMC와 함께 <TextDo>도전</TextDo>하고 <TextSung>성장</TextSung>
           하세요!
         </ChallengeText>
-        <ChallengeButton>모집 알림 신청하러 가기</ChallengeButton>
+        <ChallengeButton>
+          모집 알림 신청하러 가기 <img src={arrowNext} />
+        </ChallengeButton>
       </ChallengeWrapper>
     </ChallengeContainer>
   );
