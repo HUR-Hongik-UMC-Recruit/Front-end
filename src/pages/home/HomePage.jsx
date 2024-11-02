@@ -1,3 +1,4 @@
+import HomeActivity from "./HomeActivity";
 import HomeAskChallenge from "./HomeAskChallenge";
 import HomeMain from "./HomeMain";
 import HomeService from "./HomeService";
@@ -9,6 +10,7 @@ const HomePage = () => {
       <HomeMain />
       <HomeUMC />
       <HomeService />
+      <HomeActivity />
       <HomeAskChallenge />
     </div>
   );
