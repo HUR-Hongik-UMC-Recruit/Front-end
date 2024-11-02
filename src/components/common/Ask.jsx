@@ -2,12 +2,16 @@ import styled from "styled-components";
 import SectionHeader from "./SectionHeader";
 import Kakao from "../../assets/icons/KakaoLogo.png";
 import Insta from "../../assets/icons/InstaLogo.png";
+import background from "../../assets/icons/BgAsk.png";
 
 const AskContainer = styled.div`
   width: 100%;
   height: 51.1rem;
 
   background: #111412;
+  background-image: url(${background});
+  background-size: cover;
+  background-position: center top;
 `;
 
 const AskWrapper = styled.div`

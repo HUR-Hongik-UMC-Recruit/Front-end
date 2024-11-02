@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import arrowNext from "../../assets/icons/ArrowNext.png";
 import arrowDown from "../../assets/icons/ArrowDown.png";
+import background from "../../assets/icons/BgHome.png";
 
 const BTRContainer = styled.div`
-  background-color: green;
+  background: #111412;
+  background-image: url(${background});
+  background-size: cover;
+  background-position: center top;
+
   display: flex;
   width: 100%;
   height: 66.75rem;

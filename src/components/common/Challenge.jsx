@@ -1,11 +1,15 @@
 import styled from "styled-components";
 import arrowNext from "../../assets/icons/ArrowNext.png";
+import background from "../../assets/icons/BgChallenge.png";
 
 const ChallengeContainer = styled.div`
   width: 100%;
   height: 28.87rem;
 
   background: #111412;
+  background-image: url(${background});
+  background-size: cover;
+  background-position: center top;
 `;
 
 const ChallengeWrapper = styled.div`
