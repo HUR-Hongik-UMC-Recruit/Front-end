@@ -3,6 +3,7 @@ import RecruitmentPart from './RecruitmentPart';
 import RecruitmentTarget from './RecruitmentTarget';
 import RecruitmentSchedule from './RecruitmentSchedule';
 import Notice from './Notice';
+import FAQ from './FAQ';
 
 const RecruitmentPage = () => {
   return (
@@ -12,6 +13,7 @@ const RecruitmentPage = () => {
       <RecruitmentPart />
       <RecruitmentSchedule/>
       <Notice/>
+      <FAQ/>
     </div>
   );
 };
