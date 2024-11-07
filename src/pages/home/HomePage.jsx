@@ -13,7 +13,6 @@ const HomePage = () => {
       <HomeMain />
       <HomeUMC />
       <HomeService />
-      <HomePart />
       <HomePart2 />
       <HomeActivity />
       <HomeUniversity />

@@ -73,6 +73,7 @@ const Slide = styled.div`
   justify-content: flex-end;
   gap: 4.5rem;
   background: #353838;
+  width: 100%;
 `;
 
 const Part = styled.div`
