@@ -36,7 +36,8 @@ const Carousel = styled.div`
   }
 `;
 
-const scrolling = keyframes`0% {
+const scrolling = keyframes`
+    0% {
       transform: translateX(0);
     }
     100% {
