@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import PretendardVariable from './assets/fonts/woff2/PretendardVariable.woff2';
+import { createGlobalStyle } from "styled-components";
+import PretendardVariable from "./assets/fonts/woff2/PretendardVariable.woff2";
 
 export default createGlobalStyle`
   @font-face {
@@ -10,5 +10,6 @@ export default createGlobalStyle`
 
   body {
     font-family: 'Pretendard Variable', sans-serif;
+    margin: 0;
   }
 `;
