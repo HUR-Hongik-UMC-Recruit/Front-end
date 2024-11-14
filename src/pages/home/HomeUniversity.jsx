@@ -58,8 +58,6 @@ const Top = styled.div`
 
   will-change: transform;
   animation: ${scrollingLeft} 30s linear infinite;
-
-  border: 1px solid red;
 `;
 
 const scrollingRight = keyframes`
@@ -78,8 +76,6 @@ const Down = styled.div`
 
   will-change: transform;
   animation: ${scrollingRight} 30s linear infinite;
-
-  border: 1px solid red;
 `;
 
 const CardWrapper = styled.div`
