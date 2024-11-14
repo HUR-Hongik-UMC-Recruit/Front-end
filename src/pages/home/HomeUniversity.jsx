@@ -26,17 +26,23 @@ const UniversityWrapper = styled.div`
   gap: 10rem;
 `;
 
+const CarouselWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+`;
+
 const Carousel = styled.div`
   display: flex;
   overflow: hidden;
   flex: 0 0 100%;
 
-  &:hover .group {
-    animation-play-state: paused;
-  }
+  // &:hover .group {
+  //   animation-play-state: paused;
+  // }
 `;
 
-const scrolling = keyframes`
+const scrollingLeft = keyframes`
     0% {
       transform: translateX(0);
     }
@@ -45,19 +51,35 @@ const scrolling = keyframes`
     }
 `;
 
-const Group = styled.div`
+const Top = styled.div`
   display: flex;
   gap: 4rem;
   padding-right: 4rem;
 
   will-change: transform;
-  animation: ${scrolling} 30s linear infinite;
+  animation: ${scrollingLeft} 30s linear infinite;
+
+  border: 1px solid red;
 `;
 
-const CardsWrapper = styled.div`
+const scrollingRight = keyframes`
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+`;
+
+const Down = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 5rem;
+  gap: 4rem;
+  padding-right: 4rem;
+
+  will-change: transform;
+  animation: ${scrollingRight} 30s linear infinite;
+
+  border: 1px solid red;
 `;
 
 const CardWrapper = styled.div`
@@ -80,19 +102,34 @@ const Card = styled.img`
 `;
 
 const HomeUniversity = () => {
-  const contents = [
-    { top: Hongik, down: Sungshin },
-    { top: Yonsei, down: Dongguk },
-    { top: Ihwa, down: Jungang },
-    { top: Duksung, down: Seoulwomen },
-    { top: Soongsil, down: Namseoul },
-    { top: Sangmyung, down: Sangmyung },
-    { top: Hongik, down: Sungshin },
-    { top: Yonsei, down: Dongguk },
-    { top: Ihwa, down: Jungang },
-    { top: Duksung, down: Catholic },
-    { top: Catholic, down: Seoulwomen },
-    { top: Namseoul, down: Soongsil },
+  const top = [
+    Hongik,
+    Yonsei,
+    Ihwa,
+    Duksung,
+    Soongsil,
+    Sangmyung,
+    Catholic,
+    Namseoul,
+    Sungshin,
+    Dongguk,
+    Jungang,
+    Seoulwomen,
+  ];
+
+  const down = [
+    Hongik,
+    Yonsei,
+    Ihwa,
+    Duksung,
+    Soongsil,
+    Sangmyung,
+    Catholic,
+    Namseoul,
+    Sungshin,
+    Dongguk,
+    Jungang,
+    Seoulwomen,
   ];
 
   return (
@@ -102,32 +139,40 @@ const HomeUniversity = () => {
           title="연합 대학"
           subtitle="UMC 8기는 24개의 학교와 함께해요"
         />
-        <Carousel>
-          <Group className="group">
-            {contents.map((content) => (
-              <CardsWrapper>
+        <CarouselWrapper>
+          <Carousel>
+            <Top className="group">
+              {top.map((content) => (
                 <CardWrapper>
-                  <Card src={content.top} />
+                  <Card src={content} />
                 </CardWrapper>
+              ))}
+            </Top>
+            <Top className="group">
+              {top.map((content) => (
                 <CardWrapper>
-                  <Card src={content.down} />
+                  <Card src={content} />
                 </CardWrapper>
-              </CardsWrapper>
-            ))}
-          </Group>
-          <Group className="group">
-            {contents.map((content) => (
-              <CardsWrapper>
+              ))}
+            </Top>
+          </Carousel>
+          <Carousel>
+            <Down className="group">
+              {down.map((content) => (
                 <CardWrapper>
-                  <Card src={content.top} />
+                  <Card src={content} />
                 </CardWrapper>
+              ))}
+            </Down>
+            <Down className="group">
+              {down.map((content) => (
                 <CardWrapper>
-                  <Card src={content.down} />
+                  <Card src={content} />
                 </CardWrapper>
-              </CardsWrapper>
-            ))}
-          </Group>
-        </Carousel>
+              ))}
+            </Down>
+          </Carousel>
+        </CarouselWrapper>
       </UniversityWrapper>
     </UniversityContainer>
   );
