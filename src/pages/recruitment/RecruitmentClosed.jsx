@@ -29,7 +29,6 @@ const BackgroundContainer = styled.div`
   background-image: url(${BackgroundSvg});
   background-size: cover;
   background-position: center top;
-  position: absolute;
   top: 0rem;
   left: 0rem;
   display: flex;

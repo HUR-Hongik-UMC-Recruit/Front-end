@@ -47,8 +47,6 @@ const BackgroundContainer = styled.div`
   width: 100%;
   min-height: 48.438rem;
   background-color: #111412;
-  position: absolute;
-  top: 237.688rem;
   left: 0;
   display: flex;
   justify-content: center;
@@ -59,10 +57,9 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8.5rem 13.438rem 15rem;
+  padding: 0rem 13.438rem 15rem;
   width: 90rem;
   height: auto;
-  min-height: 48.438rem;
 `;
 
 const FAQListContainer = styled.div`

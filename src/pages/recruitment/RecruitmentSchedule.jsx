@@ -46,8 +46,6 @@ const BackgroundContainer = styled.div`
   width: 100%;
   min-height: 44.188rem;
   background-color: #111412;
-  position: absolute;
-  top: 147.313rem;
   left: 0;
   display: flex;
   justify-content: center;
@@ -58,9 +56,8 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8.5rem 13.438rem 15rem;
+  padding: 0rem 13.438rem 15rem;
   width: 90rem;
-  height: 44.188rem;
 `;
 
 const ScheduleContent = styled.div`

@@ -25,8 +25,6 @@ const BackgroundContainer = styled.div`
   background-color: #111412;
   background-size: cover;
   background-position: center;
-  position: absolute;
-  top: 191.5rem;
   left: 0rem;
   display: flex;
   justify-content: center;
@@ -38,9 +36,8 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 8.5rem 13.438rem 15rem;
+  padding: 0rem 13.438rem 15rem;
   max-width: 63rem;
-  height: 46.188rem;
 `;
 
 const NoticeContainer = styled.div`
