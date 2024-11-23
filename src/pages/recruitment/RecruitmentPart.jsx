@@ -47,7 +47,6 @@ export default RecruitmentPart;
 
 const BackgroundContainer = styled.div`
   width: 100%;
-  min-height: 58.313rem;
   background-color: #111412;
   background-size: cover;
   background-position: center;
@@ -64,7 +63,6 @@ const ContentWrapper = styled.div`
   align-items: center;
   padding: 0rem 13.438rem 15rem;
   max-width: 63rem;
-  //height: 58.313rem;
 `;
 
 const ButtonContainer = styled.div`
