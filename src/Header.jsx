@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
 const HeaderContainer = styled.div`
@@ -65,6 +66,7 @@ const MenuButton = styled.button`
 
   background-color: transparent;
   color: #90e6c9;
+  cursor: pointer;
 
   font-size: 0.875rem;
   font-style: normal;
@@ -74,6 +76,16 @@ const MenuButton = styled.button`
 `;
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const toRecruit = () => {
+    // 새로고침 느낌
+    // window.location.href = "/recruitment";
+
+    // 스무스하게 넘어감
+    navigate("/recruitment");
+  };
+
   return (
     <HeaderContainer>
       <HeaderWrapper>
@@ -86,7 +98,7 @@ const Header = () => {
             <MenuList href="">운영진</MenuList>
             <MenuList href="">FAQ</MenuList>
           </MenuListWrapper>
-          <MenuButton>지원하기</MenuButton>
+          <MenuButton onClick={toRecruit}>지원하기</MenuButton>
         </MenuWrapper>
       </HeaderWrapper>
     </HeaderContainer>
