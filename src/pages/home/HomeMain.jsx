@@ -17,6 +17,7 @@ const BTRContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 12.4375rem;
+  margin-top: 5rem;
 `;
 
 const BTRWrapper = styled.div`
