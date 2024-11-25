@@ -20,6 +20,7 @@ const Section = styled.div`
 `;
 
 const SectionTitle = styled.h2`
+  margin-top: 0;
   font-size: 40px;
   font-weight: 700;
   line-height: 52px;

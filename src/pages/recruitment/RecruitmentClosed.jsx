@@ -29,7 +29,6 @@ const BackgroundContainer = styled.div`
   background-image: url(${BackgroundSvg});
   background-size: cover;
   background-position: center top;
-  position: absolute;
   top: 0rem;
   left: 0rem;
   display: flex;
@@ -38,7 +37,7 @@ const BackgroundContainer = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-  padding: 12.438rem 11.875rem 21.5rem;
+  padding: 12.438rem 11.875rem 8.719rem;
   margin-left: -24rem;
 `;
 
