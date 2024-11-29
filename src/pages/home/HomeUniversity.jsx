@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
-import Hongik from "../../assets/icons/university/홍익대학교.png";
+import Hongik from "../../assets/icons/university/hongik.png";
 import Yonsei from "../../assets/icons/university/연세대학교.png";
 import Ihwa from "../../assets/icons/university/이화여자대학교.png";
 import Duksung from "../../assets/icons/university/덕성여자대학교.png";
