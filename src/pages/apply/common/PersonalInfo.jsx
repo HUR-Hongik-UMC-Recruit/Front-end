@@ -61,20 +61,20 @@ const PersonalInfo = () => {
             </Label>
             <RadioGroup>
               <RadioButton
-                active={selectedOption === "남"}
+                $active={selectedOption === "남"}
                 onClick={() => handleRadioClick("남")}
               >
-                <RadioCircle active={selectedOption === "남"}>
+                <RadioCircle $active={selectedOption === "남"}>
                   {selectedOption === "남" && <RadioDot />}
                 </RadioCircle>
                 남
               </RadioButton>
 
               <RadioButton
-                active={selectedOption === "여"}
+                $active={selectedOption === "여"}
                 onClick={() => handleRadioClick("여")}
               >
-                <RadioCircle active={selectedOption === "여"}>
+                <RadioCircle $active={selectedOption === "여"}>
                   {selectedOption === "여" && <RadioDot />}
                 </RadioCircle>
                 여

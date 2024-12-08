@@ -19,18 +19,14 @@ const Select = ({ options, defaultValue, value, onChange, type }) => {
 
   return (
     <SelectContainer>
-      <SelectButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+      <SelectButton onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
         <span>{value || defaultValue}</span>
         <ArrowIcon src={ArrowDown} alt="arrow" />
       </SelectButton>
 
       {isOpen && (
         <OptionList height={getListHeight()}>
-          {" "}
-          {/* height prop 전달 */}
-          <OptionsContainer type={type}>
-            {" "}
-            {/* type prop 전달 */}
+          <OptionsContainer $type={type}>
             {options.map((option) => ( // options 배열의 각 항목 순회
               <Option
                 key={option}

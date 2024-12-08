@@ -57,30 +57,30 @@ const CommonQuestions = () => {
           <Label>4. 스터디 리더를 희망하시나요?</Label>
           <StyledRadioGroup>
             <RadioButton
-              active={selectedOption === "예"}
+              $active={selectedOption === "예"}
               onClick={() => handleRadioClick("예")}
             >
-              <RadioCircle active={selectedOption === "예"}>
+              <RadioCircle $active={selectedOption === "예"}>
                 {selectedOption === "예" && <RadioDot />}
               </RadioCircle>
               예
             </RadioButton>
 
             <RadioButton
-              active={selectedOption === "아니요"}
+              $active={selectedOption === "아니요"}
               onClick={() => handleRadioClick("아니요")}
             >
-              <RadioCircle active={selectedOption === "아니요"}>
+              <RadioCircle $active={selectedOption === "아니요"}>
                 {selectedOption === "아니요" && <RadioDot />}
               </RadioCircle>
               아니요
             </RadioButton>
 
             <RadioButton
-              active={selectedOption === "고민해보겠습니다"}
+              $active={selectedOption === "고민해보겠습니다"}
               onClick={() => handleRadioClick("고민해보겠습니다")}
             >
-              <RadioCircle active={selectedOption === "고민해보겠습니다"}>
+              <RadioCircle $active={selectedOption === "고민해보겠습니다"}>
                 {selectedOption === "고민해보겠습니다" && <RadioDot />}
               </RadioCircle>
               고민해보겠습니다
