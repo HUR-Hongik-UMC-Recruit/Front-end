@@ -108,11 +108,11 @@ const Option = styled.button`
   width: 100%;
   height: 1.875rem;
   font-style: normal;
-  font-weight: ${(props) => (props.isSelected ? "600" : "400")};
+  font-weight: "400";
   font-size: 1rem;
   line-height: 1.875rem;
-  color: #353838;
-  background: transparent;
+ color: ${(props) => (props.isSelected ? "#FFF" : "#353838")};
+  background: ${(props) => (props.isSelected ? "#75D7B6" : "transparent")};
   border: none;
   text-align: left;
   padding: 0;
