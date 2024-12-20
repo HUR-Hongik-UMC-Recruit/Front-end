@@ -70,46 +70,26 @@ const Slide = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4.5rem;
-  background: #353838;
+  justify-content: center;
   width: 100%;
+  height: 20.375rem;
 `;
 
 const Part = styled.div`
   display: flex;
-  width: 35.0625rem;
-  flex-direction: column;
+  width: 47.25rem;
   align-items: flex-start;
   gap: 6rem;
 `;
 
 const PartText = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 1rem;
-`;
-
-const PartBig = styled.h2`
-  margin: 0;
-
   color: #f6fbfb;
   font-family: "Pretendard Variable";
   font-size: 2.25rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 550;
   line-height: 135%; /* 3.0375rem */
   letter-spacing: -0.0225rem;
-`;
-
-const PartSmall = styled.div`
-  color: #e1e9ea;
-  font-family: "Pretendard Variable";
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 135%; /* 2.025rem */
-  letter-spacing: -0.015rem;
 `;
 
 const PartDetail = styled.div`
@@ -117,12 +97,10 @@ const PartDetail = styled.div`
   font-family: "Pretendard Variable";
   font-size: 1.5rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 135%; /* 2.025rem */
   letter-spacing: -0.015rem;
 `;
-
-const PartPhoto = styled.img``;
 
 const PartButtonWrapper = styled.div`
   display: flex;
@@ -196,13 +174,9 @@ const HomePart2 = () => {
               className={content.id === index ? "active" : null}
             >
               <Part>
-                <PartText>
-                  <PartBig>{content.big}</PartBig>
-                  <PartSmall>{content.small.split("\n")}</PartSmall>
-                </PartText>
+                <PartText>{content.part}</PartText>
                 <PartDetail>{content.detail}</PartDetail>
               </Part>
-              <PartPhoto src={content.photo} />
             </Slide>
           ))}
           <NextButton onClick={nextButtonClick}>
