@@ -1,5 +1,5 @@
+import Challenge from "../../components/common/Challenge";
 import HomeActivity from "./HomeActivity";
-import HomeAskChallenge from "./HomeAskChallenge";
 import HomeMain from "./HomeMain";
 import HomePart2 from "./HomePart2";
 import HomeService from "./HomeService";
@@ -15,7 +15,7 @@ const HomePage = () => {
       <HomePart2 />
       <HomeActivity />
       <HomeUniversity />
-      <HomeAskChallenge />
+      <Challenge />
     </div>
   );
 };
