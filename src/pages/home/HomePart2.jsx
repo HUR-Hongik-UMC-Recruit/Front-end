@@ -8,7 +8,7 @@ import contents from "../../components/home/PartData";
 const PartContainer = styled.div`
   background: #111412;
   width: 100%;
-  height: 66.8rem;
+  height: 59.4rem;
 `;
 
 const PartWrapper = styled.div`
@@ -21,7 +21,7 @@ const PartWrapper = styled.div`
 
 const SlideContainer = styled.div`
   width: 100%;
-  height: 27.75rem;
+  height: 20.375rem;
   overflow: hidden;
   position: relative;
 `;
@@ -29,7 +29,7 @@ const SlideContainer = styled.div`
 const BeforeButton = styled.button`
   position: absolute;
   left: 4.4375rem;
-  bottom: 12.375rem;
+  top: 8.75rem;
 
   display: flex;
   width: 3rem;
@@ -46,7 +46,7 @@ const BeforeButton = styled.button`
 const NextButton = styled.button`
   position: absolute;
   right: 4.4375rem;
-  bottom: 12.375rem;
+  top: 8.75rem;
 
   display: flex;
   width: 3rem;
