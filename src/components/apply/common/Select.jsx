@@ -19,30 +19,30 @@ const Select = ({ options, defaultValue, value, onChange, type }) => {
 
   return (
     <SelectContainer>
-      <SelectButton onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
+      <SelectButton onClick={() => setIsOpen(!isOpen)} $isOpen={isOpen}>
         <span>{value || defaultValue}</span>
         <ArrowIcon src={ArrowDown} alt="arrow" />
       </SelectButton>
 
       {isOpen && (
         <OptionList height={getListHeight()}>
-          {" "}
-          {/* height prop 전달 */}
-          <OptionsContainer type={type}>
-            {" "}
-            {/* type prop 전달 */}
-            {options.map((option) => ( // options 배열의 각 항목 순회
-              <Option
-                key={option}
-                onClick={() => {
-                  onChange(option);
-                  setIsOpen(false);
-                }}
-                isSelected={value === option} // 현재 선택된 옵션인지 여부
-              >
-                {option}  {/* 옵션 텍스트 */}
-              </Option>
-            ))}
+          <OptionsContainer $type={type}>
+            {options.map(
+              (
+                option // options 배열의 각 항목 순회
+              ) => (
+                <Option
+                  key={option}
+                  onClick={() => {
+                    onChange(option);
+                    setIsOpen(false);
+                  }}
+                  isSelected={value === option} // 현재 선택된 옵션인지 여부
+                >
+                  {option} {/* 옵션 텍스트 */}
+                </Option>
+              )
+            )}
           </OptionsContainer>
         </OptionList>
       )}
@@ -112,11 +112,11 @@ const Option = styled.button`
   width: 100%;
   height: 1.875rem;
   font-style: normal;
-  font-weight: ${(props) => (props.isSelected ? "600" : "400")};
+  font-weight: "400";
   font-size: 1rem;
   line-height: 1.875rem;
-  color: #353838;
-  background: transparent;
+  color: ${(props) => (props.isSelected ? "#FFF" : "#353838")};
+  background: ${(props) => (props.isSelected ? "#75D7B6" : "transparent")};
   border: none;
   text-align: left;
   padding: 0;
@@ -124,6 +124,8 @@ const Option = styled.button`
 
   &:hover {
     font-weight: 600;
+    background: ${(props) => (props.isSelected ? "#2B9176" : "#DFFAF1")};
+    color: ${(props) => (props.isSelected ? "#FFF" : "#353838")};
   }
 `;
 

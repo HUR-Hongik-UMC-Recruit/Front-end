@@ -86,6 +86,7 @@ export const Button = styled.button`
 export const DisabledButton = styled(Button)`
   background: #d1dadb;
   border-color: #a2abab;
+  cursor: not-allowed; // 커서 막음
 `;
 
 export const Grid = styled.div`
@@ -110,31 +111,13 @@ export const RadioButton = styled.button`
   height: 3.75rem;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 1.5rem;
-  gap: 16px;
-  background: ${(props) => (props.active ? "#DFFAF1" : "#FCFFFF")};
-  border: 2px solid ${(props) => (props.active ? "#2B9176" : "#D1DADB")};
-  border-radius: 0.75rem;
-  font-weight: ${(props) => (props.active ? "600" : "400")};
-  color: #353838;
-`;
-
-export const RadioCircle = styled.div`
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid ${(props) => (props.active ? "#2B9176" : "#BCC6C6")};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
   justify-content: center;
-`;
-
-export const RadioDot = styled.div`
-  width: 0.875rem;
-  height: 0.875rem;
-  background: #2b9176;
-  border-radius: 50%;
+  gap: 16px;
+  background: ${(props) => (props.$active ? "#DFFAF1" : "#FCFFFF")};
+  border: 2px solid ${(props) => (props.$active ? "#2B9176" : "#D1DADB")};
+  border-radius: 0.75rem;
+  font-weight: ${(props) => (props.$active ? "600" : "400")};
+  color: #353838;
 `;
 
 export const TextArea = styled.textarea`
