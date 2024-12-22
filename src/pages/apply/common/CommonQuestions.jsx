@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import {
   Section,
@@ -20,11 +21,28 @@ import {
 const CommonQuestions = () => {
   // 라디오 버튼 상태 관리
   const [selectedOption, setSelectedOption] = useState("");
+  const [questions, setQuestions] = useState([]);
 
   // 라디오 버튼 클릭 핸들러
   const handleRadioClick = (option) => {
     setSelectedOption(option);
   };
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await axios.get('/applicant/questions/COMMON');
+        if (response.data.isSuccess) {
+          setQuestions(response.data.result.questions);
+        }
+      } catch (error) {
+        console.error('질문을 불러오는데 실패했습니다:', error);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
+
 
   return (
     <Section>
@@ -32,22 +50,14 @@ const CommonQuestions = () => {
         <SectionTitle>공통 질문</SectionTitle>
         <Divider />
 
-        <FormGroup>
-          <Label>
-            1. UMC 지원 동기와 UMC 활동을 통해 기대하는 바를 서술해주세요.
-          </Label>
-          <TextArea placeholder="500자 이내로 작성해주세요." />
-        </FormGroup>
-
-        <FormGroup>
-          <Label>2. 본인의 장단점에 대해 서술해주세요.</Label>
-          <TextArea placeholder="500자 이내로 작성해주세요." />
-        </FormGroup>
-
-        <FormGroup>
-          <Label>3. UMC에 임하는 각오를 서술해주세요.</Label>
-          <TextArea placeholder="500자 이내로 작성해주세요." />
-        </FormGroup>
+        {questions.map((question) => (
+          <FormGroup key={question.questionId}>
+            <Label>
+              {question.questionId}. {question.questionText}
+            </Label>
+            <TextArea placeholder="500자 이내로 작성해주세요." />
+          </FormGroup>
+        ))}
 
         <FormGroup>
           <Label>4. UMC는 학기 중에 배운 것을 바탕으로 방학 동안 팀을 구성해 앱 런칭을 진행합니다. 실제로 어떤 서비스를 개발하고 싶은지 서술해주세요. </Label>
