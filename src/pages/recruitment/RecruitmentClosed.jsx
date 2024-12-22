@@ -1,19 +1,50 @@
+import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { ReactComponent as SendIcon } from "../../assets/icons/SendIcon.svg";
 import BackgroundSvg from "../../assets/images/recruitment_background/background.svg";
 
 const RecruitmentClosed = () => {
+  const [email, setEmail] = useState("");
 
-  const handleIconClick = () => {
-    console.log("제출 완료");
+  const handleIconClick = async () => {
+    if (!email) {
+      alert("이메일을 입력해주세요.");
+      return;
+    }
+
+    // 이메일 유효성 검사
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,7}$/;
+
+    if (!emailRegex.test(email)) {
+      alert("유효한 이메일 주소를 입력해주세요.");
+      return;
+    }
+
+    try {
+      const response = await axios.post("/applicant/notice/register", email);
+      if (response.status === 200) {
+        alert("모집 알림 신청이 완료 되었습니다.");
+        setEmail(""); // 입력 필드 초기화하기
+      }
+    } catch (error) {
+      alert("모집 알림 신청 중 오류가 발생했습니다.");
+    }
   };
 
   return (
     <BackgroundContainer>
       <ContentWrapper>
         <Title>지금은 모집 기간이 아닙니다</Title>
-        <Description>UMC 8기 모집 알림을 신청하고 가장 빠르게 모집 소식을 들어보세요.</Description>
-        <InputField type="email" placeholder="모집 알림을 받을 메일 주소를 입력해주세요" />
+        <Description>
+          UMC 8기 모집 알림을 신청하고 가장 빠르게 모집 소식을 들어보세요.
+        </Description>
+        <InputField
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="모집 알림을 받을 메일 주소를 입력해주세요"
+        />
         <StyledSendIcon onClick={handleIconClick} />
         <SeparatorLine />
       </ContentWrapper>
@@ -62,7 +93,7 @@ const InputField = styled.input`
   font-size: 20px;
   font-weight: 400;
   line-height: 28px;
-  outline:none;
+  outline: none;
   border: none;
   background-color: transparent;
   width: 46.688rem;
@@ -79,6 +110,6 @@ const StyledSendIcon = styled(SendIcon)`
 
 const SeparatorLine = styled.div`
   width: 49.875rem;
-  border: 0.10625rem solid #5C6161;
+  border: 0.10625rem solid #5c6161;
   flex-grow: 0;
 `;
