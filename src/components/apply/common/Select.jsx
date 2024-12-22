@@ -27,18 +27,22 @@ const Select = ({ options, defaultValue, value, onChange, type }) => {
       {isOpen && (
         <OptionList height={getListHeight()}>
           <OptionsContainer $type={type}>
-            {options.map((option) => ( // options 배열의 각 항목 순회
-              <Option
-                key={option}
-                onClick={() => {
-                  onChange(option);
-                  setIsOpen(false);
-                }}
-                isSelected={value === option} // 현재 선택된 옵션인지 여부
-              >
-                {option}  {/* 옵션 텍스트 */}
-              </Option>
-            ))}
+            {options.map(
+              (
+                option // options 배열의 각 항목 순회
+              ) => (
+                <Option
+                  key={option}
+                  onClick={() => {
+                    onChange(option);
+                    setIsOpen(false);
+                  }}
+                  isSelected={value === option} // 현재 선택된 옵션인지 여부
+                >
+                  {option} {/* 옵션 텍스트 */}
+                </Option>
+              )
+            )}
           </OptionsContainer>
         </OptionList>
       )}
@@ -111,7 +115,7 @@ const Option = styled.button`
   font-weight: "400";
   font-size: 1rem;
   line-height: 1.875rem;
- color: ${(props) => (props.isSelected ? "#FFF" : "#353838")};
+  color: ${(props) => (props.isSelected ? "#FFF" : "#353838")};
   background: ${(props) => (props.isSelected ? "#75D7B6" : "transparent")};
   border: none;
   text-align: left;
@@ -120,6 +124,8 @@ const Option = styled.button`
 
   &:hover {
     font-weight: 600;
+    background: ${(props) => (props.isSelected ? "#2B9176" : "#DFFAF1")};
+    color: ${(props) => (props.isSelected ? "#FFF" : "#353838")};
   }
 `;
 
