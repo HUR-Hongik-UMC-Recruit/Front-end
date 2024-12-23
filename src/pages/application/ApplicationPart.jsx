@@ -74,6 +74,11 @@ const RadioWrapper = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 1.875rem; /* 187.5% */
+
+  &:hover {
+    border: 1.5px solid #2b9176;
+    background: #b1e9d6;
+  }
 `;
 
 const Radio = styled.input`
