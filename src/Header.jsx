@@ -87,10 +87,10 @@ const Header = () => {
 
   const toRecruit = () => {
     // 새로고침 느낌
-    // window.location.href = "/recruitment";
+    window.location.href = "/apply";
 
     // 스무스하게 넘어감
-    navigate("/recruitment");
+    navigate("/apply");
   };
 
   const location = useLocation();
