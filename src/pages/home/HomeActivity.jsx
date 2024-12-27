@@ -1,74 +1,74 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
-import mouse from "../../assets/icons/mouse.png";
-import a from "../../assets/icons/activity/a.png";
-import b from "../../assets/icons/activity/b.png";
-import c from "../../assets/icons/activity/c.png";
-import d from "../../assets/icons/activity/d.png";
-import e from "../../assets/icons/activity/e.png";
-import f from "../../assets/icons/activity/f.png";
 
 const ActivityContainer = styled.div`
   width: 100%;
-  height: 70.3rem;
+  height: 60.1rem;
   background: #111412;
 `;
 
 const ActivityWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-bottom: 15rem;
   gap: 10rem;
 `;
 
 const ActivityListWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2.375rem;
-`;
-
-const ActivityListFront = styled.div`
-  width: 23.9375rem;
-  height: 17.625rem;
-  position: relative;
-`;
-
-const ActivityBackground = styled.img`
-  border-radius: 0.9375rem;
-`;
-
-const ActivityFrontWrapper = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  top: 1.75rem;
-  left: 2.13rem;
-  position: absolute;
+  gap: 7.5rem;
 `;
 
-const ActivtyText = styled.p`
-  margin: 0;
+const ActivityList = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 3.12rem;
+  height: 6.63rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Activity = styled.div`
+  border-top: 0.0625rem solid #5c6161;
+  padding-top: 0.88rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 16.3125rem;
+`;
+
+const ActivityName = styled.div`
   color: #edf4f5;
-  font-size: 1.75rem;
+  font-family: "Pretendard Variable";
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 570;
+  line-height: 135%; /* 2.025rem */
+  letter-spacing: -0.015rem;
 `;
 
-const ActivityMouse = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+const ActivityDate = styled.div`
+  color: #bcc6c6;
+  font-family: "Pretendard Variable";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 140%; /* 1.75rem */
+  letter-spacing: -0.0125rem;
 `;
 
 const HomeActivity = () => {
-  const contents = [
-    { activity: "해커톤", background: a },
-    { activity: "컨퍼런스", background: b },
-    { activity: "MT", background: c },
-    { activity: "프리미팅 데이", background: d },
-    { activity: "중앙 MT", background: e },
-    { activity: "앱 / 웹 개발 프로젝트", background: f },
+  const contentsF = [
+    { activity: "홍익대 OT", date: "3월 중순 예정" },
+    { activity: "한강 나들이", date: "4월 초 예정" },
+    { activity: "홍익대 MT", date: "4월 말~5월 초 예정" },
+  ];
+  const contentsS = [
+    { activity: "중앙 MT", date: "5월 초 예정" },
+    { activity: "아이디어톤", date: "5월 말 예정" },
+    { activity: "데모데이", date: "8월 말 예정" },
   ];
 
   return (
@@ -79,15 +79,22 @@ const HomeActivity = () => {
           subtitle="UMC는 6개월동안 다양한 활동을 진행해요"
         />
         <ActivityListWrapper>
-          {contents.map((content) => (
-            <ActivityListFront>
-              <ActivityBackground src={content.background} />
-              <ActivityFrontWrapper>
-                <ActivtyText>{content.activity}</ActivtyText>
-                <ActivityMouse src={mouse} />
-              </ActivityFrontWrapper>
-            </ActivityListFront>
-          ))}
+          <ActivityList>
+            {contentsF.map((content) => (
+              <Activity>
+                <ActivityName>{content.activity}</ActivityName>
+                <ActivityDate>{content.date}</ActivityDate>
+              </Activity>
+            ))}
+          </ActivityList>
+          <ActivityList>
+            {contentsS.map((content) => (
+              <Activity>
+                <ActivityName>{content.activity}</ActivityName>
+                <ActivityDate>{content.date}</ActivityDate>
+              </Activity>
+            ))}
+          </ActivityList>
         </ActivityListWrapper>
       </ActivityWrapper>
     </ActivityContainer>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import arrowNext from "../../assets/icons/ArrowNext.png";
 import background from "../../assets/icons/BgChallenge.png";
+import { useNavigate } from "react-router-dom";
 
 const ChallengeContainer = styled.div`
   width: 100%;
@@ -49,6 +50,7 @@ const ChallengeButton = styled.button`
   border-radius: 5rem;
   border: #b1f4dd;
   background: #b1f4dd;
+  cursor: pointer;
 
   color: #353838;
   font-size: 1.375rem;
@@ -59,6 +61,16 @@ const ChallengeButton = styled.button`
 `;
 
 const Challenge = () => {
+  const navigate = useNavigate();
+
+  const toRecruit = () => {
+    // 새로고침 느낌
+    // window.location.href = "/recruitment";
+
+    // 스무스하게 넘어감
+    navigate("/recruitment");
+  };
+
   return (
     <ChallengeContainer>
       <ChallengeWrapper>
@@ -66,7 +78,7 @@ const Challenge = () => {
           지금, UMC와 함께 <TextDo>도전</TextDo>하고 <TextSung>성장</TextSung>
           하세요!
         </ChallengeText>
-        <ChallengeButton>
+        <ChallengeButton onClick={toRecruit}>
           모집 알림 신청하러 가기 <img src={arrowNext} />
         </ChallengeButton>
       </ChallengeWrapper>
