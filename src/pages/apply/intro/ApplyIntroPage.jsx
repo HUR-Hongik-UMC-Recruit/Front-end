@@ -1,21 +1,19 @@
 import Verification from "./Verification";
 import PersonalInfo from "./PersonalInfo";
-import CommonQuestions from "./CommonQuestions";
 import styled from "styled-components";
-import Title from "../../../components/apply/common/Title";
+import Title from "../../../components/apply/intro/Title";
 
-const ApplyCommonPage = () => {
+const ApplyIntroPage = () => {
   return (
     <StyledPage>
       <Title />
       <Verification />
       <PersonalInfo />
-      <CommonQuestions />
     </StyledPage>
   );
 };
 
-export default ApplyCommonPage;
+export default ApplyIntroPage;
 
 const StyledPage = styled.div`
   width: 100%;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ApplicationIntroPage from "../apply/intro/ApplyIntroPage";
 import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
 import ApplyModal from "../../components/application/ApplyModal";
@@ -148,9 +149,7 @@ const ApplicationPage = () => {
 
   return (
     <ApplicationContent>
-      {/* <Title />
-        <Verification />
-        <PersonalInfo /> */}
+      <ApplicationIntroPage />
       <ApplicationCommon />
       <ApplicationPart />
       <ButtonWrapper>
