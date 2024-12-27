@@ -18,11 +18,12 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderWrapper = styled.div`
-  width: 65.375rem;
+  width: 100%;
   height: 2.56rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 2rem;
 `;
 
 const HomeWrapper = styled.div``;
@@ -61,19 +62,24 @@ const MenuList = styled.a`
 const MenuButton = styled.button`
   width: 5rem;
   height: 2.25rem;
-
-  border-radius: 0.3125rem;
-  border: 1px solid #90e6c9;
-
   background-color: transparent;
   color: #90e6c9;
   cursor: pointer;
+
+  border-radius: 0.3125rem;
+  border: 1px solid #90e6c9;
 
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   line-height: 145%; /* 1.26875rem */
   letter-spacing: 0.00875rem;
+
+  &:hover {
+    border: 1.5px solid #2b9176;
+    background: #5fbda1;
+    color: #ffffff;
+  }
 `;
 
 const Header = () => {
@@ -106,9 +112,6 @@ const Header = () => {
             </MenuList>
             <MenuList href="" $isApplyPage={isApplyPage}>
               운영진
-            </MenuList>
-            <MenuList href="" $isApplyPage={isApplyPage}>
-              FAQ
             </MenuList>
           </MenuListWrapper>
           <MenuButton onClick={toRecruit}>지원하기</MenuButton>
