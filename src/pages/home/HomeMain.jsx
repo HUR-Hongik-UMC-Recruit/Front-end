@@ -2,6 +2,7 @@ import styled from "styled-components";
 import arrowNext from "../../assets/icons/ArrowNext.png";
 import arrowDown from "../../assets/icons/ArrowDown.png";
 import background from "../../assets/icons/BgHome.png";
+import { useNavigate } from "react-router-dom";
 
 const BTRContainer = styled.div`
   background: #111412;
@@ -16,6 +17,7 @@ const BTRContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 12.4375rem;
+  margin-top: 5rem;
 `;
 
 const BTRWrapper = styled.div`
@@ -66,6 +68,7 @@ const RecruitButton = styled.button`
   border: 1px solid #90e6c9;
   background: #fcffff;
   box-shadow: 0px 0px 33.3px 0px rgba(144, 224, 230, 0.2);
+  cursor: pointer;
 
   color: #353838;
   font-family: "Pretendard Variable";
@@ -78,12 +81,19 @@ const RecruitButton = styled.button`
 
 const NextButton = styled.button`
   background-color: transparent;
+  cursor: pointer;
   border: none;
 `;
 
 const HomeMain = () => {
-  const nextClick = () => {
-    console.log("next");
+  const navigate = useNavigate();
+
+  const toRecruit = () => {
+    // 새로고침 느낌
+    // window.location.href = "/recruitment";
+
+    // 스무스하게 넘어감
+    navigate("/recruitment");
   };
 
   const downClick = () => {
@@ -99,7 +109,7 @@ const HomeMain = () => {
           당신의 아이디어를 오직 UMC에서
         </BTRDetail>
       </BTRWrapper>
-      <RecruitButton onClick={nextClick}>
+      <RecruitButton onClick={toRecruit}>
         UMC 8기 지원하기
         <img src={arrowNext} />
       </RecruitButton>
