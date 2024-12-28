@@ -12,7 +12,7 @@ import {
   DisabledButton,
   InputGroup,
   InfoText,
-} from "../../../components/apply/common/SectionStyles";
+} from "../../../components/apply/intro/SectionStyles";
 import axios from "axios";
 
 // const api = axios.create({

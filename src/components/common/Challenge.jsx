@@ -69,6 +69,7 @@ const Challenge = () => {
 
     // 스무스하게 넘어감
     navigate("/recruitment");
+    window.scrollTo(0, 0);  // 페이지 최상단으로 스크롤
   };
 
   return (

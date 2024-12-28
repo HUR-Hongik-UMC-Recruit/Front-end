@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Select from "../../../components/apply/common/Select";
+import Select from "../../../components/apply/intro/Select";
 
 import {
   Section,
@@ -15,7 +15,7 @@ import {
   RadioButton,
   InfoText,
   FormItem,
-} from "../../../components/apply/common/SectionStyles";
+} from "../../../components/apply/intro/SectionStyles";
 
 const PersonalInfo = () => {
   // 재학 상태

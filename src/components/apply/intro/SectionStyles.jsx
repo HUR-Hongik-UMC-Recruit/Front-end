@@ -2,34 +2,33 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  margin-top: 4rem;
 `;
 
 export const ContentWrapper = styled.div`
-  width: 90rem;
-  padding: 0 13.438rem 6.875rem;
+  margin: 0rem 12.3rem;
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 700;
   color: #2b9176;
-  margin-bottom: 1rem;
-  margin-top: 0;
+  font-family: "Pretendard Variable";
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 575;
+  line-height: 1.875rem; /* 125% */
 `;
 
 export const Divider = styled.div`
-  height: 0.188rem;
-  margin-bottom: 2.938rem;
+  height: 0.1875rem;
   background: #e1e9ea;
+  margin: 1rem 0rem 1.5rem 0rem;
 `;
 
 export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.938rem;
-  margin-top: 3.313rem;
+  gap: 1rem;
+  padding-bottom: 4rem;
 `;
 
 export const Label = styled.label`

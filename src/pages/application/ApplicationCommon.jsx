@@ -178,6 +178,37 @@ const FileInput = styled.label`
   line-height: 1.875rem; /* 150% */
 `;
 
+const UploadedFile = styled.div`
+  display: flex;
+  width: 23.3125rem;
+  height: 6.375rem;
+  padding: 0 1.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: 1.5px solid #d1dadb;
+  background: #fcffff;
+`;
+
+const FileInfo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #353838;
+  font-size: 1.2rem;
+  font-weight: 500;
+`;
+
+const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ApplicationCommon = () => {
   const [selectLeader, setSelectLeader] = useState("예");
   const [file, setFile] = useState(null);
@@ -189,7 +220,7 @@ const ApplicationCommon = () => {
   };
 
   const handleFileChange = (e) => {
-    if (e?.target.files) {
+    if (e?.target?.files) {
       // 파일 용량 10MB로 제한하기
       const maxSize = 10 * 1024 * 1024;
       const fileSize = e.target.files[0]?.size;
@@ -198,11 +229,16 @@ const ApplicationCommon = () => {
         return;
       }
 
-      console.log(e.target.file);
-      console.log(e.target.file[0]);
+      console.log(e.target.files);
+      console.log(e.target.files[0]);
 
       setFile(e.target.files[0]);
     }
+  };
+
+  const handleDeleteFile = () => {
+    // 파일 삭제 함수
+    setFile(null);
   };
 
   return (
@@ -246,20 +282,32 @@ const ApplicationCommon = () => {
             자기소개서를 제출하셔도 괜찮습니다.
           </Question>
           <FileWrapper>
-            <FileInput for="file">
-              <img
-                src={upload}
-                style={{ height: "1.75rem", width: "1.75rem" }}
-              />
-              파일 첨부
-            </FileInput>
-            <input
-              type="file"
-              accept="application/pdf"
-              id="file"
-              onChange={handleFileChange}
-              style={{ display: "none" }}
-            />
+            {!file ? (
+              <>
+                <FileInput htmlFor="file">
+                  <img
+                    src={upload}
+                    style={{ height: "1.75rem", width: "1.75rem" }}
+                  />
+                  파일 첨부
+                </FileInput>
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  id="file"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+              </>
+            ) : (
+              <UploadedFile>
+                <FileInfo>
+                  <img src={upload} />
+                  {file.name}
+                </FileInfo>
+                <DeleteButton onClick={handleDeleteFile}>✕</DeleteButton>
+              </UploadedFile>
+            )}
             <Guide>
               하나의 PDF 파일로 병합 후 제출 부탁드립니다.
               <br />
