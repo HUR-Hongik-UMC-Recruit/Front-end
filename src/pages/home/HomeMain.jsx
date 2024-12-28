@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import arrowNext from "../../assets/icons/ArrowNext.png";
 import arrowDown from "../../assets/icons/ArrowDown.png";
 import background from "../../assets/icons/BgHome.png";
@@ -57,6 +57,24 @@ const BTRDetail = styled.p`
   letter-spacing: -0.015rem;
 `;
 
+const shake = keyframes`
+  0% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    }
+    75% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+`;
+
 const RecruitButton = styled.button`
   display: flex;
   justify-content: center;
@@ -77,6 +95,11 @@ const RecruitButton = styled.button`
   font-weight: 500;
   line-height: 135%; /* 1.85625rem */
   letter-spacing: -0.01375rem;
+
+  &: hover {
+    // transform: scale(1.2);
+    animation: ${shake} 1s;
+  }
 `;
 
 const NextButton = styled.button`
