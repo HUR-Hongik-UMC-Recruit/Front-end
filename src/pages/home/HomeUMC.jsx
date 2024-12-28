@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const HUMCContainer = styled.div`
   background: #111412;
@@ -18,7 +20,7 @@ const SectionContainer = styled.div`
   gap: 1rem;
 `;
 
-const SectionWrapper = styled.div`
+const SectionWrapper = styled(motion.div)`
   display: flex;
   width: 18.75rem;
   height: 26.1875rem;
@@ -102,6 +104,39 @@ const HomeUMC = () => {
     },
   ];
 
+  // 해당 파트가 사용자의 화면에 들어왔을 때 애니메이션 시작할 수 있게 하는 코드
+  const [visibleSections, setVisibleSections] = useState(
+    Array(contents.length).fill(false)
+  );
+
+  const ref = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = Number(entry.target.dataset.index);
+          setVisibleSections((prev) => {
+            const newVisibleSections = [...prev];
+            newVisibleSections[index] = true;
+            return newVisibleSections;
+          });
+          observer.unobserve(entry.target); // 한 번만 애니메이션을 실행하도록 설정
+        }
+      });
+    });
+
+    ref.current.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  });
+
   return (
     <HUMCContainer>
       <SectionHeader
@@ -109,8 +144,18 @@ const HomeUMC = () => {
         subtitle="IT 연합 개발 동아리 University Makeus Challenge"
       />
       <SectionContainer>
-        {contents.map((content) => (
-          <SectionWrapper>
+        {contents.map((content, index) => (
+          <SectionWrapper
+            key={content.id}
+            data-index={index}
+            ref={(el) => (ref.current[index] = el)}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: visibleSections[index] ? 1 : 0,
+              y: visibleSections[index] ? 0 : 20,
+            }}
+            transition={{ type: "spring", stiffness: 100, delay: index * 0.3 }}
+          >
             <SectionDetail>
               <SectionTitle>{content.title}</SectionTitle>
               {content.detail.split("\n").map((line) => (
