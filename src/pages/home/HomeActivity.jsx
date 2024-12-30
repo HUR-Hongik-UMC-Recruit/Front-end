@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
+import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const ActivityContainer = styled.div`
   width: 100%;
@@ -11,24 +13,20 @@ const ActivityWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5.75rem;
-`;
-
-const ActivityListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 7.5rem;
-`;
-
-const ActivityList = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 3.12rem;
-  height: 6.63rem;
   align-items: center;
   justify-content: center;
 `;
 
-const Activity = styled.div`
+const ActivityList = styled.div`
+  display: grid;
+  width: 55.2rem;
+  height: 20.8rem;
+  gap: 3.12rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-content: space-between;
+`;
+
+const Activity = styled(motion.div)`
   border-top: 0.0625rem solid #5c6161;
   padding-top: 0.88rem;
 
@@ -60,16 +58,50 @@ const ActivityDate = styled.div`
 `;
 
 const HomeActivity = () => {
-  const contentsF = [
+  const contents = [
     { activity: "홍익대 OT", date: "3월 중순 예정" },
     { activity: "한강 나들이", date: "4월 초 예정" },
     { activity: "홍익대 MT", date: "4월 말~5월 초 예정" },
-  ];
-  const contentsS = [
     { activity: "중앙 MT", date: "5월 초 예정" },
     { activity: "아이디어톤", date: "5월 말 예정" },
     { activity: "데모데이", date: "8월 말 예정" },
   ];
+
+  // 해당 파트가 사용자의 화면에 들어왔을 때 애니메이션 시작할 수 있게 하는 코드
+  const [visibleSections, setVisibleSections] = useState(
+    Array(contents.length).fill(false)
+  );
+
+  const ref = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.dataset.index);
+            setVisibleSections((prev) => {
+              const newVisibleSections = [...prev];
+              newVisibleSections[index] = true;
+              return newVisibleSections;
+            });
+            observer.unobserve(entry.target); // 한 번만 애니메이션을 실행하도록 설정
+          }
+        });
+      },
+      [contents]
+    );
+
+    ref.current.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  });
 
   return (
     <ActivityContainer>
@@ -78,24 +110,28 @@ const HomeActivity = () => {
           title="활동 소개"
           subtitle="UMC는 6개월동안 다양한 활동을 진행해요"
         />
-        <ActivityListWrapper>
-          <ActivityList>
-            {contentsF.map((content) => (
-              <Activity>
-                <ActivityName>{content.activity}</ActivityName>
-                <ActivityDate>{content.date}</ActivityDate>
-              </Activity>
-            ))}
-          </ActivityList>
-          <ActivityList>
-            {contentsS.map((content) => (
-              <Activity>
-                <ActivityName>{content.activity}</ActivityName>
-                <ActivityDate>{content.date}</ActivityDate>
-              </Activity>
-            ))}
-          </ActivityList>
-        </ActivityListWrapper>
+        <ActivityList>
+          {contents.map((content, index) => (
+            <Activity
+              key={content.id}
+              data-index={index}
+              ref={(el) => (ref.current[index] = el)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: visibleSections[index] ? 1 : 0,
+                y: visibleSections[index] ? 0 : 20,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                delay: index * 0.3,
+              }}
+            >
+              <ActivityName>{content.activity}</ActivityName>
+              <ActivityDate>{content.date}</ActivityDate>
+            </Activity>
+          ))}
+        </ActivityList>
       </ActivityWrapper>
     </ActivityContainer>
   );
