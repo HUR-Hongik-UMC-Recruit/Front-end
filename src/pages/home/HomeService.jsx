@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import { useEffect, useState } from "react";
+import styled, { css, keyframes } from "styled-components";
 
 const ServiceContainer = styled.div`
   background: #111412;
@@ -14,10 +15,30 @@ const ServiceWrapper = styled.div`
   gap: 4rem;
 `;
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(15%);
+  }
+  `;
+
 const ServiceLine = styled.div`
   width: 0.125rem;
   height: 11.8125rem;
   background: linear-gradient(#111412, #90e6c9);
+  animation: ${(props) =>
+    props.animate
+      ? css`
+          ${fadeIn} 3s ease-in-out forwards
+        `
+      : ""};
 `;
 
 const TextWrapper = styled.div``;
@@ -46,10 +67,34 @@ const TextDetail = styled.p`
 `;
 
 const HomeService = () => {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setAnimate(true);
+          observer.disconnect(); // 한 번만 애니메이션을 실행
+        }
+      });
+    });
+
+    const serviceLine = document.getElementById("serviceLine");
+    if (serviceLine) {
+      observer.observe(serviceLine);
+    }
+
+    return () => {
+      if (serviceLine) {
+        observer.unobserve(serviceLine);
+      }
+    };
+  }, []);
+
   return (
     <ServiceContainer>
       <ServiceWrapper>
-        <ServiceLine />
+        <ServiceLine id="serviceLine" animate={animate} />
         <TextWrapper>
           <TextService>실제로 동작하는 서비스를 만들어보자!</TextService>
           <TextDetail>
