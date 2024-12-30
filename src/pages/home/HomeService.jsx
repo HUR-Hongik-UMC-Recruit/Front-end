@@ -50,7 +50,7 @@ const TextService = styled.p`
   text-align: center;
   font-size: 1.75rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 135%; /* 2.3625rem */
   letter-spacing: -0.0175rem;
 `;
