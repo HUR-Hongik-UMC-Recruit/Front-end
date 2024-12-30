@@ -30,6 +30,7 @@ const fadeIn = keyframes`
   `;
 
 const ServiceLine = styled.div`
+  opacity: 0;
   width: 0.125rem;
   height: 11.8125rem;
   background: linear-gradient(#111412, #90e6c9);
