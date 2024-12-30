@@ -15,7 +15,7 @@ import Namseoul from "../../assets/icons/university/남서울대학교.png";
 
 const UniversityContainer = styled.div`
   width: 100%;
-  height: 59.4rem;
+  height: 69.4rem;
   background: #111412;
 `;
 
@@ -29,7 +29,7 @@ const UniversityWrapper = styled.div`
 const CarouselWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3rem;
 `;
 
 const Carousel = styled.div`
@@ -55,6 +55,9 @@ const Top = styled.div`
   display: flex;
   gap: 4rem;
   padding-right: 4rem;
+  height: 15rem;
+  justify-content: center;
+  align-items: center;
 
   will-change: transform;
   animation: ${scrollingLeft} 30s linear infinite;
@@ -73,6 +76,9 @@ const Down = styled.div`
   display: flex;
   gap: 4rem;
   padding-right: 4rem;
+  height: 15rem;
+  justify-content: center;
+  align-items: center;
 
   will-change: transform;
   animation: ${scrollingRight} 30s linear infinite;
