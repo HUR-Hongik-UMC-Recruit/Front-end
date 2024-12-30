@@ -108,20 +108,21 @@ const HomeUMC = () => {
   const [visibleSections, setVisibleSections] = useState(
     Array(contents.length).fill(false)
   );
-
   const ref = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        const index = Number(entry.target.dataset.index);
         if (entry.isIntersecting) {
-          const index = Number(entry.target.dataset.index);
+          // 요소가 뷰포트에 들어왔을 때
           setVisibleSections((prev) => {
             const newVisibleSections = [...prev];
-            newVisibleSections[index] = true;
+            if (!newVisibleSections[index]) {
+              newVisibleSections[index] = true; // 애니메이션 실행
+            }
             return newVisibleSections;
           });
-          observer.unobserve(entry.target); // 한 번만 애니메이션을 실행하도록 설정
         }
       });
     });
