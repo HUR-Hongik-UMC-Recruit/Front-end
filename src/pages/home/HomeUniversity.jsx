@@ -23,7 +23,7 @@ const UniversityWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 15rem;
-  gap: 10rem;
+  gap: 5.75rem;
 `;
 
 const CarouselWrapper = styled.div`

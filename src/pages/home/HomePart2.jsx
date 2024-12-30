@@ -109,7 +109,7 @@ const PartButtonWrapper = styled.div`
   align-items: center;
   gap: 2rem;
 
-  margin-top: 7rem;
+  margin-top: 2.75rem;
 `;
 
 const PartButton = styled.div`

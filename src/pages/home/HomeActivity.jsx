@@ -10,7 +10,7 @@ const ActivityContainer = styled.div`
 const ActivityWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10rem;
+  gap: 5.75rem;
 `;
 
 const ActivityListWrapper = styled.div`
