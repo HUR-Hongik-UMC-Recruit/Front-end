@@ -15,7 +15,7 @@ const ServiceWrapper = styled.div`
   gap: 4rem;
 `;
 
-const fadeIn = keyframes`
+const LineFadeIn = keyframes`
   0% {
     opacity: 0;
     transform: translateY(-10%);
@@ -37,12 +37,15 @@ const ServiceLine = styled.div`
   animation: ${(props) =>
     props.animate
       ? css`
-          ${fadeIn} 3s ease-in-out forwards
+          ${LineFadeIn} 3s ease-in-out forwards
         `
       : ""};
 `;
 
-const TextWrapper = styled.div``;
+const TextWrapper = styled.div`
+  opacity: ${(props) => (props.show ? 1 : 0)};
+  transition: opacity 2s ease-in-out;
+`;
 
 const TextService = styled.p`
   margin: 0;
@@ -68,13 +71,17 @@ const TextDetail = styled.p`
 `;
 
 const HomeService = () => {
-  const [animate, setAnimate] = useState(false);
+  const [lineAnimate, setLineAnimate] = useState(false);
+  const [textAnimate, setTextAnimate] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          setAnimate(true);
+          setLineAnimate(true);
+          setTimeout(() => {
+            setTextAnimate(true); // 애니메이션 후 텍스트 표시
+          }, 3500); // 애니메이션 지속 시간과 동일하게 설정
           observer.disconnect(); // 한 번만 애니메이션을 실행
         }
       });
@@ -95,8 +102,8 @@ const HomeService = () => {
   return (
     <ServiceContainer>
       <ServiceWrapper>
-        <ServiceLine id="serviceLine" animate={animate} />
-        <TextWrapper>
+        <ServiceLine id="serviceLine" animate={lineAnimate} />
+        <TextWrapper show={textAnimate}>
           <TextService>실제로 동작하는 서비스를 만들어보자!</TextService>
           <TextDetail>
             UMC는 목표를 이루기 위해 열정과 끈기로 가득찬 챌린저들과 함께 달리며
