@@ -18,14 +18,14 @@ const ServiceWrapper = styled.div`
 const LineFadeIn = keyframes`
   0% {
     opacity: 0;
-    transform: translateY(-10%);
+    transform: translateY(-15%);
   }
   50% {
     opacity: 1;
   }
   100% {
     opacity: 1;
-    transform: translateY(15%);
+    transform: translateY(0%);
   }
   `;
 
@@ -37,7 +37,7 @@ const ServiceLine = styled.div`
   animation: ${(props) =>
     props.animate
       ? css`
-          ${LineFadeIn} 3s ease-in-out forwards
+          ${LineFadeIn} 2s ease-in-out forwards
         `
       : ""};
 `;
@@ -81,7 +81,7 @@ const HomeService = () => {
           setLineAnimate(true);
           setTimeout(() => {
             setTextAnimate(true); // 애니메이션 후 텍스트 표시
-          }, 3500); // 애니메이션 지속 시간과 동일하게 설정
+          }, 2300); // 애니메이션 지속 시간과 동일하게 설정
           observer.disconnect(); // 한 번만 애니메이션을 실행
         }
       });
