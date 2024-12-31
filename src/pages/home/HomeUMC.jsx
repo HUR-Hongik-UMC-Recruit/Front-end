@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const HUMCContainer = styled.div`
   background: #111412;
@@ -80,7 +80,7 @@ const SectionNum = styled.p`
   align-self: stretch;
 `;
 
-const HomeUMC = () => {
+const HomeUMC = React.forwardRef((props, scrollRef) => {
   const contents = [
     {
       id: "01",
@@ -108,7 +108,7 @@ const HomeUMC = () => {
   const [visibleSections, setVisibleSections] = useState(
     Array(contents.length).fill(false)
   );
-  const ref = useRef([]);
+  const animationRef = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -127,7 +127,7 @@ const HomeUMC = () => {
       });
     });
 
-    ref.current.forEach((section) => {
+    animationRef.current.forEach((section) => {
       if (section) {
         observer.observe(section);
       }
@@ -139,7 +139,7 @@ const HomeUMC = () => {
   });
 
   return (
-    <HUMCContainer>
+    <HUMCContainer ref={scrollRef}>
       <SectionHeader
         title="홍익대학교 UMC를 소개합니다"
         subtitle="IT 연합 개발 동아리 University Makeus Challenge"
@@ -149,7 +149,7 @@ const HomeUMC = () => {
           <SectionWrapper
             key={content.id}
             data-index={index}
-            ref={(el) => (ref.current[index] = el)}
+            ref={(el) => (animationRef.current[index] = el)}
             initial={{ opacity: 0, y: 20 }}
             animate={{
               opacity: visibleSections[index] ? 1 : 0,
@@ -169,6 +169,6 @@ const HomeUMC = () => {
       </SectionContainer>
     </HUMCContainer>
   );
-};
+});
 
 export default HomeUMC;

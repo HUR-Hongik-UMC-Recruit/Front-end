@@ -108,7 +108,7 @@ const NextButton = styled.button`
   border: none;
 `;
 
-const HomeMain = () => {
+const HomeMain = ({ downClick }) => {
   const navigate = useNavigate();
 
   const toRecruit = () => {
@@ -119,9 +119,9 @@ const HomeMain = () => {
     navigate("/recruitment");
   };
 
-  const downClick = () => {
-    console.log("dwn");
-  };
+  // const downClick = () => {
+  //   console.log("dwn");
+  // };
 
   return (
     <BTRContainer>
