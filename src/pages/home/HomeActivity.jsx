@@ -124,7 +124,7 @@ const HomeActivity = () => {
               transition={{
                 type: "spring",
                 stiffness: 100,
-                delay: index * 0.3,
+                delay: index * 0.2,
               }}
             >
               <ActivityName>{content.activity}</ActivityName>
