@@ -3,6 +3,7 @@ import arrowNext from "../../assets/icons/ArrowNext.png";
 import arrowDown from "../../assets/icons/ArrowDown.png";
 import background from "../../assets/icons/BgHome.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const BTRContainer = styled.div`
   background: #111412;
@@ -28,7 +29,19 @@ const BTRWrapper = styled.div`
   gap: 1.6875rem;
 `;
 
-const BTRText = styled.h1`
+const blink = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const BTRTitle = styled.h1`
   display: flex;
   align-self: center;
   margin: 0;
@@ -41,6 +54,15 @@ const BTRText = styled.h1`
   font-weight: 700;
   line-height: 125%; /* 6.5625rem */
   letter-spacing: -0.105rem;
+
+  // &::after {
+  //   content: "";
+  //   display: inline-block;
+  //   width: 0.5rem;
+  //   height: 100%;
+  //   background-color: #ffffff60;
+  //   animation: ${blink} 1s infinite;
+  // }
 `;
 
 const BTRDetail = styled.p`
@@ -120,15 +142,34 @@ const HomeMain = ({ downClick }) => {
     navigate("/recruitment");
   };
 
-  // const downClick = () => {
-  //   console.log("dwn");
-  // };
+  const text = "Break the Rules!"; // 타이핑할 문구
+  const [displayedText, setDisplayedText] = useState(""); // 상태로 표시할 텍스트 관리
+  const speed = 200; // 글자 타이핑 속도 (밀리초 단위)
+
+  useEffect(() => {
+    let index = 0;
+
+    const typeWriter = () => {
+      if (index < text.length) {
+        setDisplayedText((prev) => prev + text.charAt(index));
+        index++;
+        setTimeout(typeWriter, speed);
+      }
+    };
+
+    typeWriter(); // 타이핑 함수 호출
+
+    return () => {
+      // 컴포넌트 언마운트 시 클린업
+      index = text.length; // 타이핑 중지
+    };
+  }, [text]); // text가 변경될 때마다 effect 실행
 
   return (
     <BTRContainer>
-      <BTRWrapper>
-        <BTRText>Break the Rules!</BTRText>
-        <BTRDetail>
+      <BTRWrapper className="typingContainer">
+        <BTRTitle id="typingText">{displayedText}</BTRTitle>
+        <BTRDetail id="typingText">
           도전과 성장, 열정이 모이는 곳<br />
           당신의 아이디어를 오직 UMC에서
         </BTRDetail>
