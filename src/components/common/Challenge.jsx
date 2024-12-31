@@ -78,7 +78,8 @@ const ChallengeButton = styled.button`
   letter-spacing: -0.01375rem;
 
   &: hover {
-    // transform: scale(1.2);
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
     animation: ${shake} 1s;
   }
 `;
