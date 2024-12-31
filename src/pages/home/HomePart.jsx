@@ -165,7 +165,7 @@ const HomePart2 = () => {
           viewport={{ once: true }}
           transition={{
             ease: "easeInOut",
-            duration: 2,
+            duration: 1,
             y: { duration: 1 },
           }}
         >

@@ -44,7 +44,7 @@ const ServiceLine = styled.div`
 
 const TextWrapper = styled.div`
   opacity: ${(props) => (props.show ? 1 : 0)};
-  transition: opacity 2s ease-in-out;
+  transition: opacity 1s ease-in-out;
 `;
 
 const TextService = styled.p`
@@ -81,7 +81,7 @@ const HomeService = () => {
           setLineAnimate(true);
           setTimeout(() => {
             setTextAnimate(true); // 애니메이션 후 텍스트 표시
-          }, 2300); // 애니메이션 지속 시간과 동일하게 설정
+          }, 1200); // 애니메이션 지속 시간과 동일하게 설정
           observer.disconnect(); // 한 번만 애니메이션을 실행
         }
       });
