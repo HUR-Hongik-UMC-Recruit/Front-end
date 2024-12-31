@@ -8,7 +8,7 @@ import HomeUniversity from "./HomeUniversity";
 
 const HomePage = () => {
   return (
-    <div>
+    <div style={{ background: "black" }}>
       <HomeMain />
       <HomeUMC />
       <HomeService />
