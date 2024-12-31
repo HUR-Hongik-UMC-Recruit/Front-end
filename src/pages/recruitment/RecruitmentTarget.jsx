@@ -106,22 +106,18 @@ const CardContainer = styled.div`
   justify-content: center;
 `;
 
-const boingInUp = keyframes`
+const swashIn = keyframes`
   0% {
     opacity: 0;
-    transform-origin: 50% 0%;
-    transform: perspective(800px) rotateX(-90deg);
-  }
-  50% {
-    opacity: 1;
-    transform-origin: 50% 0%;
-    transform: perspective(800px) rotateX(50deg);
+    transform-origin: 50% 50%;
+    transform: scale(0, 0);
   }
   100% {
     opacity: 1;
-    transform-origin: 50% 0%;
-    transform: perspective(800px) rotateX(0deg);
+    transform-origin: 50% 50%;
+    transform: scale(1, 1);
   }
+}
 `;
 
 const Card = styled.div`
@@ -138,7 +134,7 @@ const Card = styled.div`
   border-radius: 10px;
 
   opacity: 0;
-  animation: ${boingInUp} 1.5s ease forwards;
+  animation: ${swashIn} 1.5s ease forwards;
   animation-delay: ${(props) => props.delay};
   visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
 `;
