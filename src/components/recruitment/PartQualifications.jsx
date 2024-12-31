@@ -48,7 +48,7 @@ const QualificationsContent = styled.div`
 `;
 
 const QualificationHeading = styled.h1`
-  font-weight: 600;
+  font-weight: 575;
   font-size: 22px;
   line-height: 135%;
   color: #fbfbfb;

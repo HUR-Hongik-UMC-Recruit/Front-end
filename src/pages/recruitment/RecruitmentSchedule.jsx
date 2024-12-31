@@ -123,7 +123,7 @@ const ScheduleItem = styled.div`
 `;
 
 const ScheduleTitle = styled.h3`
-  font-weight: 700;
+  font-weight: 590;
   font-size: 24px;
   line-height: 135%;
   text-align: center;
@@ -133,7 +133,7 @@ const ScheduleTitle = styled.h3`
 `;
 
 const ScheduleDate = styled.p`
-  font-weight: 400;
+  font-weight: 300;
   font-size: 20px;
   line-height: 140%;
   text-align: center;

@@ -33,7 +33,7 @@ const RequirementsContainer = styled.div`
 `;
 
 const RequirementsHeading = styled.h1`
-  font-weight: 600;
+  font-weight: 575;
   font-size: 22px;
   line-height: 135%;
   color: #fcffff;
@@ -41,7 +41,7 @@ const RequirementsHeading = styled.h1`
 `;
 
 const RequirementsText = styled.p`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   line-height: 145%;
   color: #a2abab;
