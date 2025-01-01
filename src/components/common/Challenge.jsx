@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import arrowNext from "../../assets/icons/ArrowNext.png";
 import background from "../../assets/icons/BgChallenge.png";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +40,24 @@ const TextSung = styled.span`
   color: #90e0e6;
 `;
 
+const shake = keyframes`
+  0% {
+        transform: rotate(0deg)
+    }
+    25% {
+        transform: rotate(-8deg);
+    }
+    50% {
+        transform: rotate(8deg);
+    }
+    75% {
+        transform: rotate(-8deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+`;
+
 const ChallengeButton = styled.button`
   display: flex;
   height: 4rem;
@@ -58,6 +76,12 @@ const ChallengeButton = styled.button`
   font-weight: 600;
   line-height: 135%; /* 1.85625rem */
   letter-spacing: -0.01375rem;
+
+  &: hover {
+    transform: scale(1.1);
+    transition: transform 0.5s ease;
+    animation: ${shake} 1s;
+  }
 `;
 
 const Challenge = () => {
@@ -69,7 +93,7 @@ const Challenge = () => {
 
     // 스무스하게 넘어감
     navigate("/recruitment");
-    window.scrollTo(0, 0);  // 페이지 최상단으로 스크롤
+    window.scrollTo(0, 0); // 페이지 최상단으로 스크롤
   };
 
   return (

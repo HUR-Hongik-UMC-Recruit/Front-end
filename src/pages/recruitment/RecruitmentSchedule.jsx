@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
 
 const RecruitmentSchedule = () => {
@@ -10,25 +10,54 @@ const RecruitmentSchedule = () => {
     { title: "최종 발표", date: "09.13 (금)" },
   ];
 
+  const [isVisible, setIsVisible] = useState(false);
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // 애니메이션이 실행되면 옵저버 해제
+        }
+      },
+      { threshold: 0.1 } // 10%가 보일 때 트리거
+    );
+
+    if (timelineRef.current) {
+      observer.observe(timelineRef.current);
+    }
+
+    return () => {
+      if (timelineRef.current) {
+        observer.unobserve(timelineRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <BackgroundContainer>
+    <BackgroundContainer ref={timelineRef} r>
       <ContentWrapper>
         <ScheduleContent>
           <SectionHeader title="모집 일정" subtitle="Recruitment Schedule" />
           <TimelineContainer>
             <TimelineBar>
-              <TimelineLine />
+              <TimelineLine isVisible={isVisible} />
               <TimelinePoints>
                 {Array(4)
                   .fill(null)
                   .map((_, index) => (
-                    <TimelinePoint key={index} />
+                    <TimelinePoint
+                      key={index}
+                      index={index}
+                      isVisible={isVisible}
+                    />
                   ))}
               </TimelinePoints>
             </TimelineBar>
             <ScheduleItems>
               {scheduleData.map((item, index) => (
-                <ScheduleItem key={index}>
+                <ScheduleItem key={index} index={index} isVisible={isVisible}>
                   <ScheduleTitle>{item.title}</ScheduleTitle>
                   <ScheduleDate>{item.date}</ScheduleDate>
                 </ScheduleItem>
@@ -81,6 +110,16 @@ const TimelineBar = styled.div`
   height: 1rem;
 `;
 
+// 타임라인 라인 애니메이션
+const drawLine = keyframes`
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+`;
+
 const TimelineLine = styled.div`
   position: absolute;
   width: 100%;
@@ -88,6 +127,9 @@ const TimelineLine = styled.div`
   top: 0.25rem;
   background: #353838;
   border-radius: 0.781rem;
+
+  animation: ${(props) => (props.isVisible ? drawLine : "none")} 2s ease
+    forwards; /* 선이 그려지는 시간 설정 */
 `;
 
 const TimelinePoints = styled.div`
@@ -99,11 +141,29 @@ const TimelinePoints = styled.div`
   top: 0;
 `;
 
+// 타임라인 포인트 애니메이션
+const scaleUp = keyframes`
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+
 const TimelinePoint = styled.div`
   width: 1rem;
   height: 1rem;
   background: #90e6c9;
   border-radius: 50%;
+
+  opacity: 0;
+  animation: ${(props) => (props.isVisible ? scaleUp : "none")} 0.5s ease
+    forwards;
+  animation-delay: ${(props) =>
+    props.index * 0.5}s; /* 포인트에 따라 지연 시간 설정 */
 `;
 
 const ScheduleItems = styled.div`
@@ -114,17 +174,32 @@ const ScheduleItems = styled.div`
   width: 64.25rem;
 `;
 
+// 스케줄 아이템 애니메이션
+const fadeInUp = keyframes`
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const ScheduleItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0.5rem;
   width: 14.188rem;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: ${(props) => (props.isVisible ? fadeInUp : "none")} 0.5s ease
+    forwards;
+  animation-delay: ${(props) =>
+    (props.index + 0.5) * 0.5}s; /* 포인트와 동일한 지연 설정 */
 `;
 
 const ScheduleTitle = styled.h3`
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: 590;
+  font-size: 25px;
   line-height: 135%;
   text-align: center;
   letter-spacing: -0.01em;
@@ -133,8 +208,8 @@ const ScheduleTitle = styled.h3`
 `;
 
 const ScheduleDate = styled.p`
-  font-weight: 400;
-  font-size: 20px;
+  font-weight: 300;
+  font-size: 19px;
   line-height: 140%;
   text-align: center;
   letter-spacing: -0.01em;

@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
 
 const RecruitmentTarget = () => {
@@ -12,13 +12,50 @@ const RecruitmentTarget = () => {
     "UMC와 함께 도전하고\n성장하고 싶은 사람",
   ];
 
+  const [visibleCards, setVisibleCards] = useState(
+    Array(targetDetails.length).fill(false)
+  );
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = entry.target.dataset.index;
+          setVisibleCards((prev) => {
+            const newVisibleCards = [...prev];
+            newVisibleCards[index] = true;
+            return newVisibleCards;
+          });
+          observer.unobserve(entry.target); // 요소가 보이면 관찰 중지
+        }
+      });
+    });
+
+    cardRefs.current.forEach((card) => {
+      if (card) {
+        observer.observe(card);
+      }
+    });
+
+    return () => {
+      observer.disconnect(); // 컴포넌트 언마운트 시 관찰 해제
+    };
+  }, [targetDetails]);
+
   return (
     <BackgroundContainer>
       <ContentWrapper>
         <SectionHeader title="모집 대상" subtitle="Recruitment Target" />
         <CardContainer>
           {targetDetails.map((detail, index) => (
-            <Card key={index}>
+            <Card
+              key={index}
+              ref={(el) => (cardRefs.current[index] = el)}
+              delay={`${index * 0.5}s`}
+              isVisible={visibleCards[index]}
+              data-index={index}
+            >
               <CardText>
                 {detail.split("\n").map((line, i) => (
                   <React.Fragment key={i}>
@@ -69,6 +106,20 @@ const CardContainer = styled.div`
   justify-content: center;
 `;
 
+const swashIn = keyframes`
+  0% {
+    opacity: 0;
+    transform-origin: 50% 50%;
+    transform: scale(0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform-origin: 50% 50%;
+    transform: scale(1, 1);
+  }
+}
+`;
+
 const Card = styled.div`
   display: flex;
   flex-direction: column;
@@ -81,6 +132,11 @@ const Card = styled.div`
   background: #1d201e;
   border: 1px solid #353838;
   border-radius: 10px;
+
+  opacity: 0;
+  animation: ${swashIn} 1.5s ease forwards;
+  animation-delay: ${(props) => props.delay};
+  visibility: ${(props) => (props.isVisible ? "visible" : "hidden")};
 `;
 
 const CardText = styled.p`
