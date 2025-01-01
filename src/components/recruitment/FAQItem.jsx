@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import DownIcon from "../../assets/icons/DownIcon.svg";
+import { motion, AnimatePresence } from "framer-motion";
 
 const FAQItem = ({ question, answer, description }) => {
   const [isOpen, setIsOpen] = useState(false);
+  
 
   return (
     <QuestionWrapper>
@@ -16,12 +18,21 @@ const FAQItem = ({ question, answer, description }) => {
                 <img src={DownIcon} alt="toggle" />
               </IconWrapper>
             </QuestionHeader>
-            {isOpen && (
-              <AnswerWrapper>
-                <AnswerTitle>{answer}</AnswerTitle>
-                <AnswerDescription>{description}</AnswerDescription>
-              </AnswerWrapper>
-            )}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0 }}
+                  animate={{ height: "auto" }}
+                  transition={{ duration: 0.5 }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <AnswerWrapper>
+                    <AnswerTitle>{answer}</AnswerTitle>
+                    <AnswerDescription>{description}</AnswerDescription>
+                  </AnswerWrapper>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </ContentWrapper>
         </QuestionContent>
       </QuestionContainer>
