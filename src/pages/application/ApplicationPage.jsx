@@ -73,7 +73,7 @@ const ModalTitle = styled.div`
   font-family: "Pretendard Variable";
   font-size: 1.5rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 135%; /* 2.025rem */
   letter-spacing: -0.015rem;
 `;
@@ -166,7 +166,7 @@ const ApplicationPage = () => {
             </ModalText>
             <ModalButton>
               <Cancel onClick={() => setOpen(false)}>취소</Cancel>
-              <Submit>제출</Submit>
+              <Submit onClick={() => console.log("제출")}>제출</Submit>
             </ModalButton>
           </ModalWrapper>
         </ApplyModal>
