@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const PartContainer = styled.div`
@@ -146,6 +147,7 @@ const AnswerSmall = styled.textarea`
 
 const ApplicationPart = () => {
   const [selectPart, setSelectPart] = useState("Plan");
+  const [questions, setQuestions] = useState([]);
 
   const parts = [
     "Plan",
@@ -156,6 +158,16 @@ const ApplicationPart = () => {
     "Spring",
     "Node.js",
   ];
+
+  const APIConverter = {
+    Plan: "PM",
+    Design: "DESIGN",
+    Android: "ANDROID",
+    iOS: "IOS",
+    Web: "WEB",
+    Spring: "SPRING",
+    "Node.js": "NODE",
+  };
 
   const partContent = {
     Plan: {
@@ -206,6 +218,27 @@ const ApplicationPart = () => {
     setSelectPart(e.target.value);
   };
 
+  const getQuestions = async () => {
+    try {
+      const response = await axios.get(
+        `/applicant/questions/${APIConverter[selectPart]}`
+      );
+      if (response.data.isSuccess) {
+        setQuestions(response.data.result.questions); // questions 배열로 설정
+        console.log(response.data.result.questions);
+      } else {
+        console.error("API 호출 실패: ", response.data.message);
+        setQuestions([]); // 실패 시 빈 배열로 설정
+      }
+    } catch (e) {
+      console.log("파트별질문 에러 발생: ", e);
+    }
+  };
+
+  useEffect(() => {
+    getQuestions();
+  }, [selectPart]);
+
   return (
     <PartContainer>
       <PartWrapper>
@@ -231,6 +264,14 @@ const ApplicationPart = () => {
             ))}
           </RadioPartWrapper>
         </QuestionWrapper>
+
+        {questions.map((question) => (
+          <QuestionWrapper key={question.questionId}>
+            {question.questionId}. {question.questionText}
+            <Question></Question>
+            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          </QuestionWrapper>
+        ))}
 
         <QuestionWrapper>
           <Question>
