@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import parts from "../../data/common/PartList";
+import APIConverter from "../../data/application/APIConverter";
 
 const PartContainer = styled.div`
   width: 100%;
@@ -148,26 +150,6 @@ const AnswerSmall = styled.textarea`
 const ApplicationPart = () => {
   const [selectPart, setSelectPart] = useState("Plan");
   const [questions, setQuestions] = useState([]);
-
-  const parts = [
-    "Plan",
-    "Design",
-    "Android",
-    "iOS",
-    "Web",
-    "Spring",
-    "Node.js",
-  ];
-
-  const APIConverter = {
-    Plan: "PM",
-    Design: "DESIGN",
-    Android: "ANDROID",
-    iOS: "IOS",
-    Web: "WEB",
-    Spring: "SPRING",
-    "Node.js": "NODE",
-  };
 
   const partContent = {
     Plan: {
