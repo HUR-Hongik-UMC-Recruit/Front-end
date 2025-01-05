@@ -3,7 +3,7 @@ import { useState } from "react";
 import SectionHeader from "../../components/common/SectionHeader";
 import ArrowLeft from "../../assets/icons/ArrowLeft.png";
 import ArrowRight from "../../assets/icons/ArrowRight.png";
-import contents from "../../components/home/PartData";
+import contents from "../../data/home/PartData";
 
 const PartContainer = styled.div`
   background: #111412;
@@ -129,7 +129,7 @@ const PartButton = styled.div`
   }
 `;
 
-const HomePart2 = () => {
+const HomePart = () => {
   const [index, setIndex] = useState(1);
 
   const beforeButtonClick = () => {
@@ -188,4 +188,4 @@ const HomePart2 = () => {
   );
 };
 
-export default HomePart2;
+export default HomePart;

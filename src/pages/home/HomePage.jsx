@@ -1,7 +1,7 @@
 import Challenge from "../../components/common/Challenge";
 import HomeActivity from "./HomeActivity";
 import HomeMain from "./HomeMain";
-import HomePart2 from "./HomePart2";
+import HomePart from "./HomePart";
 import HomeService from "./HomeService";
 import HomeUMC from "./HomeUMC";
 import HomeUniversity from "./HomeUniversity";
@@ -12,7 +12,7 @@ const HomePage = () => {
       <HomeMain />
       <HomeUMC />
       <HomeService />
-      <HomePart2 />
+      <HomePart />
       <HomeActivity />
       <HomeUniversity />
       <Challenge />
