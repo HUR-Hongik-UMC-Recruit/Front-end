@@ -10,22 +10,18 @@ const ActivityContainer = styled.div`
 const ActivityWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10rem;
-`;
-
-const ActivityListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 7.5rem;
+  gap: 5.75rem;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ActivityList = styled.div`
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  width: 55.2rem;
+  height: 20.8rem;
   gap: 3.12rem;
-  height: 6.63rem;
-  align-items: center;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-content: space-between;
 `;
 
 const Activity = styled.div`
@@ -60,17 +56,14 @@ const ActivityDate = styled.div`
 `;
 
 const HomeActivity = () => {
-  const contentsF = [
+  const contents = [
     { activity: "홍익대 OT", date: "3월 중순 예정" },
     { activity: "한강 나들이", date: "4월 초 예정" },
     { activity: "홍익대 MT", date: "4월 말~5월 초 예정" },
-  ];
-  const contentsS = [
     { activity: "중앙 MT", date: "5월 초 예정" },
     { activity: "아이디어톤", date: "5월 말 예정" },
     { activity: "데모데이", date: "8월 말 예정" },
   ];
-
   return (
     <ActivityContainer>
       <ActivityWrapper>
@@ -78,24 +71,14 @@ const HomeActivity = () => {
           title="활동 소개"
           subtitle="UMC는 6개월동안 다양한 활동을 진행해요"
         />
-        <ActivityListWrapper>
-          <ActivityList>
-            {contentsF.map((content) => (
-              <Activity>
-                <ActivityName>{content.activity}</ActivityName>
-                <ActivityDate>{content.date}</ActivityDate>
-              </Activity>
-            ))}
-          </ActivityList>
-          <ActivityList>
-            {contentsS.map((content) => (
-              <Activity>
-                <ActivityName>{content.activity}</ActivityName>
-                <ActivityDate>{content.date}</ActivityDate>
-              </Activity>
-            ))}
-          </ActivityList>
-        </ActivityListWrapper>
+        <ActivityList>
+          {contents.map((content, index) => (
+            <Activity key={content.id}>
+              <ActivityName>{content.activity}</ActivityName>
+              <ActivityDate>{content.date}</ActivityDate>
+            </Activity>
+          ))}
+        </ActivityList>
       </ActivityWrapper>
     </ActivityContainer>
   );
