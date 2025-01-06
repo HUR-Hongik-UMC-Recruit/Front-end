@@ -17,7 +17,7 @@ import {
   FormItem,
 } from "../../../components/apply/common/SectionStyles";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
   // 재학 상태
   const [status, setStatus] = useState("");
   const [grade, setGrade] = useState("");
@@ -43,14 +43,24 @@ const PersonalInfo = () => {
             <Label>
               이름 <RequiredDot />
             </Label>
-            <Input type="text" placeholder="유엠씨" />
+            <Input
+              type="text"
+              placeholder="유엠씨"
+              value={applicantDTO.name}
+              onChange={(e) => updateApplicantDTO("name", e.target.value)}
+            />
           </FormGroup>
 
           <FormGroup>
             <Label>
               생년월일 <RequiredDot />
             </Label>
-            <Input type="text" placeholder="YYYY.MM.DD" />
+            <Input
+              type="text"
+              placeholder="YYYY.MM.DD"
+              value={applicantDTO.birth}
+              onChange={(e) => updateApplicantDTO("birth", e.target.value)}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -82,7 +92,7 @@ const PersonalInfo = () => {
               닉네임 <RequiredDot />
             </Label>
             <FormItem>
-              <Input type="text" placeholder="에) 밍밍" />
+              <Input type="text" placeholder="예) 밍밍" />
               <InfoText>사용할 닉네임을 적어주세요!</InfoText>
             </FormItem>
           </FormGroup>
@@ -91,7 +101,12 @@ const PersonalInfo = () => {
             <Label>
               학번 <RequiredDot />
             </Label>
-            <Input type="text" placeholder="YYYY.MM.DD" />
+            <Input
+              type="text"
+              placeholder="C123456"
+              value={applicantDTO.studentId}
+              onChange={(e) => updateApplicantDTO("studentId", e.target.value)}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -114,7 +129,12 @@ const PersonalInfo = () => {
             <Label>
               학과 <RequiredDot />
             </Label>
-            <Input type="text" placeholder="컴퓨터공학과" />
+            <Input
+              type="text"
+              placeholder="컴퓨터공학과"
+              value={applicantDTO.major}
+              onChange={(e) => updateApplicantDTO("major", e.target.value)}
+            />
           </FormGroup>
 
           <FormGroup>
@@ -152,7 +172,12 @@ const PersonalInfo = () => {
           <Label>
             연락처 <RequiredDot />
           </Label>
-          <Input type="tel" placeholder="010-0000-0000" />
+          <Input
+            type="tel"
+            placeholder="010-0000-0000"
+            value={applicantDTO.phone}
+            onChange={(e) => updateApplicantDTO("phone", e.target.value)}
+          />
         </FormGroup>
 
         {/* 디스코드 사용 이메일 */}
@@ -160,7 +185,12 @@ const PersonalInfo = () => {
           <Label>
             디스코드 (Discord) 사용 이메일 <RequiredDot />
           </Label>
-          <Input type="email" placeholder="example123@gmail.com" />
+          <Input
+            type="email"
+            placeholder="example123@gmail.com"
+            value={applicantDTO.discordEmail}
+            onChange={(e) => updateApplicantDTO("discordEmail", e.target.value)}
+          />
         </FormGroup>
 
         {/* 노션 사용 이메일 */}
@@ -168,7 +198,12 @@ const PersonalInfo = () => {
           <Label>
             노션 (Notion) 사용 이메일 <RequiredDot />
           </Label>
-          <Input type="email" placeholder="example123@gmail.com" />
+          <Input
+            type="email"
+            placeholder="example123@gmail.com"
+            value={applicantDTO.notionEmail}
+            onChange={(e) => updateApplicantDTO("notionEmail", e.target.value)}
+          />
         </FormGroup>
 
         {/* UMC를 알게된 경로 */}
@@ -179,6 +214,8 @@ const PersonalInfo = () => {
           <Input
             type="text"
             placeholder="예) 에브리타임, 인스타그램, 지인 등"
+            value={applicantDTO.umcRoute}
+            onChange={(e) => updateApplicantDTO("umcRoute", e.target.value)}
           />
         </FormGroup>
 
@@ -187,7 +224,12 @@ const PersonalInfo = () => {
           <Label>
             현재 활동 중이거나 활동 예정인 동아리 (UMC 제외) <RequiredDot />
           </Label>
-          <Input type="text" placeholder="과 내 학술 소모임 1개" />
+          <Input
+            type="text"
+            placeholder="과 내 학술 소모임 1개"
+            value={applicantDTO.currentClub}
+            onChange={(e) => updateApplicantDTO("currentClub", e.target.value)}
+          />
         </FormGroup>
       </ContentWrapper>
     </Section>

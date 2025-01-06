@@ -2,8 +2,12 @@ import styled from "styled-components";
 import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
 import ApplyModal from "../../components/application/ApplyModal";
+import Title from "../../components/apply/common/Title";
+import Verification from "../apply/common/Verification";
+import PersonalInfo from "../apply/common/PersonalInfo";
 import warning from "../../assets/icons/Warning.png";
 import { useState } from "react";
+import axios from "axios";
 
 const ApplicationContent = styled.div`
   // margin: 5rem 12.3rem 14rem 12.3rem;
@@ -146,13 +150,61 @@ const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
 
+  const [applicantDTO, setApplicantDTO] = useState({
+    name: "",
+    email: "hello3@gmail.com",
+    phone: "",
+    gender: "MALE",
+    birth: "",
+    studentId: "",
+    major: "",
+    grade: "THIRD",
+    gradeStatus: "IN_SCHOOL",
+    experience: "YB",
+    umcRoute: "",
+    currentClub: 0,
+    discordEmail: "",
+    notionEmail: "",
+    part: "IOS",
+    answers: [],
+  });
+  const [file, setFile] = useState(null);
+
+  const updateApplicantDTO = (key, value) => {
+    setApplicantDTO({ ...applicantDTO, [key]: value });
+  };
+
+  const handleSubmit = async () => {
+    const formData = new FormData();
+    formData.append("applicantDTO", applicantDTO);
+    if (file) {
+      formData.append("file", file);
+    }
+
+    for (const x of formData.entries()) {
+      console.log(x);
+    }
+
+    try {
+      const response = await axios.post("/applicant/apply", formData);
+      console.log("지원서 제출 서버 응답: ", response.data);
+    } catch (e) {
+      console.log("지원서 제출 에러 발생: ", e);
+    }
+  };
+
   return (
     <ApplicationContent>
-      {/* <Title />
-        <Verification />
-        <PersonalInfo /> */}
-      <ApplicationCommon />
-      <ApplicationPart />
+      <Title />
+      <Verification />
+      <PersonalInfo
+        applicantDTO={applicantDTO}
+        updateApplicantDTO={updateApplicantDTO}
+      />
+
+      <ApplicationCommon setApplicantDTO={setApplicantDTO} setFile={setFile} />
+      <ApplicationPart setApplicantDTO={setApplicantDTO} />
+
       <ButtonWrapper>
         <Button type="submit" onClick={() => setOpen(true)}>
           제출
@@ -166,7 +218,7 @@ const ApplicationPage = () => {
             </ModalText>
             <ModalButton>
               <Cancel onClick={() => setOpen(false)}>취소</Cancel>
-              <Submit onClick={() => console.log("제출")}>제출</Submit>
+              <Submit onClick={() => handleSubmit()}>제출</Submit>
             </ModalButton>
           </ModalWrapper>
         </ApplyModal>

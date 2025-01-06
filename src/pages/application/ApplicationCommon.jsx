@@ -179,17 +179,15 @@ const FileInput = styled.label`
   line-height: 1.875rem; /* 150% */
 `;
 
-const ApplicationCommon = () => {
+const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
+  // 리더 희망 여부
   const [selectLeader, setSelectLeader] = useState("예");
-  const [file, setFile] = useState(null);
-  const [questions, setQuestions] = useState([]);
-
   const leader = ["예", "아니요"];
-
   const handleRadioChange = (e) => {
     setSelectLeader(e.target.value);
   };
 
+  // 파일 첨부
   const handleFileChange = (e) => {
     if (e?.target.files) {
       // 파일 용량 10MB로 제한하기
@@ -199,14 +197,13 @@ const ApplicationCommon = () => {
         alert("첨부 파일 사이즈는 5MB 이내로 등록 가능합니다.");
         return;
       }
-
-      console.log(e.target.file);
-      console.log(e.target.file[0]);
-
       setFile(e.target.files[0]);
+      console.log(e.target.files[0]);
     }
   };
 
+  // 질문 조회 api
+  const [questions, setQuestions] = useState([]);
   const getQuestions = async () => {
     try {
       const response = await axios.get("/applicant/questions/COMMON");
@@ -221,10 +218,19 @@ const ApplicationCommon = () => {
       console.log("공통질문 에러 발생: ", e);
     }
   };
+  // useEffect(() => {
+  //   getQuestions();
+  // }, []);
 
-  useEffect(() => {
-    getQuestions();
-  }, []);
+  // 질문 답변 내용 ApplicationPage로 전달
+  const handleAnswerChange = (questionId, answerText) => {
+    setApplicantDTO((prev) => ({
+      ...prev,
+      answers: prev.answers.map((answer) =>
+        answer.questionId === questionId ? { questionId, answerText } : answer
+      ),
+    }));
+  };
 
   return (
     <CommonContainer>
@@ -233,6 +239,7 @@ const ApplicationCommon = () => {
 
         <CommonBorder />
 
+        {/* 
         {questions.map((question) => (
           <QuestionWrapper key={question.questionId}>
             <Question>
@@ -240,23 +247,36 @@ const ApplicationCommon = () => {
             </Question>
             <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
           </QuestionWrapper>
-        ))}
+        ))} 
+        */}
 
         <QuestionWrapper>
           <Question>
             1. UMC 지원 동기와 UMC 활동을 통해 기대하는 바를 서술해주세요.
           </Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(1, e.target.value)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
           <Question>2. 본인의 장단점에 대해 서술해주세요.</Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(2, e.target.value)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
           <Question>3. UMC에 임하는 각오를 서술해주세요.</Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(3, e.target.value)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -265,7 +285,11 @@ const ApplicationCommon = () => {
             런칭을 진행합니다. 실제로 어떤 서비스를 개발하고 싶은지
             서술해주세요.
           </Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(4, e.target.value)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -302,7 +326,11 @@ const ApplicationCommon = () => {
           <Question>
             6. GitHub를 이용해 프로젝한 경험이 있다면 GitHub 주소를 남겨주세요.
           </Question>
-          <AnswerSmall placeholder="예) http://github.com/example"></AnswerSmall>
+          <AnswerSmall
+            type="text"
+            placeholder="예) http://github.com/example"
+            onChange={(e) => handleAnswerChange(6, e.target.value)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>

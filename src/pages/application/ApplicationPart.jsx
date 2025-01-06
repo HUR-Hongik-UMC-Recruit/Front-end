@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import parts from "../../data/common/PartList";
 import APIConverter from "../../data/application/APIConverter";
+import partContent from "../../data/application/PartQuestionData";
 
 const PartContainer = styled.div`
   width: 100%;
@@ -147,59 +148,16 @@ const AnswerSmall = styled.textarea`
   }
 `;
 
-const ApplicationPart = () => {
+const ApplicationPart = ({ setApplicantDTO }) => {
+  // 파트 선택 여부
   const [selectPart, setSelectPart] = useState("Plan");
-  const [questions, setQuestions] = useState([]);
-
-  const partContent = {
-    Plan: {
-      question: "희망 기획 플랫폼을 선택해주세요.",
-      guide:
-        "런칭 프로젝트 팀 매칭 사정에 의해 변경될 수 있음을 미리 고지드립니다.",
-      example: "예) Android, iOS, Web",
-    },
-    Design: {
-      question:
-        "디자인 경험 유무와 다룰 수 있는 툴을 쉼표로 구분하여 나열해 주세요.",
-      guide: "없는 경우 ‘없음'으로 적어주세요.",
-      example: "예) JavaScript, Java",
-    },
-    Android: {
-      question:
-        "코딩 경험 유무와 개발 경험이 있는 언어를 쉼표로 구분하여 나열해 주세요.",
-      guide: "없는 경우 ‘없음'으로 적어주세요.",
-      example: "예) JavaScript, Java",
-    },
-    iOS: {
-      question:
-        "코딩 경험 유무와 개발 경험이 있는 언어를 쉼표로 구분하여 나열해 주세요.",
-      guide: "없는 경우 ‘없음'으로 적어주세요.",
-      example: "예) JavaScript, Java",
-    },
-    Web: {
-      question:
-        "코딩 경험 유무와 개발 경험이 있는 언어를 쉼표로 구분하여 나열해 주세요.",
-      guide: "없는 경우 ‘없음'으로 적어주세요.",
-      example: "예) JavaScript, Java",
-    },
-    Spring: {
-      question:
-        "코딩 경험 유무와 개발 경험이 있는 언어를 쉼표로 구분하여 나열해 주세요.",
-      guide: "없는 경우 ‘없음'으로 적어주세요.",
-      example: "예) JavaScript, Java",
-    },
-    "Node.js": {
-      question:
-        "코딩 경험 유무와 개발 경험이 있는 언어를 쉼표로 구분하여 나열해 주세요.",
-      guide: "없는 경우 ‘없음'으로 적어주세요.",
-      example: "예) JavaScript, Java",
-    },
-  };
-
-  const handleRadioChange = (e) => {
+  const handlePartChange = (e) => {
     setSelectPart(e.target.value);
+    setApplicantDTO((prev) => ({ ...prev, part: e.target.value }));
   };
 
+  // 질문 조회 api
+  const [questions, setQuestions] = useState([]);
   const getQuestions = async () => {
     try {
       const response = await axios.get(
@@ -216,10 +174,19 @@ const ApplicationPart = () => {
       console.log("파트별질문 에러 발생: ", e);
     }
   };
+  // useEffect(() => {
+  //   getQuestions();
+  // }, [selectPart]);
 
-  useEffect(() => {
-    getQuestions();
-  }, [selectPart]);
+  // 질문 답변 내용 ApplicationPage로 전달
+  const handleAnswerChange = (questionId, answerText) => {
+    setApplicantDTO((prev) => ({
+      ...prev,
+      answers: prev.answers.map((answer) =>
+        answer.questionId === questionId ? { questionId, answerText } : answer
+      ),
+    }));
+  };
 
   return (
     <PartContainer>
@@ -237,7 +204,7 @@ const ApplicationPart = () => {
                   type="radio"
                   name="part"
                   value={part}
-                  onChange={handleRadioChange}
+                  onChange={handlePartChange}
                 />
                 <RadioWrapper checked={idx === selectPart} key={part}>
                   {part}
@@ -247,6 +214,7 @@ const ApplicationPart = () => {
           </RadioPartWrapper>
         </QuestionWrapper>
 
+        {/*
         {questions.map((question) => (
           <QuestionWrapper key={question.questionId}>
             {question.questionId}. {question.questionText}
@@ -254,20 +222,27 @@ const ApplicationPart = () => {
             <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
           </QuestionWrapper>
         ))}
+        */}
 
         <QuestionWrapper>
           <Question>
             2. {selectPart} 트랙에 지원하는 이유는 무엇인가요?
           </Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(8, e.target.value)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
           <Question>3. {partContent[selectPart].question}</Question>
           <Guide>{partContent[selectPart].guide}</Guide>
           <AnswerSmall
+            type="text"
             placeholder={partContent[selectPart].example}
-          ></AnswerSmall>
+            onChange={(e) => handleAnswerChange(9, e.target.value)}
+          />
         </QuestionWrapper>
       </PartWrapper>
     </PartContainer>
