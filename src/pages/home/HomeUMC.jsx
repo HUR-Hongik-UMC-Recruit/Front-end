@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
+import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 
 const HUMCContainer = styled.div`
   background: #111412;
@@ -9,7 +11,7 @@ const HUMCContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
+  gap: 5.75rem;
 `;
 
 const SectionContainer = styled.div`
@@ -18,7 +20,7 @@ const SectionContainer = styled.div`
   gap: 1rem;
 `;
 
-const SectionWrapper = styled.div`
+const SectionWrapper = styled(motion.div)`
   display: flex;
   width: 18.75rem;
   height: 26.1875rem;
@@ -78,7 +80,7 @@ const SectionNum = styled.p`
   align-self: stretch;
 `;
 
-const HomeUMC = () => {
+const HomeUMC = React.forwardRef((props, scrollRef) => {
   const contents = [
     {
       id: "01",
@@ -102,15 +104,59 @@ const HomeUMC = () => {
     },
   ];
 
+  // 해당 파트가 사용자의 화면에 들어왔을 때 애니메이션 시작할 수 있게 하는 코드
+  const [visibleSections, setVisibleSections] = useState(
+    Array(contents.length).fill(false)
+  );
+  const animationRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const index = Number(entry.target.dataset.index);
+        if (entry.isIntersecting) {
+          // 요소가 뷰포트에 들어왔을 때
+          setVisibleSections((prev) => {
+            const newVisibleSections = [...prev];
+            if (!newVisibleSections[index]) {
+              newVisibleSections[index] = true; // 애니메이션 실행
+            }
+            return newVisibleSections;
+          });
+        }
+      });
+    });
+
+    animationRef.current.forEach((section) => {
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  });
+
   return (
-    <HUMCContainer>
+    <HUMCContainer ref={scrollRef}>
       <SectionHeader
         title="홍익대학교 UMC를 소개합니다"
         subtitle="IT 연합 개발 동아리 University Makeus Challenge"
       />
       <SectionContainer>
-        {contents.map((content) => (
-          <SectionWrapper>
+        {contents.map((content, index) => (
+          <SectionWrapper
+            key={content.id}
+            data-index={index}
+            ref={(el) => (animationRef.current[index] = el)}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: visibleSections[index] ? 1 : 0,
+              y: visibleSections[index] ? 0 : 20,
+            }}
+            transition={{ type: "spring", stiffness: 100, delay: index * 0.3 }}
+          >
             <SectionDetail>
               <SectionTitle>{content.title}</SectionTitle>
               {content.detail.split("\n").map((line) => (
@@ -123,6 +169,6 @@ const HomeUMC = () => {
       </SectionContainer>
     </HUMCContainer>
   );
-};
+});
 
 export default HomeUMC;

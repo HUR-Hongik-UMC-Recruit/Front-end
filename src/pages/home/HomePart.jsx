@@ -4,6 +4,7 @@ import SectionHeader from "../../components/common/SectionHeader";
 import ArrowLeft from "../../assets/icons/ArrowLeft.png";
 import ArrowRight from "../../assets/icons/ArrowRight.png";
 import contents from "../../components/home/PartData";
+import { motion } from "motion/react";
 
 const PartContainer = styled.div`
   background: #111412;
@@ -16,7 +17,16 @@ const PartWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding-bottom: 15rem;
+  gap: 5.75rem;
+`;
+
+const ContentsWrapper = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
   gap: 3rem;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 
 const SlideContainer = styled.div`
@@ -108,8 +118,6 @@ const PartButtonWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-
-  margin-top: 7rem;
 `;
 
 const PartButton = styled.div`
@@ -151,38 +159,48 @@ const HomePart2 = () => {
           title="파트 소개"
           subtitle="UMC는 7개의 파트로 나누어져 있어요"
         />
+        <ContentsWrapper
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            ease: "easeInOut",
+            duration: 1,
+            y: { duration: 1 },
+          }}
+        >
+          <PartButtonWrapper>
+            {contents.map((content) => (
+              <PartButton
+                key={content.id}
+                className={content.id === index ? "active" : null}
+                onClick={() => partClick(content.id)}
+              >
+                {content.part}
+              </PartButton>
+            ))}
+          </PartButtonWrapper>
 
-        <PartButtonWrapper>
-          {contents.map((content) => (
-            <PartButton
-              key={content.id}
-              className={content.id === index ? "active" : null}
-              onClick={() => partClick(content.id)}
-            >
-              {content.part}
-            </PartButton>
-          ))}
-        </PartButtonWrapper>
-
-        <SlideContainer>
-          <BeforeButton onClick={beforeButtonClick}>
-            <img src={ArrowLeft} />
-          </BeforeButton>
-          {contents.map((content) => (
-            <Slide
-              key={content.id}
-              className={content.id === index ? "active" : null}
-            >
-              <Part>
-                <PartText>{content.part}</PartText>
-                <PartDetail>{content.detail}</PartDetail>
-              </Part>
-            </Slide>
-          ))}
-          <NextButton onClick={nextButtonClick}>
-            <img src={ArrowRight} />
-          </NextButton>
-        </SlideContainer>
+          <SlideContainer>
+            <BeforeButton onClick={beforeButtonClick}>
+              <img src={ArrowLeft} />
+            </BeforeButton>
+            {contents.map((content) => (
+              <Slide
+                key={content.id}
+                className={content.id === index ? "active" : null}
+              >
+                <Part>
+                  <PartText>{content.part}</PartText>
+                  <PartDetail>{content.detail}</PartDetail>
+                </Part>
+              </Slide>
+            ))}
+            <NextButton onClick={nextButtonClick}>
+              <img src={ArrowRight} />
+            </NextButton>
+          </SlideContainer>
+        </ContentsWrapper>
       </PartWrapper>
     </PartContainer>
   );
