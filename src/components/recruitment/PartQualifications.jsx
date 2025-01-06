@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const PartQualifications = ({ part }) => {
   const Partqualifications = {
@@ -16,8 +17,26 @@ const PartQualifications = ({ part }) => {
       "포기하지 않고 자기주도적으로 공부할 수 있는 사람\n지원하는 분야의 언어 기초가 있고, 개발 경험이 있는 사람\n※ UMC에서는 '언어'를 알려드리지 않습니다.",
   };
 
+  const variants = {
+    initial: { scale: 0.8, opacity: 0 },
+    animate: { 
+      scale: 1, 
+      opacity: 1,
+      transition: { 
+        type: "spring",
+        duration: 0.9 
+      }
+    }
+  }
+
   return (
-    <QualificationsContainer>
+    <QualificationsContainer
+      as={motion.div}
+      key={part} // part가 변경될 때마다 애니메이션 재실행
+      variants={variants}
+      initial="initial"
+      animate="animate"
+    >
       <QualificationsContent>
         <QualificationHeading>지원 자격</QualificationHeading>
         {Partqualifications[part].split("\n").map((line, index) => (
@@ -48,8 +67,8 @@ const QualificationsContent = styled.div`
 `;
 
 const QualificationHeading = styled.h1`
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 575;
+  font-size: 24px;
   line-height: 135%;
   color: #fbfbfb;
   margin-bottom: 2.5rem;

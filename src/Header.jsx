@@ -79,6 +79,8 @@ const MenuButton = styled.button`
     border: 1.5px solid #2b9176;
     background: #5fbda1;
     color: #ffffff;
+    transform: scale(1.1);
+    transition: all ease 0.5s;
   }
 `;
 
@@ -87,15 +89,14 @@ const Header = () => {
 
   const toRecruit = () => {
     // 새로고침 느낌
-    // window.location.href = "/recruitment";
+    window.location.href = "/apply";
 
     // 스무스하게 넘어감
-    navigate("/recruitment");
+    navigate("/apply");
   };
 
   const location = useLocation();
   const isApplyPage = location.pathname === "/apply-common";
-
 
   return (
     <HeaderContainer $isApplyPage={isApplyPage}>

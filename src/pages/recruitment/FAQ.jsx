@@ -1,8 +1,9 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, useState } from "react";
+import styled, { keyframes } from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
 import FAQItem from "../../components/recruitment/FAQItem";
 import faqData from "../../data/recruitment/FAQData";
+import { motion } from "motion/react";
 
 const FAQ = () => {
   return (
@@ -11,7 +12,20 @@ const FAQ = () => {
         <SectionHeader title="자주 묻는 질문" subtitle="FAQ" />
         <FAQListContainer>
           {faqData.map((faq, index) => (
-            <FAQItem key={index} {...faq} /> // 항목마다 FAQItem 컴포넌트 생성 (spread 연산자로 객체 모든 속성 props로 전달하기)
+            <FAQItemWrapper
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                ease: "easeInOut",
+                duration: 1,
+                delay: index * 0.5,
+                y: { duration: 1 },
+              }}
+            >
+              <FAQItem key={index} {...faq} /> // 항목마다 FAQItem 컴포넌트 생성
+              (spread 연산자로 객체 모든 속성 props로 전달하기)
+            </FAQItemWrapper>
           ))}
         </FAQListContainer>
       </ContentWrapper>
@@ -47,3 +61,5 @@ const FAQListContainer = styled.div`
   padding: 0;
   gap: 1rem;
 `;
+
+const FAQItemWrapper = styled(motion.div)``;

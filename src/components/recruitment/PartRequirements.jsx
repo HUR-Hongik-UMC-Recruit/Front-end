@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const PartRequirements = ({ part }) => {
   const PartRequirements = {
@@ -12,8 +13,26 @@ const PartRequirements = ({ part }) => {
     "Node.js": "JavaScript",
   };
 
+  const variants = {
+    initial: { scale: 0.8, opacity: 0 },
+    animate: { 
+      scale: 1, 
+      opacity: 1,
+      transition: { 
+        type: "spring",
+        duration: 0.9,
+      }
+    }
+  };
+
   return (
-    <RequirementsContainer>
+    <RequirementsContainer
+    as={motion.div}
+    key={part}
+    variants={variants}
+    initial="initial"
+    animate="animate"
+  >
       <RequirementsHeading>요구 역량</RequirementsHeading>
       <RequirementsText>{PartRequirements[part]}</RequirementsText>
     </RequirementsContainer>
@@ -33,15 +52,15 @@ const RequirementsContainer = styled.div`
 `;
 
 const RequirementsHeading = styled.h1`
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 575;
+  font-size: 24px;
   line-height: 135%;
   color: #fcffff;
   margin-right: 3rem;
 `;
 
 const RequirementsText = styled.p`
-  font-weight: 600;
+  font-weight: 500;
   font-size: 18px;
   line-height: 145%;
   color: #a2abab;
