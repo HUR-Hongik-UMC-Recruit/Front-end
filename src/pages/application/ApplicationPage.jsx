@@ -150,41 +150,79 @@ const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
 
+  // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
-    email: "hello3@gmail.com",
+    email: "hello9@gmail.com",
     phone: "",
-    gender: "MALE",
+    gender: "",
     birth: "",
     studentId: "",
     major: "",
-    grade: "THIRD",
-    gradeStatus: "IN_SCHOOL",
-    experience: "YB",
+    grade: "",
+    gradeStatus: "",
+    experience: "",
     umcRoute: "",
     currentClub: 0,
     discordEmail: "",
     notionEmail: "",
-    part: "IOS",
+    part: "",
     answers: [],
   });
-  const [file, setFile] = useState(null);
+  const [fileDTO, setFileDTO] = useState(null);
 
+  // PersonalInfo에서 사용할 함수(applicantDTO)
   const updateApplicantDTO = (key, value) => {
     setApplicantDTO({ ...applicantDTO, [key]: value });
   };
 
+  // applicantDTO 중 answer 관리할 함수
+  const updateAnswer = (questionId, answerText) => {
+    setApplicantDTO((prevDTO) => {
+      const updatedAnswers = prevDTO.answers.filter(
+        (answer) => answer.questionId !== questionId
+      );
+      updatedAnswers.push({ questionId, answerText });
+      return { ...prevDTO, answers: updatedAnswers };
+    });
+  };
+
+  // ApplicationCommon, ApplicationPart에서 사용할 함수
+  const handleAnswerChange = (questionId, e) => {
+    console.log(`Question ID: ${questionId}, Answer: ${e.target.value}`);
+    updateAnswer(questionId, e.target.value);
+  };
+
+  // post 요청 코드
   const handleSubmit = async () => {
+    // answers 배열을 applicantDTO에 추가
+    applicantDTO.answers = applicantDTO.answers.map((answer, index) => ({
+      questionId: index,
+      answerText: answer.answerText,
+    }));
+
+    // formData 생성
     const formData = new FormData();
-    formData.append("applicantDTO", applicantDTO);
-    if (file) {
-      formData.append("file", file);
+    const blob = new Blob([JSON.stringify(applicantDTO)], {
+      type: "application/json",
+    });
+    formData.append("applicantDTO", blob);
+    if (fileDTO) {
+      formData.append("file", fileDTO);
     }
 
+    console.log(applicantDTO);
+    console.log(JSON.stringify(applicantDTO));
     for (const x of formData.entries()) {
       console.log(x);
     }
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      console.log("applicantDTO 내용:", event.target.result); // Blob 내용을 출력
+    };
+    reader.readAsText(blob); // Blob을 텍스트로 읽기
 
+    // post 요청
     try {
       const response = await axios.post("/applicant/apply", formData);
       console.log("지원서 제출 서버 응답: ", response.data);
@@ -202,8 +240,14 @@ const ApplicationPage = () => {
         updateApplicantDTO={updateApplicantDTO}
       />
 
-      <ApplicationCommon setApplicantDTO={setApplicantDTO} setFile={setFile} />
-      <ApplicationPart setApplicantDTO={setApplicantDTO} />
+      <ApplicationCommon
+        handleAnswerChange={handleAnswerChange}
+        setFileDTO={setFileDTO}
+      />
+      <ApplicationPart
+        updateApplicantDTO={updateApplicantDTO}
+        handleAnswerChange={handleAnswerChange}
+      />
 
       <ButtonWrapper>
         <Button type="submit" onClick={() => setOpen(true)}>

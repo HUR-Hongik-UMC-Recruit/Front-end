@@ -179,7 +179,7 @@ const FileInput = styled.label`
   line-height: 1.875rem; /* 150% */
 `;
 
-const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
+const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
   // 리더 희망 여부
   const [selectLeader, setSelectLeader] = useState("예");
   const leader = ["예", "아니요"];
@@ -188,6 +188,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
   };
 
   // 파일 첨부
+  const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
     if (e?.target.files) {
       // 파일 용량 10MB로 제한하기
@@ -198,6 +199,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
         return;
       }
       setFile(e.target.files[0]);
+      setFileDTO(e.target.files[0]);
       console.log(e.target.files[0]);
     }
   };
@@ -221,16 +223,6 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
   // useEffect(() => {
   //   getQuestions();
   // }, []);
-
-  // 질문 답변 내용 ApplicationPage로 전달
-  const handleAnswerChange = (questionId, answerText) => {
-    setApplicantDTO((prev) => ({
-      ...prev,
-      answers: prev.answers.map((answer) =>
-        answer.questionId === questionId ? { questionId, answerText } : answer
-      ),
-    }));
-  };
 
   return (
     <CommonContainer>
@@ -257,7 +249,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(1, e.target.value)}
+            onChange={(e) => handleAnswerChange(1, e)}
           />
         </QuestionWrapper>
 
@@ -266,7 +258,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(2, e.target.value)}
+            onChange={(e) => handleAnswerChange(2, e)}
           />
         </QuestionWrapper>
 
@@ -275,7 +267,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(3, e.target.value)}
+            onChange={(e) => handleAnswerChange(3, e)}
           />
         </QuestionWrapper>
 
@@ -288,7 +280,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(4, e.target.value)}
+            onChange={(e) => handleAnswerChange(4, e)}
           />
         </QuestionWrapper>
 
@@ -329,7 +321,7 @@ const ApplicationCommon = ({ setApplicantDTO, setFile }) => {
           <AnswerSmall
             type="text"
             placeholder="예) http://github.com/example"
-            onChange={(e) => handleAnswerChange(6, e.target.value)}
+            onChange={(e) => handleAnswerChange(6, e)}
           />
         </QuestionWrapper>
 

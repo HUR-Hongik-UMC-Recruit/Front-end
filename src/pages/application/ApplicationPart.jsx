@@ -148,12 +148,12 @@ const AnswerSmall = styled.textarea`
   }
 `;
 
-const ApplicationPart = ({ setApplicantDTO }) => {
+const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
   // 파트 선택 여부
   const [selectPart, setSelectPart] = useState("Plan");
   const handlePartChange = (e) => {
     setSelectPart(e.target.value);
-    setApplicantDTO((prev) => ({ ...prev, part: e.target.value }));
+    updateApplicantDTO("part", APIConverter[e.target.value]);
   };
 
   // 질문 조회 api
@@ -177,16 +177,6 @@ const ApplicationPart = ({ setApplicantDTO }) => {
   // useEffect(() => {
   //   getQuestions();
   // }, [selectPart]);
-
-  // 질문 답변 내용 ApplicationPage로 전달
-  const handleAnswerChange = (questionId, answerText) => {
-    setApplicantDTO((prev) => ({
-      ...prev,
-      answers: prev.answers.map((answer) =>
-        answer.questionId === questionId ? { questionId, answerText } : answer
-      ),
-    }));
-  };
 
   return (
     <PartContainer>
@@ -231,7 +221,7 @@ const ApplicationPart = ({ setApplicantDTO }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(8, e.target.value)}
+            onChange={(e) => handleAnswerChange(9, e)}
           />
         </QuestionWrapper>
 
@@ -241,7 +231,7 @@ const ApplicationPart = ({ setApplicantDTO }) => {
           <AnswerSmall
             type="text"
             placeholder={partContent[selectPart].example}
-            onChange={(e) => handleAnswerChange(9, e.target.value)}
+            onChange={(e) => handleAnswerChange(10, e)}
           />
         </QuestionWrapper>
       </PartWrapper>
