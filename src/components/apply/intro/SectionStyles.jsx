@@ -36,7 +36,7 @@ export const Label = styled.label`
   align-items: center;
   gap: 0.5rem;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 500;
   color: #1d201e;
 `;
 

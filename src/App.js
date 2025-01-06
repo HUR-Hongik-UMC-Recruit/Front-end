@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import HomePage from "./pages/home/HomePage";
 import RecruitmentPage from "./pages/recruitment/RecruitmentPage";
 import ApplicationPage from "./pages/application/ApplicationPage";
+import AdminJoinPage from "./pages/admin/AdminJoinPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route path="/apply" element={<ApplicationPage />} />
+        <Route path="/join" element={<AdminJoinPage />} />
       </Routes>
       <Footer />
     </Router>
