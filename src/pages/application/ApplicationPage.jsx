@@ -3,9 +3,9 @@ import ApplicationIntroPage from "../apply/intro/ApplyIntroPage";
 import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
 import ApplyModal from "../../components/application/ApplyModal";
-import Title from "../../components/apply/common/Title";
-import Verification from "../apply/common/Verification";
-import PersonalInfo from "../apply/common/PersonalInfo";
+import Title from "../../components/apply/intro/Title";
+import Verification from "../apply/intro/Verification";
+import PersonalInfo from "../apply/intro/PersonalInfo";
 import warning from "../../assets/icons/Warning.png";
 import { useState } from "react";
 import axios from "axios";
@@ -154,7 +154,7 @@ const ApplicationPage = () => {
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
-    email: "hello9@gmail.com",
+    email: "last@gmail.com",
     phone: "",
     gender: "",
     birth: "",
@@ -234,8 +234,6 @@ const ApplicationPage = () => {
 
   return (
     <ApplicationContent>
-      <ApplicationIntroPage />
-
       <Title />
       <Verification />
       <PersonalInfo
