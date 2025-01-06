@@ -28,7 +28,12 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
 
   // 라디오 버튼 클릭 핸들러
   const handleRadioClick = (option) => {
+    const genderMap = {
+      남: "MALE",
+      여: "FEMALE",
+    };
     setSelectedOption(option);
+    updateApplicantDTO("gender", genderMap[option]);
   };
 
   return (
@@ -57,7 +62,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             </Label>
             <Input
               type="text"
-              placeholder="YYYY.MM.DD"
+              placeholder="YYYY-MM-DD"
               value={applicantDTO.birth}
               onChange={(e) => updateApplicantDTO("birth", e.target.value)}
             />
@@ -117,7 +122,15 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               options={["재학", "휴학", "졸업"]}
               defaultValue="재학 여부 선택"
               value={status}
-              onChange={setStatus}
+              onChange={(e) => {
+                const statusMap = {
+                  재학: "IN_SCHOOL",
+                  휴학: "STOP_SCHOOL",
+                  졸업: "GRADUATE",
+                };
+                setStatus(e);
+                updateApplicantDTO("gradeStatus", statusMap[e]); // 상태에 따라 적절한 값으로 업데이트
+              }}
               type="status"
             />
           </FormGroup>
@@ -146,7 +159,16 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
                 options={["1학년", "2학년", "3학년", "4학년"]}
                 defaultValue="학년 선택"
                 value={grade}
-                onChange={setGrade}
+                onChange={(e) => {
+                  const statusMap = {
+                    "1학년": "FIRST",
+                    "2학년": "SECOND",
+                    "3학년": "THIRD",
+                    "4학년": "FOURTH",
+                  };
+                  setGrade(e);
+                  updateApplicantDTO("grade", statusMap[e]); // 상태에 따라 적절한 값으로 업데이트
+                }}
                 type="grade"
               />
               <InfoText>2학년을 마치고 휴학한 경우 '2학년 휴학' 선택</InfoText>
@@ -161,7 +183,14 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               options={["없음", "있음"]}
               defaultValue="활동 경험 선택"
               value={experience}
-              onChange={setExperience}
+              onChange={(e) => {
+                const statusMap = {
+                  없음: "YB",
+                  있음: "OB",
+                };
+                setExperience(e);
+                updateApplicantDTO("experience", statusMap[e]); // 상태에 따라 적절한 값으로 업데이트
+              }}
               type="experience"
             />
           </FormGroup>
