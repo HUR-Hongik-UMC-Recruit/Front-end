@@ -54,7 +54,7 @@ const RecruitmentTarget = () => {
               transition={{
                 type: "spring",
                 stiffness: 100,
-                delay: index * 0.5,
+                delay: index * 0.3,
               }}
             >
               <CardText>
