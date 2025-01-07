@@ -239,43 +239,12 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
     setFile(null);
   };
 
-  // 질문 조회 api
-  const [questions, setQuestions] = useState([]);
-  const getQuestions = async () => {
-    try {
-      const response = await axios.get("/applicant/questions/COMMON");
-      if (response.data.isSuccess) {
-        setQuestions(response.data.result.questions); // questions 배열로 설정
-        console.log(response.data.result.questions);
-      } else {
-        console.error("API 호출 실패: ", response.data.message);
-        setQuestions([]); // 실패 시 빈 배열로 설정
-      }
-    } catch (e) {
-      console.log("공통질문 에러 발생: ", e);
-    }
-  };
-  // useEffect(() => {
-  //   getQuestions();
-  // }, []);
-
   return (
     <CommonContainer>
       <CommonWrapper>
         <CommonTitle>공통 질문</CommonTitle>
 
         <CommonBorder />
-
-        {/* 
-        {questions.map((question) => (
-          <QuestionWrapper key={question.questionId}>
-            <Question>
-              {question.questionId}. {question.questionText}
-            </Question>
-            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
-          </QuestionWrapper>
-        ))} 
-        */}
 
         <QuestionWrapper>
           <Question>

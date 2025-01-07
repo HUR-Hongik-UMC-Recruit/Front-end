@@ -156,28 +156,6 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
     updateApplicantDTO("part", APIConverter[e.target.value]);
   };
 
-  // 질문 조회 api
-  const [questions, setQuestions] = useState([]);
-  const getQuestions = async () => {
-    try {
-      const response = await axios.get(
-        `/applicant/questions/${APIConverter[selectPart]}`
-      );
-      if (response.data.isSuccess) {
-        setQuestions(response.data.result.questions); // questions 배열로 설정
-        console.log(response.data.result.questions);
-      } else {
-        console.error("API 호출 실패: ", response.data.message);
-        setQuestions([]); // 실패 시 빈 배열로 설정
-      }
-    } catch (e) {
-      console.log("파트별질문 에러 발생: ", e);
-    }
-  };
-  // useEffect(() => {
-  //   getQuestions();
-  // }, [selectPart]);
-
   return (
     <PartContainer>
       <PartWrapper>
@@ -203,16 +181,6 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
             ))}
           </RadioPartWrapper>
         </QuestionWrapper>
-
-        {/*
-        {questions.map((question) => (
-          <QuestionWrapper key={question.questionId}>
-            {question.questionId}. {question.questionText}
-            <Question></Question>
-            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
-          </QuestionWrapper>
-        ))}
-        */}
 
         <QuestionWrapper>
           <Question>
