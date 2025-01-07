@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import upload from "../../assets/icons/Upload.svg";
+import upload from "../../assets/icons/FileUpload.svg";
+import close from "../../assets/icons/FileClose.svg";
 
 const CommonContainer = styled.div`
   width: 100%;
@@ -180,9 +181,9 @@ const FileInput = styled.label`
 
 const UploadedFile = styled.div`
   display: flex;
+  gap: 1.5rem;
   width: 23.3125rem;
   height: 6.375rem;
-  padding: 0 1.5rem;
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
@@ -191,9 +192,6 @@ const UploadedFile = styled.div`
 `;
 
 const FileInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   color: #353838;
   font-size: 1.2rem;
   font-weight: 500;
@@ -203,10 +201,6 @@ const DeleteButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
@@ -314,11 +308,13 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
               </>
             ) : (
               <UploadedFile>
-                <FileInfo>
-                  <img src={upload} />
-                  {file.name}
-                </FileInfo>
-                <DeleteButton onClick={handleDeleteFile}>✕</DeleteButton>
+                <FileInfo>{file.name}</FileInfo>
+                <DeleteButton onClick={handleDeleteFile}>
+                  <img
+                    src={close}
+                    style={{ height: "1.75rem", width: "1.75rem" }}
+                  />
+                </DeleteButton>
               </UploadedFile>
             )}
             <Guide>
