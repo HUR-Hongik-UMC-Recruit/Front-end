@@ -69,7 +69,7 @@ const BackgroundContainer = styled.div`
 
 const ContentWrapper = styled.div`
   padding: 12.438rem 11.875rem 8.719rem;
-  margin-left: -24rem;
+  margin-right: 20%;
 `;
 
 const Title = styled.h1`

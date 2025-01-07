@@ -146,6 +146,22 @@ const Submit = styled.button`
 const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
+  //const { verifiedEmail, isEmailVerified } = useEmail();
+  
+  // const handleSubmit = async () => {
+  //   if (!isEmailVerified) {
+  //     alert("이메일 인증이 필요합니다.");
+  //     return;
+  //   }
+
+  //   const applicationData = {
+  //     applicantDTO: {
+  //       // ... 다른 필드들
+  //       email: verifiedEmail,
+  //       // ... 다른 필드들
+  //     },
+  //     file: "string"
+  //   };
 
   return (
     <ApplicationContent>

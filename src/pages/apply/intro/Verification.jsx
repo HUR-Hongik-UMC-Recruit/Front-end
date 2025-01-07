@@ -15,11 +15,15 @@ import {
 } from "../../../components/apply/intro/SectionStyles";
 import axios from "axios";
 
+import { useEmail } from '../../../contexts/EmailContext'; 
+
 // const api = axios.create({
 //   baseURL: process.env.REACT_APP_API_URL,
 // });
 
 const Verification = () => {
+  const { setAuthenticatedEmail, setEmailAuthStatus } = useEmail();
+
   const [email, setEmail] = useState(""); // 이메일 입력값
   const [emailSentSuccess, setEmailSentSuccess] = useState(""); // 이메일 인증 요청이 성공했는지 여부
   const [verificationCode, setVerificationCode] = useState(""); // 사용자가 입력한 인증 코드
@@ -64,6 +68,8 @@ const Verification = () => {
 
       if (response.status === 200) {
         setIsVerified(true); // 인증 완료
+        setAuthenticatedEmail(email); // 검증된 이메일 저장
+        setEmailAuthStatus(true); // 이메일 인증 완료 상태로 변경
       }
     } catch (error) {
       alert("이메일 인증에 실패했습니다.");
