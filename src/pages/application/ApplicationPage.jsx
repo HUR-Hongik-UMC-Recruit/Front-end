@@ -9,6 +9,7 @@ import PersonalInfo from "../apply/intro/PersonalInfo";
 import warning from "../../assets/icons/Warning.png";
 import { useState } from "react";
 import axios from "axios";
+import { useEmail } from '../../contexts/EmailContext'; 
 
 const ApplicationContent = styled.div`
   // margin: 5rem 12.3rem 14rem 12.3rem;
@@ -150,7 +151,7 @@ const Submit = styled.button`
 const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
-  //const { verifiedEmail, isEmailVerified } = useEmail();
+  const { authenticatedEmail, emailAuthStatus } = useEmail();
   
   // const handleSubmit = async () => {
   //   if (!isEmailVerified) {
@@ -158,19 +159,10 @@ const ApplicationPage = () => {
   //     return;
   //   }
 
-  //   const applicationData = {
-  //     applicantDTO: {
-  //       // ... 다른 필드들
-  //       email: verifiedEmail,
-  //       // ... 다른 필드들
-  //     },
-  //     file: "string"
-  //   };
-
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
-    email: "last@gmail.com",
+    email: authenticatedEmail,
     phone: "",
     gender: "",
     birth: "",
