@@ -77,9 +77,13 @@ export const Button = styled.button`
   border: 1px solid #2b9176;
   border-radius: 0.75rem;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.25rem;
   cursor: pointer;
+
+  &:hover {
+    background: #4e977f;
+  }
 `;
 
 export const DisabledButton = styled(Button)`
