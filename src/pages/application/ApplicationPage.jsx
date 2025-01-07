@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import ApplicationIntroPage from "../apply/intro/ApplyIntroPage";
 import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
 import ApplyModal from "../../components/application/ApplyModal";
 import Title from "../../components/apply/intro/Title";
 import Verification from "../apply/intro/Verification";
 import PersonalInfo from "../apply/intro/PersonalInfo";
-import warning from "../../assets/icons/Warning.png";
+import warning from "../../assets/icons/Warning.svg";
 import { useState } from "react";
 import axios from "axios";
 

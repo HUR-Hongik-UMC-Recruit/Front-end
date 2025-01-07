@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import upload from "../../assets/icons/Upload.png";
-import axios from "axios";
+import upload from "../../assets/icons/Upload.svg";
 
 const CommonContainer = styled.div`
   width: 100%;

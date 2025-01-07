@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import arrowNext from "../../assets/icons/ArrowNext.png";
-import arrowDown from "../../assets/icons/ArrowDown.png";
+import arrowRight from "../../assets/icons/arrow/ArrowNext.svg";
+import arrowDown from "../../assets/icons/arrow/ArrowDown.svg";
 import background from "../../assets/icons/BgHome.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -381,7 +381,7 @@ const HomeMain = ({ downClick }) => {
       </BTRWrapper>
       <RecruitButton onClick={toRecruit}>
         UMC 8기 지원하기
-        <img src={arrowNext} />
+        <img src={arrowRight} />
       </RecruitButton>
       <NextButton onClick={downClick}>
         <img src={arrowDown} />

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NotFound from "../../src/assets/icons/NotFoundSVG.svg";
-import ToHome from "../../src/assets/icons/ArrowToHome.svg";
-import ToHomeHover from "../../src/assets/icons/ArrowToHomeHover.svg";
+import ToHome from "../../src/assets/icons/arrow/ArrowToHome.svg";
+import ToHomeHover from "../../src/assets/icons/arrow/ArrowToHomeHover.svg";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`

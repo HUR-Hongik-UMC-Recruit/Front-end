@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import arrowNext from "../../assets/icons/ArrowNext.png";
+import arrowNext from "../../assets/icons/arrow/ArrowNextMint.svg";
 import background from "../../assets/icons/BgChallenge.png";
 import { useNavigate } from "react-router-dom";
 

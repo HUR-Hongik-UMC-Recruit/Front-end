@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import parts from "../../data/common/PartList";
 import APIConverter from "../../data/application/APIConverter";

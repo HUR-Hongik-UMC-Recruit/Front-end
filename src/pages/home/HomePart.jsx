@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
 import SectionHeader from "../../components/common/SectionHeader";
-import ArrowLeft from "../../assets/icons/ArrowLeft.png";
-import ArrowRight from "../../assets/icons/ArrowRight.png";
+import ArrowLeft from "../../assets/icons/arrow/ArrowLeft.svg";
+import ArrowRight from "../../assets/icons/arrow/ArrowRight.svg";
 import contents from "../../data/home/PartData";
 import { motion } from "motion/react";
 
