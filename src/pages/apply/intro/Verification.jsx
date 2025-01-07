@@ -17,10 +17,6 @@ import axios from "axios";
 
 import { useEmail } from '../../../contexts/EmailContext'; 
 
-// const api = axios.create({
-//   baseURL: process.env.REACT_APP_API_URL,
-// });
-
 const Verification = () => {
   const { setAuthenticatedEmail, setEmailAuthStatus } = useEmail();
 
@@ -29,6 +25,7 @@ const Verification = () => {
   const [verificationCode, setVerificationCode] = useState(""); // 사용자가 입력한 인증 코드
   const [verificationSent, setVerificationSent] = useState(false); // 확인 버튼 클릭 상태
   const [isVerified, setIsVerified] = useState(false); // 이메일 인증이 완료되었는지 여부
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleEmailVerification = async () => {
     // 이메일 인증 요청 로직
@@ -42,7 +39,7 @@ const Verification = () => {
     }
 
     try {
-      const response = await axios.post(`/applicant/email/send?email=${email}`);
+      const response = await axios.post(`${apiUrl}/applicant/email/send?email=${email}`);
       console.log("인증 요청 응답: ", response);
 
       if (response.status === 200) {
@@ -59,7 +56,7 @@ const Verification = () => {
     setVerificationSent(true); // 확인 버튼 비활성화
 
     try {
-      const response = await axios.post("/applicant/email/verify", {
+      const response = await axios.post(`${apiUrl}/applicant/email/verify`, {
         email,
         vCode: verificationCode,
       });

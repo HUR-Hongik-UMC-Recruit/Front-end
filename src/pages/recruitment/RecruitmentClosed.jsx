@@ -5,6 +5,9 @@ import { ReactComponent as SendIcon } from "../../assets/icons/SendIcon.svg";
 import BackgroundSvg from "../../assets/images/recruitment_background/background.svg";
 
 const RecruitmentClosed = () => {
+
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [email, setEmail] = useState("");
 
   const handleIconClick = async () => {
@@ -22,7 +25,7 @@ const RecruitmentClosed = () => {
     }
 
     try {
-      const response = await axios.post("/applicant/notice/register", email, {
+      const response = await axios.post(`${apiUrl}/applicant/notice/register`, email, {
         headers: {
           'Content-Type': 'application/json'
         }

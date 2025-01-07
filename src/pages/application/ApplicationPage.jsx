@@ -179,6 +179,7 @@ const ApplicationPage = () => {
     answers: [],
   });
   const [fileDTO, setFileDTO] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // PersonalInfo에서 사용할 함수(applicantDTO)
   const updateApplicantDTO = (key, value) => {
@@ -233,7 +234,7 @@ const ApplicationPage = () => {
 
     // post 요청
     try {
-      const response = await axios.post("/applicant/apply", formData);
+      const response = await axios.post(`${apiUrl}/applicant/apply`, formData);
       console.log("지원서 제출 서버 응답: ", response.data);
     } catch (e) {
       console.log("지원서 제출 에러 발생: ", e);
