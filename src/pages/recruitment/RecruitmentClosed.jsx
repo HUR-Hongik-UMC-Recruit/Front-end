@@ -22,9 +22,14 @@ const RecruitmentClosed = () => {
     }
 
     try {
-      const response = await axios.post("/applicant/notice/register", email);
+      const response = await axios.post("/applicant/notice/register", email, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       if (response.status === 200) {
         alert("모집 알림 신청이 완료 되었습니다.");
+        console.log(email);
         setEmail(""); // 입력 필드 초기화하기
       }
     } catch (error) {
