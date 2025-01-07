@@ -210,7 +210,12 @@ const DeleteButton = styled.button`
   justify-content: center;
 `;
 
-const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
+const CountText = styled.p`
+
+`
+
+const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
+  
   // 리더 희망 여부
   const [selectLeader, setSelectLeader] = useState("예");
   const leader = ["예", "아니요"];
@@ -288,7 +293,9 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
             type="text"
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(1, e)}
+            maxLength={499}
           />
+          <CountText>{charCounts[1]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -297,7 +304,9 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
             type="text"
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(2, e)}
+            maxLength={499}
           />
+          <CountText>{charCounts[2]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -306,7 +315,9 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
             type="text"
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(3, e)}
+            maxLength={499}
           />
+          <CountText>{charCounts[3]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -319,7 +330,9 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
             type="text"
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(4, e)}
+            maxLength={499}
           />
+          <CountText>{charCounts[4]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>

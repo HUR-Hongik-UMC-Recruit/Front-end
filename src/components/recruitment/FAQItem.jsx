@@ -23,6 +23,7 @@ const FAQItem = ({ question, answer, description }) => {
                 <motion.div
                   initial={{ height: 0 }}
                   animate={{ height: "auto" }}
+                  exit={{ height: 0, opacity: 1 }} // 닫힐 때의 애니메이션 추가
                   transition={{ duration: 0.5 }}
                   style={{ overflow: "hidden" }}
                 >
