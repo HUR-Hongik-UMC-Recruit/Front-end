@@ -5,6 +5,9 @@ import { ReactComponent as SendIcon } from "../../assets/icons/SendIcon.svg";
 import BackgroundSvg from "../../assets/images/recruitment_background/background.svg";
 
 const RecruitmentClosed = () => {
+
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [email, setEmail] = useState("");
 
   const handleIconClick = async () => {
@@ -22,9 +25,14 @@ const RecruitmentClosed = () => {
     }
 
     try {
-      const response = await axios.post("/applicant/notice/register", email);
+      const response = await axios.post(`${apiUrl}/applicant/notice/register`, email, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       if (response.status === 200) {
         alert("모집 알림 신청이 완료 되었습니다.");
+        console.log(email);
         setEmail(""); // 입력 필드 초기화하기
       }
     } catch (error) {
@@ -69,7 +77,7 @@ const BackgroundContainer = styled.div`
 
 const ContentWrapper = styled.div`
   padding: 12.438rem 11.875rem 8.719rem;
-  margin-left: -24rem;
+  margin-right: 20%;
 `;
 
 const Title = styled.h1`

@@ -9,6 +9,7 @@ import PersonalInfo from "../apply/intro/PersonalInfo";
 import warning from "../../assets/icons/Warning.png";
 import { useState } from "react";
 import axios from "axios";
+import { useEmail } from '../../contexts/EmailContext'; 
 
 const ApplicationContent = styled.div`
   // margin: 5rem 12.3rem 14rem 12.3rem;
@@ -150,11 +151,18 @@ const Submit = styled.button`
 const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
+  const { authenticatedEmail, emailAuthStatus } = useEmail();
+  
+  // const handleSubmit = async () => {
+  //   if (!isEmailVerified) {
+  //     alert("이메일 인증이 필요합니다.");
+  //     return;
+  //   }
 
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
-    email: "last@gmail.com",
+    email: authenticatedEmail,
     phone: "",
     gender: "",
     birth: "",
@@ -171,6 +179,7 @@ const ApplicationPage = () => {
     answers: [],
   });
   const [fileDTO, setFileDTO] = useState(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // PersonalInfo에서 사용할 함수(applicantDTO)
   const updateApplicantDTO = (key, value) => {
@@ -225,7 +234,7 @@ const ApplicationPage = () => {
 
     // post 요청
     try {
-      const response = await axios.post("/applicant/apply", formData);
+      const response = await axios.post(`${apiUrl}/applicant/apply`, formData);
       console.log("지원서 제출 서버 응답: ", response.data);
     } catch (e) {
       console.log("지원서 제출 에러 발생: ", e);

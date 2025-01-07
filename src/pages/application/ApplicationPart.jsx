@@ -155,13 +155,14 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
     setSelectPart(e.target.value);
     updateApplicantDTO("part", APIConverter[e.target.value]);
   };
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   // 질문 조회 api
   const [questions, setQuestions] = useState([]);
   const getQuestions = async () => {
     try {
       const response = await axios.get(
-        `/applicant/questions/${APIConverter[selectPart]}`
+        `${apiUrl}/applicant/questions/${APIConverter[selectPart]}`
       );
       if (response.data.isSuccess) {
         setQuestions(response.data.result.questions); // questions 배열로 설정

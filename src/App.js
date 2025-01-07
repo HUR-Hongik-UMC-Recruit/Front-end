@@ -9,6 +9,8 @@ import ApplicationPage from "./pages/application/ApplicationPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminJoinPage from "./pages/admin/AdminJoinPage";
 
+import { EmailProvider } from "./contexts/EmailContext";
+
 function App() {
   return (
     <Router>
@@ -18,7 +20,14 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/recruitment" element={<RecruitmentPage />} />
-        <Route path="/apply" element={<ApplicationPage />} />
+        <Route
+          path="/apply"
+          element={
+            <EmailProvider>
+              <ApplicationPage />
+            </EmailProvider>
+          }
+        />
         <Route path="/join" element={<AdminJoinPage />} />
       </Routes>
       <Footer />
