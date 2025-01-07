@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
+import contents from "../../data/home/ActivityData";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -58,15 +59,6 @@ const ActivityDate = styled.div`
 `;
 
 const HomeActivity = () => {
-  const contents = [
-    { activity: "홍익대 OT", date: "3월 중순 예정" },
-    { activity: "한강 나들이", date: "4월 초 예정" },
-    { activity: "홍익대 MT", date: "4월 말~5월 초 예정" },
-    { activity: "중앙 MT", date: "5월 초 예정" },
-    { activity: "아이디어톤", date: "5월 말 예정" },
-    { activity: "데모데이", date: "8월 말 예정" },
-  ];
-
   // 해당 파트가 사용자의 화면에 들어왔을 때 애니메이션 시작할 수 있게 하는 코드
   const [visibleSections, setVisibleSections] = useState(
     Array(contents.length).fill(false)

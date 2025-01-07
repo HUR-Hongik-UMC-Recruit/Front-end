@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import upload from "../../assets/icons/Upload.png";
+import axios from "axios";
 
 const CommonContainer = styled.div`
   width: 100%;
@@ -209,16 +210,16 @@ const DeleteButton = styled.button`
   justify-content: center;
 `;
 
-const ApplicationCommon = () => {
+const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
+  // 리더 희망 여부
   const [selectLeader, setSelectLeader] = useState("예");
-  const [file, setFile] = useState(null);
-
   const leader = ["예", "아니요"];
-
   const handleRadioChange = (e) => {
     setSelectLeader(e.target.value);
   };
 
+  // 파일 첨부
+  const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
     if (e?.target?.files) {
       // 파일 용량 10MB로 제한하기
@@ -228,18 +229,35 @@ const ApplicationCommon = () => {
         alert("첨부 파일 사이즈는 5MB 이내로 등록 가능합니다.");
         return;
       }
-
-      console.log(e.target.files);
-      console.log(e.target.files[0]);
-
       setFile(e.target.files[0]);
+      setFileDTO(e.target.files[0]);
+      console.log(e.target.files[0]);
     }
   };
-
+  // 파일 삭제
   const handleDeleteFile = () => {
-    // 파일 삭제 함수
     setFile(null);
   };
+
+  // 질문 조회 api
+  const [questions, setQuestions] = useState([]);
+  const getQuestions = async () => {
+    try {
+      const response = await axios.get("/applicant/questions/COMMON");
+      if (response.data.isSuccess) {
+        setQuestions(response.data.result.questions); // questions 배열로 설정
+        console.log(response.data.result.questions);
+      } else {
+        console.error("API 호출 실패: ", response.data.message);
+        setQuestions([]); // 실패 시 빈 배열로 설정
+      }
+    } catch (e) {
+      console.log("공통질문 에러 발생: ", e);
+    }
+  };
+  // useEffect(() => {
+  //   getQuestions();
+  // }, []);
 
   return (
     <CommonContainer>
@@ -248,21 +266,44 @@ const ApplicationCommon = () => {
 
         <CommonBorder />
 
+        {/* 
+        {questions.map((question) => (
+          <QuestionWrapper key={question.questionId}>
+            <Question>
+              {question.questionId}. {question.questionText}
+            </Question>
+            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          </QuestionWrapper>
+        ))} 
+        */}
+
         <QuestionWrapper>
           <Question>
             1. UMC 지원 동기와 UMC 활동을 통해 기대하는 바를 서술해주세요.
           </Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(1, e)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
           <Question>2. 본인의 장단점에 대해 서술해주세요.</Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(2, e)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
           <Question>3. UMC에 임하는 각오를 서술해주세요.</Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(3, e)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -271,7 +312,11 @@ const ApplicationCommon = () => {
             런칭을 진행합니다. 실제로 어떤 서비스를 개발하고 싶은지
             서술해주세요.
           </Question>
-          <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(4, e)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -320,7 +365,11 @@ const ApplicationCommon = () => {
           <Question>
             6. GitHub를 이용해 프로젝한 경험이 있다면 GitHub 주소를 남겨주세요.
           </Question>
-          <AnswerSmall placeholder="예) http://github.com/example"></AnswerSmall>
+          <AnswerSmall
+            type="text"
+            placeholder="예) http://github.com/example"
+            onChange={(e) => handleAnswerChange(6, e)}
+          />
         </QuestionWrapper>
 
         <QuestionWrapper>

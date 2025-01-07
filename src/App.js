@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import HomePage from "./pages/home/HomePage";
 import RecruitmentPage from "./pages/recruitment/RecruitmentPage";
 import ApplicationPage from "./pages/application/ApplicationPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import AdminJoinPage from "./pages/admin/AdminJoinPage";
 
 import { EmailProvider } from "./contexts/EmailContext";
@@ -17,6 +18,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<NotFoundPage />} />
         <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route
           path="/apply"
