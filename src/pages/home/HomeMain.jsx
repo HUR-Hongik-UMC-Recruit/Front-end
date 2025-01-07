@@ -323,7 +323,7 @@ const RecruitButton = styled.button`
   &: hover {
     transform: scale(1.1);
     transition: transform 0.5s ease;
-    animation: ${shake} 1s;
+    animation: ${shake} 0.7s;
   }
 `;
 
