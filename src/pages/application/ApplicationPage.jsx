@@ -151,6 +151,13 @@ const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
 
+  const [charCounts, setCharCounts] = useState({
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0
+  }); // 글자수 카운트
+
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
@@ -192,6 +199,19 @@ const ApplicationPage = () => {
   const handleAnswerChange = (questionId, e) => {
     console.log(`Question ID: ${questionId}, Answer: ${e.target.value}`);
     updateAnswer(questionId, e.target.value);
+
+    // 해당 questionId의 글자수만 업데이트
+    if (
+      questionId === 1 ||
+      questionId === 2 ||
+      questionId === 3 ||
+      questionId === 4
+    ) {
+      setCharCounts((prev) => ({
+        ...prev,
+        [questionId]: e.target.value.length,
+      }));
+    }
   };
 
   // post 요청 코드
@@ -244,6 +264,7 @@ const ApplicationPage = () => {
       <ApplicationCommon
         handleAnswerChange={handleAnswerChange}
         setFileDTO={setFileDTO}
+        charCounts={charCounts}
       />
       <ApplicationPart
         updateApplicantDTO={updateApplicantDTO}
