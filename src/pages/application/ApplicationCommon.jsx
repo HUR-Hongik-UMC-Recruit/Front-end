@@ -204,13 +204,6 @@ const DeleteButton = styled.button`
 `;
 
 const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
-  // 리더 희망 여부
-  const [selectLeader, setSelectLeader] = useState("예");
-  const leader = ["예", "아니요"];
-  const handleRadioChange = (e) => {
-    setSelectLeader(e.target.value);
-  };
-
   // 파일 첨부
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -246,7 +239,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(1, e)}
+            onChange={(e) => handleAnswerChange(0, e)}
           />
         </QuestionWrapper>
 
@@ -255,7 +248,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(2, e)}
+            onChange={(e) => handleAnswerChange(1, e)}
           />
         </QuestionWrapper>
 
@@ -264,7 +257,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(3, e)}
+            onChange={(e) => handleAnswerChange(2, e)}
           />
         </QuestionWrapper>
 
@@ -277,7 +270,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(4, e)}
+            onChange={(e) => handleAnswerChange(3, e)}
           />
         </QuestionWrapper>
 
@@ -332,33 +325,8 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO }) => {
           <AnswerSmall
             type="text"
             placeholder="예) http://github.com/example"
-            onChange={(e) => handleAnswerChange(6, e)}
+            onChange={(e) => handleAnswerChange(4, e)}
           />
-        </QuestionWrapper>
-
-        <QuestionWrapper>
-          <Question>7. 스터디 리더를 희망하시나요?</Question>
-          <Guide>
-            스터디 리더란 매주 진행되는 스터디의 리더를 의미합니다. 선수 지식이
-            있지 않아도 열심히 공부할 열정과 책임감이 있다면 스터디 리더 지원이
-            가능합니다. 이후에 스터디 리더 지원을 따로 받을 예정이며, 스터디
-            리더 확정이 아니니 부담가지지 않으셔도 됩니다.
-          </Guide>
-          <RadioPartWrapper>
-            {leader.map((answer, idx) => (
-              <RadioLabel key={idx}>
-                <Radio
-                  type="radio"
-                  name="leader"
-                  value={answer}
-                  onChange={handleRadioChange}
-                />
-                <RadioWrapper checked={idx === selectLeader} key={answer}>
-                  {answer}
-                </RadioWrapper>
-              </RadioLabel>
-            ))}
-          </RadioPartWrapper>
         </QuestionWrapper>
       </CommonWrapper>
     </CommonContainer>
