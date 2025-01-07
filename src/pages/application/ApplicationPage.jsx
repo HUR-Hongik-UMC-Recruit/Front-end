@@ -43,7 +43,7 @@ const Button = styled.button`
   &:hover {
     border-radius: 0.75rem;
     border: 1.5px solid #2b9176;
-    background: #67b299;
+    background: #4e977f;
   }
 `;
 
@@ -130,7 +130,7 @@ const Submit = styled.button`
   cursor: pointer;
 
   border-radius: 0.75rem;
-  background: #2b9176;
+  background: #5fbda1;
   border: none;
 
   color: #fff;
@@ -143,7 +143,7 @@ const Submit = styled.button`
 
   &:hover {
     border: 1.5px solid #2b9176;
-    background: #67b299;
+    background: #4e977f;
   }
 `;
 
