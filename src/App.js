@@ -16,6 +16,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route path="/apply" element={<ApplicationPage />} />
