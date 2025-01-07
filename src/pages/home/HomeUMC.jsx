@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SectionHeader from "../../components/common/SectionHeader";
+import contents from "../../data/home/UMCData";
 import { motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 

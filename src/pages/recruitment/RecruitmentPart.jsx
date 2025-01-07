@@ -3,19 +3,10 @@ import styled from "styled-components";
 import Requirements from "../../components/recruitment/PartRequirements";
 import Qualifications from "../../components/recruitment/PartQualifications";
 import SectionHeader from "../../components/common/SectionHeader";
+import parts from "../../data/common/PartList";
 
 const RecruitmentPart = () => {
   const [activePart, setActivePart] = useState("Plan");
-
-  const parts = [
-    "Plan",
-    "Design",
-    "Android",
-    "iOS",
-    "Web",
-    "Spring",
-    "Node.js",
-  ];
 
   return (
     <BackgroundContainer>
