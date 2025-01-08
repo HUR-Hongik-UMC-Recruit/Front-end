@@ -8,8 +8,6 @@ const PartContainer = styled.div`
   width: 100%;
 `;
 
-const PartWrapper = styled.div``;
-
 const PartTitle = styled.div`
   color: #2b9176;
   font-family: "Pretendard Variable";
@@ -156,51 +154,47 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
 
   return (
     <PartContainer>
-      <PartWrapper>
-        <PartTitle>파트별 질문</PartTitle>
+      <PartTitle>파트별 질문</PartTitle>
 
-        <PartBorder />
+      <PartBorder />
 
-        <QuestionWrapper>
-          <Question>1. 지원하고 싶은 트랙을 선택해주세요.</Question>
-          <RadioPartWrapper>
-            {parts.map((part, idx) => (
-              <RadioLabel key={idx}>
-                <Radio
-                  type="radio"
-                  name="part"
-                  value={part}
-                  onChange={handlePartChange}
-                />
-                <RadioWrapper checked={idx === selectPart} key={part}>
-                  {part}
-                </RadioWrapper>
-              </RadioLabel>
-            ))}
-          </RadioPartWrapper>
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>1. 지원하고 싶은 트랙을 선택해주세요.</Question>
+        <RadioPartWrapper>
+          {parts.map((part, idx) => (
+            <RadioLabel key={idx}>
+              <Radio
+                type="radio"
+                name="part"
+                value={part}
+                onChange={handlePartChange}
+              />
+              <RadioWrapper checked={idx === selectPart} key={part}>
+                {part}
+              </RadioWrapper>
+            </RadioLabel>
+          ))}
+        </RadioPartWrapper>
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>
-            2. {selectPart} 트랙에 지원하는 이유는 무엇인가요?
-          </Question>
-          <AnswerBig
-            type="text"
-            placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(6, e)}
-          />
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>2. {selectPart} 트랙에 지원하는 이유는 무엇인가요?</Question>
+        <AnswerBig
+          type="text"
+          placeholder="500자 이하로 얘기해주세요"
+          onChange={(e) => handleAnswerChange(6, e)}
+        />
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>3. {partContent[selectPart].question}</Question>
-          <Guide>{partContent[selectPart].guide}</Guide>
-          <AnswerSmall
-            type="text"
-            placeholder={partContent[selectPart].example}
-            onChange={(e) => handleAnswerChange(7, e)}
-          />
-        </QuestionWrapper>
-      </PartWrapper>
+      <QuestionWrapper>
+        <Question>3. {partContent[selectPart].question}</Question>
+        <Guide>{partContent[selectPart].guide}</Guide>
+        <AnswerSmall
+          type="text"
+          placeholder={partContent[selectPart].example}
+          onChange={(e) => handleAnswerChange(7, e)}
+        />
+      </QuestionWrapper>
     </PartContainer>
   );
 };
