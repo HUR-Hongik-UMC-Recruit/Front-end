@@ -62,8 +62,8 @@ const NoticeContainer = styled(motion.div)`
 const NoticeText = styled.p`
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 140%;
+  font-size: 18px;
+  line-height: 160%;
   color: #e1e9ea;
   opacity: 0.8;
   margin: 0rem;

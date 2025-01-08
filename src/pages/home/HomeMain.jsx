@@ -274,11 +274,10 @@ const BTRDetail = styled.p`
   text-align: center;
   font-feature-settings: "ss10" on;
   font-family: "Pretendard Variable";
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 135%; /* 2.025rem */
-  letter-spacing: -0.015rem;
+  line-height: 145%; /* 2.025rem */
 `;
 
 const shake = keyframes`

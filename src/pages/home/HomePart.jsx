@@ -105,11 +105,10 @@ const PartText = styled.div`
 const PartDetail = styled.div`
   color: #a2abab;
   font-family: "Pretendard Variable";
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-style: normal;
   font-weight: 300;
-  line-height: 135%; /* 2.025rem */
-  letter-spacing: -0.015rem;
+  line-height: 170%; /* 2.025rem */
 `;
 
 const PartButtonWrapper = styled.div`
