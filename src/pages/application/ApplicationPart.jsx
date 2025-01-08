@@ -8,9 +8,7 @@ const PartContainer = styled.div`
   width: 100%;
 `;
 
-const PartWrapper = styled.div`
-  margin: 0rem 12.3rem;
-`;
+const PartWrapper = styled.div``;
 
 const PartTitle = styled.div`
   color: #2b9176;

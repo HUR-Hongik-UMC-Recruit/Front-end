@@ -5,9 +5,7 @@ export const Section = styled.section`
   margin-top: 4rem;
 `;
 
-export const ContentWrapper = styled.div`
-  margin: 0rem 12.3rem;
-`;
+export const ContentWrapper = styled.div``;
 
 export const SectionTitle = styled.h2`
   color: #2b9176;
