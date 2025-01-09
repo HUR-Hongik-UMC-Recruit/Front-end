@@ -5,8 +5,9 @@ const AdminLoginPage = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
+  const loginButtonClick = () => {
     // 로그인 로직
+
     // 성공시 어드민 페이지로 이동
     window.location.href = "/admin";
   };
@@ -43,7 +44,7 @@ const AdminLoginPage = () => {
           </InputWrapper>
         </PasswordForm>
 
-        <LoginBtn onClick={handleLogin} disabled={isLoginDisabled}>
+        <LoginBtn onClick={loginButtonClick} disabled={isLoginDisabled}>
           로그인하기
         </LoginBtn>
 
@@ -156,7 +157,7 @@ const LoginBtn = styled.button`
   line-height: 135%;
   letter-spacing: -0.01em;
 
-  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  cursor: ${(props) => (props.disabled ? "" : "pointer")};
   border-color: ${(props) => (props.disabled ? "#818989" : "#90E6C9;")};
 
   &:hover {
