@@ -7,6 +7,7 @@ import HomePage from "./pages/home/HomePage";
 import RecruitmentPage from "./pages/recruitment/RecruitmentPage";
 import ApplicationPage from "./pages/application/ApplicationPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AdminJoinPage from "./pages/admin/AdminJoinPage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route path="/apply" element={<ApplicationPage />} />
         <Route path="/login" element={<AdminLoginPage />} />
-        {/* <Route path="/join" element={} /> */}
+        <Route path="/join" element={<AdminJoinPage />} />
         {/* <Route path="/admin" element={} /> */}
       </Routes>
       <Footer />
