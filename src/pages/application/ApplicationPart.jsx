@@ -6,6 +6,7 @@ import partContent from "../../data/application/PartQuestionData";
 
 const PartContainer = styled.div`
   width: 100%;
+  margin-top: 3rem;
 `;
 
 const PartTitle = styled.div`

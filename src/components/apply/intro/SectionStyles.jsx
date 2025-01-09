@@ -26,7 +26,7 @@ export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 `;
 
 export const Label = styled.label`
