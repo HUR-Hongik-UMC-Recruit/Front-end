@@ -59,8 +59,8 @@ const ContentWrapper = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 877px;
-  margin-bottom: 40px;
+  width: 54.813rem;
+  margin-bottom: 2.5rem;
 `;
 
 const PartButton = styled.button`
@@ -68,16 +68,16 @@ const PartButton = styled.button`
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  padding: 10px;
-  width: 101px;
-  height: 53px;
+  padding: 0.625rem;
+  width: 6.313rem;
+  height: 3.313rem;
   border: none;
-  border-bottom: ${(props) => (props.$isActive ? "1px solid #FCFFFF" : "none")};
+  border-bottom: ${(props) => (props.$isActive ? "0.063rem solid #FCFFFF" : "none")};
   color: ${(props) => (props.$isActive ? "#FCFFFF" : "#5C6161")};
   background-color: transparent;
   cursor: pointer;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 140%;
   &:hover {
     color: #fcffff;
@@ -87,7 +87,7 @@ const PartButton = styled.button`
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   width: 100%;
   align-items: center;
   justify-content: center;

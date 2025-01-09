@@ -184,7 +184,7 @@ const ScheduleItem = styled.div`
   width: 14.188rem;
 
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(1.25rem);
   animation: ${(props) => (props.isVisible ? fadeInUp : "none")} 0.5s ease
     forwards;
   animation-delay: ${(props) =>
@@ -193,7 +193,7 @@ const ScheduleItem = styled.div`
 
 const ScheduleTitle = styled.h3`
   font-weight: 590;
-  font-size: 25px;
+  font-size: 1.563rem;
   line-height: 135%;
   text-align: center;
   letter-spacing: -0.01em;
@@ -203,7 +203,7 @@ const ScheduleTitle = styled.h3`
 
 const ScheduleDate = styled.p`
   font-weight: 300;
-  font-size: 19px;
+  font-size: 1.188rem;
   line-height: 140%;
   text-align: center;
   letter-spacing: -0.01em;
@@ -214,7 +214,7 @@ const ScheduleDate = styled.p`
 
 const Note = styled.p`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 140%;
   text-align: right;
   letter-spacing: -0.01em;

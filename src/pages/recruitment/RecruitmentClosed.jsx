@@ -81,16 +81,16 @@ const ContentWrapper = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 36px;
+  font-size: 2.25rem;
   font-weight: 700;
-  line-height: 48.6px;
+  line-height: 3.038rem;
   color: rgba(255, 255, 255, 1);
   margin-bottom: 0.438rem;
 `;
 
 const Description = styled.p`
-  font-size: 22px;
-  line-height: 29.7px;
+  font-size: 1.375rem;
+  line-height: 1.856rem;
   font-weight: 400;
   margin-bottom: 7.063rem;
   color: rgba(188, 198, 198, 1);
@@ -98,9 +98,9 @@ const Description = styled.p`
 
 const InputField = styled.input`
   height: 2.75rem;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
-  line-height: 28px;
+  line-height: 1.75rem;
   outline: none;
   border: none;
   background-color: transparent;
