@@ -11,6 +11,7 @@ import { useState } from "react";
 import axios from "axios";
 import SuccessModal from "../../components/application/SuccessModal";
 import ApplicationAgree from "./ApplicationAgree";
+import { useEmail } from '../../contexts/EmailContext'; 
 
 const ApplicationContent = styled.div`
   margin: 5rem 12.3rem 14rem 12.3rem;
@@ -180,11 +181,26 @@ const ApplicationPage = () => {
     window.location.href = "/";
   };
 
+  const { authenticatedEmail, emailAuthStatus } = useEmail();
+  
+  // const handleSubmit = async () => {
+  //   if (!isEmailVerified) {
+  //     alert("이메일 인증이 필요합니다.");
+  //     return;
+  //   }
+
+  const [charCounts, setCharCounts] = useState({
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0
+  }); // 글자수 카운트
+
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
     nickName: "",
-    email: "",
+    email: authenticatedEmail,
     phone: "",
     gender: "",
     birth: "",
@@ -222,9 +238,23 @@ const ApplicationPage = () => {
   const handleAnswerChange = (questionId, e) => {
     console.log(`Question ID: ${questionId}, Answer: ${e.target.value}`);
     updateAnswer(questionId, e.target.value);
+
+    // 해당 questionId의 글자수만 업데이트
+    if (
+      questionId === 1 ||
+      questionId === 2 ||
+      questionId === 3 ||
+      questionId === 4
+    ) {
+      setCharCounts((prev) => ({
+        ...prev,
+        [questionId]: e.target.value.length,
+      }));
+    }
   };
 
   // post 요청 코드
+  const apiUrl = process.env.REACT_APP_API_URL;
   const handleSubmit = async () => {
     // answers 배열을 applicantDTO에 추가
     applicantDTO.answers = applicantDTO.answers.map((answer, index) => ({
@@ -255,7 +285,7 @@ const ApplicationPage = () => {
 
     // post 요청
     try {
-      const response = await axios.post("/applicant/apply", formData);
+      const response = await axios.post(`${apiUrl}/applicant/apply`, formData);
       console.log("지원서 제출 서버 응답: ", response.data);
       setOpen(false);
       setSuccessOpen(true);
@@ -292,6 +322,7 @@ const ApplicationPage = () => {
       <ApplicationCommon
         handleAnswerChange={handleAnswerChange}
         setFileDTO={setFileDTO}
+        charCounts={charCounts}
       />
       <ApplicationPart
         updateApplicantDTO={updateApplicantDTO}
