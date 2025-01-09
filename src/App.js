@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import HomePage from "./pages/home/HomePage";
 import RecruitmentPage from "./pages/recruitment/RecruitmentPage";
 import ApplicationPage from "./pages/application/ApplicationPage";
-import AdminJoinPage from "./pages/admin/AdminJoinPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
 
 function App() {
   return (
@@ -17,7 +17,9 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/recruitment" element={<RecruitmentPage />} />
         <Route path="/apply" element={<ApplicationPage />} />
-        <Route path="/join" element={<AdminJoinPage />} />
+        <Route path="/login" element={<AdminLoginPage />} />
+        {/* <Route path="/join" element={} /> */}
+        {/* <Route path="/admin" element={} /> */}
       </Routes>
       <Footer />
     </Router>

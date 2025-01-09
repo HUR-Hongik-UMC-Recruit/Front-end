@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const AdminJoinPage = () => {
+const AdminLoginPage = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -164,4 +164,4 @@ const LinkText = styled.a`
   cursor: pointer;
 `;
 
-export default AdminJoinPage;
+export default AdminLoginPage;
