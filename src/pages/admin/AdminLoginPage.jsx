@@ -5,6 +5,15 @@ const AdminLoginPage = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleLogin = () => {
+    // 로그인 로직
+    // 성공시 어드민 페이지로 이동
+    window.location.href = "/admin";
+  };
+
+  // 로그인버튼 활성화
+  const isLoginDisabled = !id || !password;
+
   return (
     <ContentWrapper>
       <Title>UMC ADMIN</Title>
@@ -34,11 +43,11 @@ const AdminLoginPage = () => {
           </InputWrapper>
         </PasswordForm>
 
-        <LoginBtn>
-          <LoginText>로그인하기</LoginText>
+        <LoginBtn onClick={handleLogin} disabled={isLoginDisabled}>
+          로그인하기
         </LoginBtn>
 
-        <LinkText>회원가입</LinkText>
+        <LinkText href="/join">회원가입</LinkText>
       </Form>
     </ContentWrapper>
   );
@@ -127,7 +136,7 @@ const Input = styled.input`
   }
 `;
 
-const LoginBtn = styled.div`
+const LoginBtn = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -135,20 +144,26 @@ const LoginBtn = styled.div`
   width: 26.5rem;
   height: 4rem;
   border-radius: 0.625rem;
-  border: 0.0625rem solid #818989;
+  border: 0.0625rem solid;
+  color: #353838;
   background: transparent;
-  cursor: pointer;
   margin: 0 auto 2rem auto;
-`;
 
-const LoginText = styled.span`
   font-family: "Pretendard Variable";
   font-style: normal;
   font-weight: 550;
   font-size: 1.375rem;
   line-height: 135%;
   letter-spacing: -0.01em;
-  color: #353838;
+
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  border-color: ${(props) => (props.disabled ? "#818989" : "#90E6C9;")};
+
+  &:hover {
+    background: ${(props) => (props.disabled ? "" : "#90e6c9;")};
+    border-color: ${(props) => (props.disabled ? "" : "#2b9176;")};
+    color: ${(props) => (props.disabled ? "" : "#fff")};
+  }
 `;
 
 const LinkText = styled.a`
