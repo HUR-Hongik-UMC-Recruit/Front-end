@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -5,11 +6,24 @@ const AdminLoginPage = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginButtonClick = () => {
-    // 로그인 로직
+  const apiUrl = process.env.REACT_APP_API_URL;
 
-    // 성공시 어드민 페이지로 이동
-    window.location.href = "/admin";
+  const loginButtonClick = async () => {
+    // 로그인 로직
+    try {
+      const response = await axios.post(
+        `${apiUrl}/login?username=${id}&password=${password}`
+      );
+
+      console.log("로그인 성공:", response.data);
+      alert("로그인 성공!");
+
+      // 성공시 어드민 페이지로 이동
+      window.location.href = "/admin";
+    } catch (e) {
+      console.log("로그인 실패:", e);
+      alert("로그인에 실패했습니다.");
+    }
   };
 
   // 로그인버튼 활성화
