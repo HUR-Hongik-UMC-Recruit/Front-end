@@ -115,9 +115,12 @@ const AdminJoinPage = () => {
     }
 
     try {
-      const response = await axios.post(
-        `${apiUrl}/join?username=${username}&password=${password}&name=${name}&email=${email}`
-      );
+      const response = await axios.post(`${apiUrl}/join`, {
+        username: username,
+        password: password,
+        name: name,
+        email: email,
+      });
 
       console.log("회원가입 성공:", response.data);
       alert("회원가입에 성공했습니다.");

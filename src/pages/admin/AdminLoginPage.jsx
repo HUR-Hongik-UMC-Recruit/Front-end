@@ -11,9 +11,10 @@ const AdminLoginPage = () => {
   const loginButtonClick = async () => {
     // 로그인 로직
     try {
-      const response = await axios.post(
-        `${apiUrl}/login?username=${id}&password=${password}`
-      );
+      const response = await axios.post(`${apiUrl}/login`, {
+        username: id,
+        password: password,
+      });
 
       console.log("로그인 성공:", response.data);
       alert("로그인 성공!");
