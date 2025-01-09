@@ -57,6 +57,26 @@ const MenuList = styled.a`
   font-style: normal;
   font-weight: 500;
   line-height: 145%; /* 1.54063rem */
+
+  display: inline-block;
+  position: relative;
+
+  &:hover::after {
+    left: 0%;
+    width: 100%;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    border-bottom: 2px solid;
+    border-bottom-color: ${(props) =>
+      props.$isApplyPage ? "#1D201E" : "#fff"};
+    transition: all 0.3s ease-out;
+    left: 50%;
+    width: 0;
+  }
 `;
 
 const MenuButton = styled.button`
