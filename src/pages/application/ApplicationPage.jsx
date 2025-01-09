@@ -6,11 +6,14 @@ import Title from "../../components/apply/intro/Title";
 import Verification from "../apply/intro/Verification";
 import PersonalInfo from "../apply/intro/PersonalInfo";
 import warning from "../../assets/icons/Warning.svg";
+import check from "../../assets/icons/Check.svg";
 import { useState } from "react";
 import axios from "axios";
+import SuccessModal from "../../components/application/SuccessModal";
+import ApplicationAgree from "./ApplicationAgree";
 
 const ApplicationContent = styled.div`
-  // margin: 5rem 12.3rem 14rem 12.3rem;
+  margin: 5rem 12.3rem 14rem 12.3rem;
   margin-bottom: 14rem;
 `;
 
@@ -18,7 +21,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin: 0 12.3rem;
 `;
 
 const Button = styled.button`
@@ -27,21 +29,22 @@ const Button = styled.button`
   height: 3.75rem;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   border-radius: 0.75rem;
-  border: 1px solid #2b9176;
-  background: #5fbda1;
 
-  color: #fff;
   font-family: "Pretendard Variable";
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 500;
   line-height: 1.875rem; /* 150% */
 
+  background-color: ${(props) => (props.disabled ? "#E1E9EA" : "#5fbda1;")};
+  color: ${(props) => (props.disabled ? "#A2ABAB" : "#fff")};
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
+  border:1px solid;
+  border-color:${(props) => (props.disabled ? "#ccc" : "#2b9176;")}
+
   &:hover {
-    border-radius: 0.75rem;
-    border: 1.5px solid #2b9176;
+    border-color:${(props) => (props.disabled ? "" : "#2b9176;")}
     background: #4e977f;
   }
 `;
@@ -53,14 +56,14 @@ const ModalWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2.25rem;
+  gap: 2rem;
 
   border-radius: 0.75rem;
   border: 1px solid #e1e9ea;
   background: #fcffff;
 `;
 
-const WarningImg = styled.img`
+const ModalImg = styled.img`
   width: 2.25rem;
   height: 2.25rem;
 `;
@@ -146,14 +149,42 @@ const Submit = styled.button`
   }
 `;
 
+const ModalHomeButton = styled.button`
+  display: flex;
+  width: 6.56rem;
+  height: 3rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  background: none;
+  border-radius: 0.75rem;
+  border: 1.5px solid #edf4f5;
+
+  color: #818989;
+  font-family: "Pretendard Variable";
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 145%; /* 1.26875rem */
+  letter-spacing: 0.00875rem;
+`;
+
 const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const handleHomeClick = () => {
+    setSuccessOpen(false); // 모달 닫기
+    // navigate("/"); // 홈으로 이동
+    window.location.href = "/";
+  };
 
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
-    email: "last@gmail.com",
+    nickName: "",
+    email: "",
     phone: "",
     gender: "",
     birth: "",
@@ -163,7 +194,7 @@ const ApplicationPage = () => {
     gradeStatus: "",
     experience: "",
     umcRoute: "",
-    currentClub: 0,
+    currentClub: "",
     discordEmail: "",
     notionEmail: "",
     part: "",
@@ -226,10 +257,28 @@ const ApplicationPage = () => {
     try {
       const response = await axios.post("/applicant/apply", formData);
       console.log("지원서 제출 서버 응답: ", response.data);
+      setOpen(false);
+      setSuccessOpen(true);
     } catch (e) {
       console.log("지원서 제출 에러 발생: ", e);
     }
   };
+
+  // 모든 항목이 채워져 있는지 검사
+  const isFormValid = () => {
+    return Object.values(applicantDTO).every((field) =>
+      typeof field === "string" ? field.trim() !== "" : field !== ""
+    );
+  };
+
+  // 약관 동의 여부 상태 관리
+  const [infoAgree, setInfoAgree] = useState(false);
+  const [passion, setPassion] = useState(false);
+  const updateAgreeChange = (infoAgree, passion) => {
+    setInfoAgree(infoAgree);
+    setPassion(passion);
+  };
+  const isAllAgreed = infoAgree && passion;
 
   return (
     <ApplicationContent>
@@ -249,13 +298,21 @@ const ApplicationPage = () => {
         handleAnswerChange={handleAnswerChange}
       />
 
+      <ApplicationAgree updateAgreeChange={updateAgreeChange} />
+
       <ButtonWrapper>
-        <Button type="submit" onClick={() => setOpen(true)}>
+        <Button
+          type="submit"
+          disabled={!isAllAgreed}
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
           제출
         </Button>
         <ApplyModal isOpen={open} onClose={() => setOpen(false)}>
           <ModalWrapper>
-            <WarningImg src={warning} />
+            <ModalImg src={warning} />
             <ModalText>
               <ModalTitle>제출을 완료하시겠습니까?</ModalTitle>
               <ModalDetail>제출한 내용은 수정할 수 없습니다.</ModalDetail>
@@ -266,6 +323,21 @@ const ApplicationPage = () => {
             </ModalButton>
           </ModalWrapper>
         </ApplyModal>
+        <SuccessModal
+          isOpen={successOpen}
+          onClose={() => setSuccessOpen(false)}
+        >
+          <ModalWrapper>
+            <ModalImg src={check} />
+            <ModalText>
+              <ModalTitle>제출이 완료되었습니다!</ModalTitle>
+              <ModalDetail>지원해주셔서 감사합니다.</ModalDetail>
+            </ModalText>
+            <ModalHomeButton onClick={handleHomeClick}>
+              홈으로 이동
+            </ModalHomeButton>
+          </ModalWrapper>
+        </SuccessModal>
       </ButtonWrapper>
     </ApplicationContent>
   );
