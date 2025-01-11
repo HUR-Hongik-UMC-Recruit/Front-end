@@ -126,8 +126,12 @@ const AdminJoinPage = () => {
       alert("회원가입에 성공했습니다.");
       window.location.href = "/login";
     } catch (e) {
-      console.log("회원가입 실패:", e);
-      alert("회원가입에 실패했습니다.");
+      console.log("회원가입 실패:", e.response.data.code);
+      if (e.response.data.code === "JOIN4001") {
+        alert(e.response.data.message);
+      } else {
+        alert("회원가입에 실패했습니다.");
+      }
     }
   };
 
