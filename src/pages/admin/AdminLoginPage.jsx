@@ -9,12 +9,12 @@ const AdminLoginPage = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const loginButtonClick = async () => {
+    const formData = new FormData();
+    formData.append("username", id);
+    formData.append("password", password);
     // 로그인 로직
     try {
-      const response = await axios.post(`${apiUrl}/login`, {
-        username: id,
-        password: password,
-      });
+      const response = await axios.post(`${apiUrl}/login`, formData);
 
       console.log("로그인 성공:", response.data);
       alert("로그인 성공!");
