@@ -87,10 +87,10 @@ const JoinButton = styled.div`
   height: 4rem;
   border-radius: 0.625rem;
   border: 1px solid #818989;
-
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   color: #353838;
   font-family: "Pretendard Variable";
