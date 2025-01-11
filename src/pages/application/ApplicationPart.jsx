@@ -154,6 +154,7 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
   const handlePartChange = (e) => {
     setSelectPart(e.target.value);
     updateApplicantDTO("part", APIConverter[e.target.value]);
+    handleAnswerChange(5, e);
   };
   const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -222,7 +223,7 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(9, e)}
+            onChange={(e) => handleAnswerChange(6, e)}
           />
         </QuestionWrapper>
 
@@ -232,7 +233,7 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
           <AnswerSmall
             type="text"
             placeholder={partContent[selectPart].example}
-            onChange={(e) => handleAnswerChange(10, e)}
+            onChange={(e) => handleAnswerChange(7, e)}
           />
         </QuestionWrapper>
       </PartWrapper>

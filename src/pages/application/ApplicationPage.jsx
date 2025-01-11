@@ -9,7 +9,8 @@ import PersonalInfo from "../apply/intro/PersonalInfo";
 import warning from "../../assets/icons/Warning.png";
 import { useState } from "react";
 import axios from "axios";
-import { useEmail } from '../../contexts/EmailContext'; 
+import { useEmail } from "../../contexts/EmailContext";
+import ToastPopup from "../../components/application/ToastPopup";
 
 const ApplicationContent = styled.div`
   // margin: 5rem 12.3rem 14rem 12.3rem;
@@ -152,7 +153,7 @@ const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
   const { authenticatedEmail, emailAuthStatus } = useEmail();
-  
+
   // const handleSubmit = async () => {
   //   if (!isEmailVerified) {
   //     alert("이메일 인증이 필요합니다.");
@@ -163,13 +164,13 @@ const ApplicationPage = () => {
     1: 0,
     2: 0,
     3: 0,
-    4: 0
+    4: 0,
   }); // 글자수 카운트
 
   // applicantDTO, file 상태 관리
   const [applicantDTO, setApplicantDTO] = useState({
     name: "",
-    email: authenticatedEmail,
+    email: "authenticatedEmail@gmail.com",
     phone: "",
     gender: "",
     birth: "",
@@ -179,7 +180,7 @@ const ApplicationPage = () => {
     gradeStatus: "",
     experience: "",
     umcRoute: "",
-    currentClub: 0,
+    currentClub: "",
     discordEmail: "",
     notionEmail: "",
     part: "",
@@ -206,15 +207,14 @@ const ApplicationPage = () => {
 
   // ApplicationCommon, ApplicationPart에서 사용할 함수
   const handleAnswerChange = (questionId, e) => {
-    console.log(`Question ID: ${questionId}, Answer: ${e.target.value}`);
     updateAnswer(questionId, e.target.value);
 
     // 해당 questionId의 글자수만 업데이트
     if (
+      questionId === 0 ||
       questionId === 1 ||
       questionId === 2 ||
-      questionId === 3 ||
-      questionId === 4
+      questionId === 3
     ) {
       setCharCounts((prev) => ({
         ...prev,
@@ -223,11 +223,76 @@ const ApplicationPage = () => {
     }
   };
 
+  // 토스트 팝업 띄울 때 필요한 "누락된 항목" 상태 관리
+  const [toast, setToast] = useState(false);
+  const [missingField, setMissingField] = useState("");
+  const personalInfoFields = [
+    { field: "name", text: "이름" },
+    { field: "birth", text: "생년월일" },
+    { field: "gender", text: "성별" },
+    // { field: "nickName", text: "닉네임" },
+    { field: "studentId", text: "학번" },
+    { field: "gradeStatus", text: "재학 여부" },
+    { field: "major", text: "학과" },
+    { field: "grade", text: "학년" },
+    { field: "experience", text: "UMC 활동 경험" },
+    { field: "phone", text: "연락처" },
+    { field: "discordEmail", text: "디스코드 사용 이메일" },
+    { field: "notionEmail", text: "노션 사용 이메일" },
+    { field: "umcRoute", text: "UMC를 알게 된 경로" },
+    { field: "currentClub", text: "현재 활동 중이거나 활동 예정인 동아리" },
+  ];
+  const questionFields = [
+    { questionId: 0, text: "공통 질문 1번" },
+    { questionId: 1, text: "공통 질문 2번" },
+    { questionId: 2, text: "공통 질문 3번" },
+    { questionId: 3, text: "공통 질문 4번" },
+    { questionId: 5, text: "파트별 질문 1번" },
+    { questionId: 6, text: "파트별 질문 2번" },
+    { questionId: 7, text: "파트별 질문 3번" },
+  ];
+  const validateForm = () => {
+    // PersonalInfo 검증
+    for (const field of personalInfoFields) {
+      if (
+        !applicantDTO[field.field] ||
+        applicantDTO[field.field].trim() === ""
+      ) {
+        return `${field.text} 항목에 대한 내용이 누락되었습니다.`;
+      }
+    }
+
+    // answers 검증
+    for (const question of questionFields) {
+      const answer = applicantDTO.answers.find(
+        (ans) => ans.questionId === question.questionId
+      );
+      if (!answer || !answer.answerText.trim()) {
+        return `${question.text}에 대한 답변이 누락되었습니다.`;
+      }
+    }
+
+    return null; // 모든 검증 통과
+  };
+  const submitButtonClick = () => {
+    if (validateForm()) {
+      console.log("validateForm: ", validateForm());
+      console.log(applicantDTO);
+      setMissingField(validateForm());
+      setToast(true);
+      return;
+    } else {
+      console.log("안 채운 항목 없음");
+      setOpen(true);
+      return;
+    }
+  };
+
   // post 요청 코드
   const handleSubmit = async () => {
     // answers 배열을 applicantDTO에 추가
-    applicantDTO.answers = applicantDTO.answers.map((answer, index) => ({
-      questionId: index,
+    applicantDTO.answers = applicantDTO.answers.map((answer) => ({
+      questionId: answer.questionId,
       answerText: answer.answerText,
     }));
 
@@ -281,7 +346,7 @@ const ApplicationPage = () => {
       />
 
       <ButtonWrapper>
-        <Button type="submit" onClick={() => setOpen(true)}>
+        <Button type="submit" onClick={submitButtonClick}>
           제출
         </Button>
         <ApplyModal isOpen={open} onClose={() => setOpen(false)}>
@@ -298,6 +363,22 @@ const ApplicationPage = () => {
           </ModalWrapper>
         </ApplyModal>
       </ButtonWrapper>
+
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        {toast && (
+          <ToastPopup
+            setToast={setToast}
+            title="모든 항목에 내용을 작성해주세요"
+            message={missingField}
+          />
+        )}
+      </div>
     </ApplicationContent>
   );
 };

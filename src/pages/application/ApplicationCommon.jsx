@@ -210,12 +210,9 @@ const DeleteButton = styled.button`
   justify-content: center;
 `;
 
-const CountText = styled.p`
-
-`
+const CountText = styled.p``;
 
 const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
-  
   // 리더 희망 여부
   const [selectLeader, setSelectLeader] = useState("예");
   const leader = ["예", "아니요"];
@@ -292,7 +289,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(1, e)}
+            onChange={(e) => handleAnswerChange(0, e)}
             maxLength={499}
           />
           <CountText>{charCounts[1]}/500자</CountText>
@@ -303,7 +300,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(2, e)}
+            onChange={(e) => handleAnswerChange(1, e)}
             maxLength={499}
           />
           <CountText>{charCounts[2]}/500자</CountText>
@@ -314,7 +311,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(3, e)}
+            onChange={(e) => handleAnswerChange(2, e)}
             maxLength={499}
           />
           <CountText>{charCounts[3]}/500자</CountText>
@@ -329,7 +326,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(4, e)}
+            onChange={(e) => handleAnswerChange(3, e)}
             maxLength={499}
           />
           <CountText>{charCounts[4]}/500자</CountText>
@@ -384,7 +381,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerSmall
             type="text"
             placeholder="예) http://github.com/example"
-            onChange={(e) => handleAnswerChange(6, e)}
+            onChange={(e) => handleAnswerChange(4, e)}
           />
         </QuestionWrapper>
 
