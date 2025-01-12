@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ApplicationIntroPage from "../apply/intro/ApplyIntroPage";
 import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
@@ -147,6 +147,30 @@ const Submit = styled.button`
     border: 1.5px solid #2b9176;
     background: #67b299;
   }
+`;
+
+const slideTop = keyframes`
+  0% {
+    opacity:0;
+    transform: translateY(-5rem);
+  }
+  50% {
+    transform: translateY(-2.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+`;
+
+const ToastWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${slideTop} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 5rem;
 `;
 
 const ApplicationPage = () => {
@@ -364,13 +388,7 @@ const ApplicationPage = () => {
         </ApplyModal>
       </ButtonWrapper>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <ToastWrapper>
         {toast && (
           <ToastPopup
             setToast={setToast}
@@ -378,7 +396,7 @@ const ApplicationPage = () => {
             message={missingField}
           />
         )}
-      </div>
+      </ToastWrapper>
     </ApplicationContent>
   );
 };

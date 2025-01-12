@@ -13,9 +13,6 @@ const CustomToast = styled.div`
   border-radius: 1.25rem;
   background: #111412;
   box-shadow: 0px 0px 10px 0px #8a8a8a;
-
-  position: fixed;
-  bottom: 5rem;
 `;
 
 const ToastImg = styled.img`
