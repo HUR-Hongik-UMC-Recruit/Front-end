@@ -148,7 +148,7 @@ const AnswerSmall = styled.textarea`
   }
 `;
 
-const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
+const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange, refs }) => {
   // 파트 선택 여부
   const [selectPart, setSelectPart] = useState("Plan");
   const handlePartChange = (e) => {
@@ -197,6 +197,7 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
                   name="part"
                   value={part}
                   onChange={handlePartChange}
+                  ref={refs[5]}
                 />
                 <RadioWrapper checked={idx === selectPart} key={part}>
                   {part}
@@ -224,6 +225,7 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
             type="text"
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(6, e)}
+            ref={refs[6]}
           />
         </QuestionWrapper>
 
@@ -233,7 +235,10 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
           <AnswerSmall
             type="text"
             placeholder={partContent[selectPart].example}
-            onChange={(e) => handleAnswerChange(7, e)}
+            onChange={(e) => {
+              handleAnswerChange(7, e);
+            }}
+            ref={refs[7]}
           />
         </QuestionWrapper>
       </PartWrapper>

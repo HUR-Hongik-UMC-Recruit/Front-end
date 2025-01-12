@@ -7,7 +7,7 @@ import Title from "../../components/apply/intro/Title";
 import Verification from "../apply/intro/Verification";
 import PersonalInfo from "../apply/intro/PersonalInfo";
 import warning from "../../assets/icons/Warning.png";
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useEmail } from "../../contexts/EmailContext";
 import ToastPopup from "../../components/application/ToastPopup";
@@ -266,32 +266,73 @@ const ApplicationPage = () => {
     { field: "umcRoute", text: "UMC를 알게 된 경로" },
     { field: "currentClub", text: "현재 활동 중이거나 활동 예정인 동아리" },
   ];
+  const refs = {
+    name: useRef(null),
+    // nickName: useRef(null),
+    birth: useRef(null),
+    gender: useRef(null),
+    studentId: useRef(null),
+    gradeStatus: useRef(null),
+    major: useRef(null),
+    grade: useRef(null),
+    experience: useRef(null),
+    phone: useRef(null),
+    discordEmail: useRef(null),
+    notionEmail: useRef(null),
+    umcRoute: useRef(null),
+    currentClub: useRef(null),
+  };
   const questionFields = [
     { questionId: 0, text: "공통 질문 1번" },
     { questionId: 1, text: "공통 질문 2번" },
     { questionId: 2, text: "공통 질문 3번" },
     { questionId: 3, text: "공통 질문 4번" },
+    { questionId: 4, text: "" },
     { questionId: 5, text: "파트별 질문 1번" },
     { questionId: 6, text: "파트별 질문 2번" },
     { questionId: 7, text: "파트별 질문 3번" },
   ];
+  const questionRefs = useRef(
+    questionFields.map(() => React.createRef()) // 각 질문에 대한 ref 생성
+  );
+  const scrollToField = (ref) => {
+    // setTimeout(() => {
+    //   ref.current.scrollIntoView({
+    //     behavior: "smooth",
+    //     block: "center",
+    //   });
+    //   ref.current.focus();
+    // }, 0);
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      ref.current.focus();
+    }
+  };
   const validateForm = () => {
     // PersonalInfo 검증
-    for (const field of personalInfoFields) {
-      if (
-        !applicantDTO[field.field] ||
-        applicantDTO[field.field].trim() === ""
-      ) {
-        return `${field.text} 항목에 대한 내용이 누락되었습니다.`;
-      }
-    }
+    // for (const field of personalInfoFields) {
+    //   if (
+    //     !applicantDTO[field.field] ||
+    //     applicantDTO[field.field].trim() === ""
+    //   ) {
+    //     scrollToField(refs[field.field]);
+    //     return `${field.text} 항목에 대한 내용이 누락되었습니다.`;
+    //   }
+    // }
 
     // answers 검증
     for (const question of questionFields) {
+      if (question.questionId === 4) {
+        continue;
+      }
       const answer = applicantDTO.answers.find(
         (ans) => ans.questionId === question.questionId
       );
       if (!answer || !answer.answerText.trim()) {
+        scrollToField(questionRefs.current[question.questionId]);
         return `${question.text}에 대한 답변이 누락되었습니다.`;
       }
     }
@@ -357,16 +398,19 @@ const ApplicationPage = () => {
       <PersonalInfo
         applicantDTO={applicantDTO}
         updateApplicantDTO={updateApplicantDTO}
+        refs={refs}
       />
 
       <ApplicationCommon
         handleAnswerChange={handleAnswerChange}
         setFileDTO={setFileDTO}
         charCounts={charCounts}
+        refs={questionRefs.current}
       />
       <ApplicationPart
         updateApplicantDTO={updateApplicantDTO}
         handleAnswerChange={handleAnswerChange}
+        refs={questionRefs.current}
       />
 
       <ButtonWrapper>

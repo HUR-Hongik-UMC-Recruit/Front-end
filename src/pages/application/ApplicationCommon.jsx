@@ -212,7 +212,12 @@ const DeleteButton = styled.button`
 
 const CountText = styled.p``;
 
-const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
+const ApplicationCommon = ({
+  handleAnswerChange,
+  setFileDTO,
+  charCounts,
+  refs,
+}) => {
   // 리더 희망 여부
   const [selectLeader, setSelectLeader] = useState("예");
   const leader = ["예", "아니요"];
@@ -291,7 +296,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(0, e)}
             maxLength={499}
-            ref={refs.question0}
+            ref={refs[0]}
           />
           <CountText>{charCounts[0]}/500자</CountText>
         </QuestionWrapper>
@@ -303,6 +308,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(1, e)}
             maxLength={499}
+            ref={refs[1]}
           />
           <CountText>{charCounts[1]}/500자</CountText>
         </QuestionWrapper>
@@ -314,6 +320,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(2, e)}
             maxLength={499}
+            ref={refs[2]}
           />
           <CountText>{charCounts[2]}/500자</CountText>
         </QuestionWrapper>
@@ -329,6 +336,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(3, e)}
             maxLength={499}
+            ref={refs[3]}
           />
           <CountText>{charCounts[3]}/500자</CountText>
         </QuestionWrapper>
@@ -383,6 +391,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             type="text"
             placeholder="예) http://github.com/example"
             onChange={(e) => handleAnswerChange(4, e)}
+            ref={refs[4]}
           />
         </QuestionWrapper>
 
