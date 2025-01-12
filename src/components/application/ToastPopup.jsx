@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import warning from "../../assets/icons/Warning.png";
+import warning from "../../assets/icons/Warning.svg";
 import { useEffect } from "react";
 
 const CustomToast = styled.div`

@@ -7,7 +7,7 @@ import PersonalInfo from "../apply/intro/PersonalInfo";
 import ApplicationAgree from "./ApplicationAgree";
 import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
-import warning from "../../assets/icons/Warning.png";
+import warning from "../../assets/icons/Warning.svg";
 import check from "../../assets/icons/Check.svg";
 import ApplyModal from "../../components/application/ApplyModal";
 import SuccessModal from "../../components/application/SuccessModal";
