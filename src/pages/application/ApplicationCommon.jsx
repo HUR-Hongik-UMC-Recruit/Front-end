@@ -139,7 +139,12 @@ const DeleteButton = styled.button`
 
 const CountText = styled.p``;
 
-const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
+const ApplicationCommon = ({
+  handleAnswerChange,
+  setFileDTO,
+  charCounts,
+  refs,
+}) => {
   // 파일 첨부
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -163,7 +168,6 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
 
   return (
     <CommonContainer>
-      <CommonWrapper>
         <CommonTitle>공통 질문</CommonTitle>
 
         <CommonBorder />
@@ -175,10 +179,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(1, e)}
+            onChange={(e) => handleAnswerChange(0, e)}
             maxLength={499}
+            ref={refs[0]}
           />
-          <CountText>{charCounts[1]}/500자</CountText>
+          <CountText>{charCounts[0]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -186,10 +191,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(2, e)}
+            onChange={(e) => handleAnswerChange(1, e)}
             maxLength={499}
+            ref={refs[1]}
           />
-          <CountText>{charCounts[2]}/500자</CountText>
+          <CountText>{charCounts[1]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -197,10 +203,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(3, e)}
+            onChange={(e) => handleAnswerChange(2, e)}
             maxLength={499}
+            ref={refs[2]}
           />
-          <CountText>{charCounts[3]}/500자</CountText>
+          <CountText>{charCounts[2]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -212,10 +219,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(4, e)}
+            onChange={(e) => handleAnswerChange(3, e)}
             maxLength={499}
+            ref={refs[3]}
           />
-          <CountText>{charCounts[4]}/500자</CountText>
+          <CountText>{charCounts[3]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -233,8 +241,6 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
                     src={upload}
                     style={{ height: "1.75rem", width: "1.75rem" }}
                   />
-                  파일 첨부
-                </FileInput>
                 <input
                   type="file"
                   accept="application/pdf"
@@ -243,17 +249,10 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
                   style={{ display: "none" }}
                 />
                 파일 첨부
-              </FileInput>
-              <input
-                type="file"
-                accept="application/pdf"
-                id="file"
-                onChange={handleFileChange}
-                style={{ display: "none" }}
-              />
-            </>
-          ) : (
-            <UploadedFile>
+                </FileInput>
+              </>
+            ) : (
+              <UploadedFile>
               <FileInfo>{file.name}</FileInfo>
               <DeleteButton onClick={handleDeleteFile}>
                 <img
@@ -261,26 +260,27 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
                   style={{ height: "1.75rem", width: "1.75rem" }}
                 />
               </DeleteButton>
-            </UploadedFile>
-          )}
-          <Guide>
-            하나의 PDF 파일로 병합 후 제출 부탁드립니다.
-            <br />
-            최대 파일 크기는 10MB입니다.
-          </Guide>
-        </FileWrapper>
-      </QuestionWrapper>
+             </UploadedFile>
+            )}
+            <Guide>
+              하나의 PDF 파일로 병합 후 제출 부탁드립니다.
+              <br />
+              최대 파일 크기는 10MB입니다.
+            </Guide>
+          </FileWrapper>
+        </QuestionWrapper>
 
-      <QuestionWrapper>
-        <Question>
-          6. GitHub를 이용해 프로젝한 경험이 있다면 GitHub 주소를 남겨주세요.
-        </Question>
-        <AnswerSmall
-          type="text"
-          placeholder="예) http://github.com/example"
-          onChange={(e) => handleAnswerChange(4, e)}
-        />
-      </QuestionWrapper>
+        <QuestionWrapper>
+          <Question>
+            6. GitHub를 이용해 프로젝한 경험이 있다면 GitHub 주소를 남겨주세요.
+          </Question>
+          <AnswerSmall
+            type="text"
+            placeholder="예) http://github.com/example"
+            onChange={(e) => handleAnswerChange(4, e)}
+            ref={refs[4]}
+          />
+        </QuestionWrapper>
     </CommonContainer>
   );
 };
