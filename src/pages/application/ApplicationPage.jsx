@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import Title from "../../components/apply/intro/Title";
@@ -9,8 +9,7 @@ import ApplicationCommon from "./ApplicationCommon";
 import ApplicationPart from "./ApplicationPart";
 import warning from "../../assets/icons/Warning.svg";
 import check from "../../assets/icons/Check.svg";
-import ApplyModal from "../../components/application/ApplyModal";
-import SuccessModal from "../../components/application/SuccessModal";
+import Modal from "../../components/application/Modal";
 import ToastPopup from "../../components/application/ToastPopup";
 import { useEmail } from "../../contexts/EmailContext";
 
@@ -398,14 +397,8 @@ const ApplicationPage = () => {
       setSuccessOpen(true);
     } catch (e) {
       console.log("지원서 제출 에러 발생: ", e);
+      setOpen(false);
     }
-  };
-
-  // 모든 항목이 채워져 있는지 검사
-  const isFormValid = () => {
-    return Object.values(applicantDTO).every((field) =>
-      typeof field === "string" ? field.trim() !== "" : field !== ""
-    );
   };
 
   // 약관 동의 여부 상태 관리
@@ -445,13 +438,11 @@ const ApplicationPage = () => {
         <Button
           type="submit"
           disabled={!isAllAgreed}
-          onClick={() => {
-            setOpen(true);
-          }}
+          onClick={submitButtonClick}
         >
           제출
         </Button>
-        <ApplyModal isOpen={open} onClose={() => setOpen(false)}>
+        <Modal isOpen={open} onClose={() => setOpen(false)}>
           <ModalWrapper>
             <ModalImg src={warning} />
             <ModalText>
@@ -463,11 +454,8 @@ const ApplicationPage = () => {
               <Submit onClick={() => handleSubmit()}>제출</Submit>
             </ModalButton>
           </ModalWrapper>
-        </ApplyModal>
-        <SuccessModal
-          isOpen={successOpen}
-          onClose={() => setSuccessOpen(false)}
-        >
+        </Modal>
+        <Modal isOpen={successOpen} onClose={() => setSuccessOpen(false)}>
           <ModalWrapper>
             <ModalImg src={check} />
             <ModalText>
@@ -478,7 +466,7 @@ const ApplicationPage = () => {
               홈으로 이동
             </ModalHomeButton>
           </ModalWrapper>
-        </SuccessModal>
+        </Modal>
       </ButtonWrapper>
 
       <ToastWrapper>
