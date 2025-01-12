@@ -97,7 +97,12 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               닉네임 <RequiredDot />
             </Label>
             <FormItem>
-              <Input type="text" placeholder="예) 밍밍" />
+              <Input
+                type="text"
+                placeholder="예) 밍밍"
+                value={applicantDTO.nickName}
+                onChange={(e) => updateApplicantDTO("nickName", e.target.value)}
+              />
               <InfoText>사용할 닉네임을 적어주세요!</InfoText>
             </FormItem>
           </FormGroup>

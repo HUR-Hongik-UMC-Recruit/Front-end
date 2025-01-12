@@ -59,7 +59,6 @@ const FAQListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 0;
-  gap: 1rem;
 `;
 
 const FAQItemWrapper = styled(motion.div)``;
