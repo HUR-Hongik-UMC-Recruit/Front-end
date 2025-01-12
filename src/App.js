@@ -8,6 +8,7 @@ import RecruitmentPage from "./pages/recruitment/RecruitmentPage";
 import ApplicationPage from "./pages/application/ApplicationPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminJoinPage from "./pages/admin/AdminJoinPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
 
 import { EmailProvider } from "./contexts/EmailContext";
 
@@ -30,6 +31,8 @@ function App() {
           }
         />
         <Route path="/join" element={<AdminJoinPage />} />
+        <Route path="/login" element={<AdminLoginPage />} />
+        {/* <Route path="/admin" element={} /> */}
       </Routes>
       <Footer />
     </Router>
