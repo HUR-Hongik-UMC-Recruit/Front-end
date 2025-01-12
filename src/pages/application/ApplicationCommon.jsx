@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import upload from "../../assets/icons/Upload.png";
-import axios from "axios";
+import upload from "../../assets/icons/FileUpload.svg";
+import close from "../../assets/icons/FileClose.svg";
 
 const CommonContainer = styled.div`
   width: 100%;
-  margin-top: 4rem;
-`;
-
-const CommonWrapper = styled.div`
-  margin: 0rem 12.3rem;
+  margin-top: 5rem;
 `;
 
 const CommonTitle = styled.div`
@@ -40,68 +36,6 @@ const Question = styled.label`
   font-style: normal;
   font-weight: 500;
   line-height: 1.875rem; /* 150% */
-`;
-
-const RadioPartWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 0.62rem;
-  justify-content: flex-end;
-`;
-
-const RadioLabel = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 8.75rem;
-  height: 3.75rem;
-  gap: 1.9rem;
-`;
-
-const RadioWrapper = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 100%;
-
-  border-radius: 0.75rem;
-  border: 1.5px solid #d1dadb;
-  background: #fcffff;
-
-  position: relative;
-  cursor: pointer;
-
-  font-family: "Pretendard Variable";
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.875rem; /* 187.5% */
-
-  &:hover {
-    border: 1.5px solid #2b9176;
-    background: #b1e9d6;
-  }
-`;
-
-const Radio = styled.input`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  border: 0;
-  overflow: hidden;
-  margin: -1px;
-  clip-path: inset(50%);
-
-  /* 체크된 상태일 때 스타일 변경 */
-  &: checked + ${RadioWrapper} {
-    font-weight: 550;
-    background: #dffaf1;
-    border-color: #2b9176;
-    color: #353838;
-  }
 `;
 
 const AnswerBig = styled.textarea`
@@ -181,9 +115,9 @@ const FileInput = styled.label`
 
 const UploadedFile = styled.div`
   display: flex;
+  gap: 1.5rem;
   width: 23.3125rem;
   height: 6.375rem;
-  padding: 0 1.5rem;
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
@@ -192,9 +126,6 @@ const UploadedFile = styled.div`
 `;
 
 const FileInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   color: #353838;
   font-size: 1.2rem;
   font-weight: 500;
@@ -204,10 +135,6 @@ const DeleteButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const CountText = styled.p``;
@@ -218,13 +145,6 @@ const ApplicationCommon = ({
   charCounts,
   refs,
 }) => {
-  // 리더 희망 여부
-  const [selectLeader, setSelectLeader] = useState("예");
-  const leader = ["예", "아니요"];
-  const handleRadioChange = (e) => {
-    setSelectLeader(e.target.value);
-  };
-
   // 파일 첨부
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -246,46 +166,11 @@ const ApplicationCommon = ({
     setFile(null);
   };
 
-  // 질문 조회 api
-  const [questions, setQuestions] = useState([]);
-
-  const apiUrl = process.env.REACT_APP_API_URL;
-
-  const getQuestions = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/applicant/questions/COMMON`);
-      if (response.data.isSuccess) {
-        setQuestions(response.data.result.questions); // questions 배열로 설정
-        console.log(response.data.result.questions);
-      } else {
-        console.error("API 호출 실패: ", response.data.message);
-        setQuestions([]); // 실패 시 빈 배열로 설정
-      }
-    } catch (e) {
-      console.log("공통질문 에러 발생: ", e);
-    }
-  };
-  // useEffect(() => {
-  //   getQuestions();
-  // }, []);
-
   return (
     <CommonContainer>
-      <CommonWrapper>
         <CommonTitle>공통 질문</CommonTitle>
 
         <CommonBorder />
-
-        {/* 
-        {questions.map((question) => (
-          <QuestionWrapper key={question.questionId}>
-            <Question>
-              {question.questionId}. {question.questionText}
-            </Question>
-            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
-          </QuestionWrapper>
-        ))} 
-        */}
 
         <QuestionWrapper>
           <Question>
@@ -356,8 +241,6 @@ const ApplicationCommon = ({
                     src={upload}
                     style={{ height: "1.75rem", width: "1.75rem" }}
                   />
-                  파일 첨부
-                </FileInput>
                 <input
                   type="file"
                   accept="application/pdf"
@@ -365,15 +248,19 @@ const ApplicationCommon = ({
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
+                파일 첨부
+                </FileInput>
               </>
             ) : (
               <UploadedFile>
-                <FileInfo>
-                  <img src={upload} />
-                  {file.name}
-                </FileInfo>
-                <DeleteButton onClick={handleDeleteFile}>✕</DeleteButton>
-              </UploadedFile>
+              <FileInfo>{file.name}</FileInfo>
+              <DeleteButton onClick={handleDeleteFile}>
+                <img
+                  src={close}
+                  style={{ height: "1.75rem", width: "1.75rem" }}
+                />
+              </DeleteButton>
+             </UploadedFile>
             )}
             <Guide>
               하나의 PDF 파일로 병합 후 제출 부탁드립니다.
@@ -394,32 +281,6 @@ const ApplicationCommon = ({
             ref={refs[4]}
           />
         </QuestionWrapper>
-
-        <QuestionWrapper>
-          <Question>7. 스터디 리더를 희망하시나요?</Question>
-          <Guide>
-            스터디 리더란 매주 진행되는 스터디의 리더를 의미합니다. 선수 지식이
-            있지 않아도 열심히 공부할 열정과 책임감이 있다면 스터디 리더 지원이
-            가능합니다. 이후에 스터디 리더 지원을 따로 받을 예정이며, 스터디
-            리더 확정이 아니니 부담가지지 않으셔도 됩니다.
-          </Guide>
-          <RadioPartWrapper>
-            {leader.map((answer, idx) => (
-              <RadioLabel key={idx}>
-                <Radio
-                  type="radio"
-                  name="leader"
-                  value={answer}
-                  onChange={handleRadioChange}
-                />
-                <RadioWrapper checked={idx === selectLeader} key={answer}>
-                  {answer}
-                </RadioWrapper>
-              </RadioLabel>
-            ))}
-          </RadioPartWrapper>
-        </QuestionWrapper>
-      </CommonWrapper>
     </CommonContainer>
   );
 };

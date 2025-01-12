@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import parts from "../../data/common/PartList";
 import APIConverter from "../../data/application/APIConverter";
@@ -7,10 +6,7 @@ import partContent from "../../data/application/PartQuestionData";
 
 const PartContainer = styled.div`
   width: 100%;
-`;
-
-const PartWrapper = styled.div`
-  margin: 0rem 12.3rem;
+  margin-top: 3rem;
 `;
 
 const PartTitle = styled.div`
@@ -156,29 +152,6 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange, refs }) => {
     updateApplicantDTO("part", APIConverter[e.target.value]);
     handleAnswerChange(5, e);
   };
-  const apiUrl = process.env.REACT_APP_API_URL;
-
-  // 질문 조회 api
-  const [questions, setQuestions] = useState([]);
-  const getQuestions = async () => {
-    try {
-      const response = await axios.get(
-        `${apiUrl}/applicant/questions/${APIConverter[selectPart]}`
-      );
-      if (response.data.isSuccess) {
-        setQuestions(response.data.result.questions); // questions 배열로 설정
-        console.log(response.data.result.questions);
-      } else {
-        console.error("API 호출 실패: ", response.data.message);
-        setQuestions([]); // 실패 시 빈 배열로 설정
-      }
-    } catch (e) {
-      console.log("파트별질문 에러 발생: ", e);
-    }
-  };
-  // useEffect(() => {
-  //   getQuestions();
-  // }, [selectPart]);
 
   return (
     <PartContainer>
@@ -206,16 +179,6 @@ const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange, refs }) => {
             ))}
           </RadioPartWrapper>
         </QuestionWrapper>
-
-        {/*
-        {questions.map((question) => (
-          <QuestionWrapper key={question.questionId}>
-            {question.questionId}. {question.questionText}
-            <Question></Question>
-            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
-          </QuestionWrapper>
-        ))}
-        */}
 
         <QuestionWrapper>
           <Question>

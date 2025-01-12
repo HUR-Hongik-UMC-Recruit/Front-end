@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import arrowNext from "../../assets/icons/ArrowNext.png";
-import arrowDown from "../../assets/icons/ArrowDown.png";
+import arrowRight from "../../assets/icons/arrow/ArrowNext.svg";
+import arrowDown from "../../assets/icons/arrow/ArrowDown.svg";
 import background from "../../assets/icons/BgHome.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -274,11 +274,10 @@ const BTRDetail = styled.p`
   text-align: center;
   font-feature-settings: "ss10" on;
   font-family: "Pretendard Variable";
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 135%; /* 2.025rem */
-  letter-spacing: -0.015rem;
+  line-height: 145%; /* 2.025rem */
 `;
 
 const shake = keyframes`
@@ -323,7 +322,7 @@ const RecruitButton = styled.button`
   &: hover {
     transform: scale(1.1);
     transition: transform 0.5s ease;
-    animation: ${shake} 1s;
+    animation: ${shake} 0.7s;
   }
 `;
 
@@ -342,6 +341,7 @@ const HomeMain = ({ downClick }) => {
 
     // 스무스하게 넘어감
     navigate("/recruitment");
+    window.scrollTo(0, 0); // 페이지 최상단으로 스크롤
   };
 
   const text = "Break The Rules!"; // 타이핑할 문구
@@ -381,7 +381,7 @@ const HomeMain = ({ downClick }) => {
       </BTRWrapper>
       <RecruitButton onClick={toRecruit}>
         UMC 8기 지원하기
-        <img src={arrowNext} />
+        <img src={arrowRight} />
       </RecruitButton>
       <NextButton onClick={downClick}>
         <img src={arrowDown} />

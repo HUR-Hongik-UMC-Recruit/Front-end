@@ -101,7 +101,10 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO, refs }) => {
             <FormItem>
               <Input
                 type="text"
-                placeholder="예) 밍밍" //ref={refs.name}
+                placeholder="예) 밍밍"
+                value={applicantDTO.nickName}
+                onChange={(e) => updateApplicantDTO("nickName", e.target.value)}
+                ref={refs.nickName}
               />
               <InfoText>사용할 닉네임을 적어주세요!</InfoText>
             </FormItem>

@@ -5,9 +5,7 @@ export const Section = styled.section`
   margin-top: 4rem;
 `;
 
-export const ContentWrapper = styled.div`
-  margin: 0rem 12.3rem;
-`;
+export const ContentWrapper = styled.div``;
 
 export const SectionTitle = styled.h2`
   color: #2b9176;
@@ -28,7 +26,7 @@ export const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 `;
 
 export const Label = styled.label`
@@ -77,9 +75,13 @@ export const Button = styled.button`
   border: 1px solid #2b9176;
   border-radius: 0.75rem;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.25rem;
   cursor: pointer;
+
+  &:hover {
+    background: #4e977f;
+  }
 `;
 
 export const DisabledButton = styled(Button)`
