@@ -185,6 +185,7 @@ const ApplicationPage = () => {
   // 제출 모달창 open 상태 관리
   const [open, setOpen] = useState(false);
   const [successOpen, setSuccessOpen] = useState(false);
+  const [failOpen, setFailOpen] = useState(false);
   const handleHomeClick = () => {
     setSuccessOpen(false); // 모달 닫기
     // navigate("/"); // 홈으로 이동
@@ -264,7 +265,10 @@ const ApplicationPage = () => {
 
   // 토스트 팝업 띄울 때 필요한 "누락된 항목" 상태 관리
   const [toast, setToast] = useState(false);
+  // 토스트 팝업 내용 상태 관리
+  const [title, setTitle] = useState("");
   const [missingField, setMissingField] = useState("");
+  // 지원서 PersonalInfo 모두 채웠는지 검증 위한 필드
   const personalInfoFields = [
     { field: "name", text: "이름" },
     { field: "birth", text: "생년월일" },
@@ -297,12 +301,13 @@ const ApplicationPage = () => {
     umcRoute: useRef(null),
     currentClub: useRef(null),
   };
+  // 지원서 질문에 대한 답변 모두 채웠는지 검증 위한 필드
   const questionFields = [
     { questionId: 0, text: "공통 질문 1번" },
     { questionId: 1, text: "공통 질문 2번" },
     { questionId: 2, text: "공통 질문 3번" },
     { questionId: 3, text: "공통 질문 4번" },
-    { questionId: 4, text: "" },
+    { questionId: 4, text: "공통 질문 6번" },
     { questionId: 5, text: "파트별 질문 1번" },
     { questionId: 6, text: "파트별 질문 2번" },
     { questionId: 7, text: "파트별 질문 3번" },
@@ -310,6 +315,7 @@ const ApplicationPage = () => {
   const questionRefs = useRef(
     questionFields.map(() => React.createRef()) // 각 질문에 대한 ref 생성
   );
+  // 누락된 항목으로 스크롤
   const scrollToField = (ref) => {
     if (ref && ref.current) {
       ref.current.scrollIntoView({
@@ -319,34 +325,52 @@ const ApplicationPage = () => {
       ref.current.focus();
     }
   };
+  // 누락된 항목 있는지 검증 및 토스트 팝업 메세지 return
   const validateForm = () => {
     // PersonalInfo 검증
-    for (const field of personalInfoFields) {
-      if (
-        !applicantDTO[field.field] ||
-        applicantDTO[field.field].trim() === ""
-      ) {
-        scrollToField(refs[field.field]);
-        return `${field.text} 항목에 대한 내용이 누락되었습니다.`;
-      }
-    }
+    // for (const field of personalInfoFields) {
+    //   if (
+    //     !applicantDTO[field.field] ||
+    //     applicantDTO[field.field].trim() === ""
+    //   ) {
+    //     setTitle("모든 항목에 내용을 작성해주세요");
+    //     scrollToField(refs[field.field]);
+    //     return `${field.text} 항목에 대한 내용이 누락되었습니다.`;
+    //   }
+    // }
 
     // answers 검증
-    for (const question of questionFields) {
-      if (question.questionId === 4) {
-        continue;
-      }
-      const answer = applicantDTO.answers.find(
-        (ans) => ans.questionId === question.questionId
-      );
-      if (!answer || !answer.answerText.trim()) {
-        scrollToField(questionRefs.current[question.questionId]);
-        return `${question.text}에 대한 답변이 누락되었습니다.`;
-      }
+    // for (const question of questionFields) {
+    //   // 필수 항목이 아닌 질문은 넘어가기
+    //   if (question.questionId === 4) {
+    //     continue;
+    //   }
+    //   const answer = applicantDTO.answers.find(
+    //     (ans) => ans.questionId === question.questionId
+    //   );
+    //   if (!answer || !answer.answerText.trim()) {
+    //     setTitle("모든 항목에 내용을 작성해주세요");
+    //     scrollToField(questionRefs.current[question.questionId]);
+    //     return `${question.text}에 대한 답변이 누락되었습니다.`;
+    //   }
+    // }
+
+    if (!information) {
+      setTitle("모든 약관 항목에 동의해주세요");
+      scrollToField(agreeRefs.infoRef);
+      return "개인정보 수집 및 이용 동의 항목에 동의해주세요";
+    }
+
+    if (!passion) {
+      setTitle("모든 약관 항목에 동의해주세요");
+      scrollToField(agreeRefs.passionRef);
+      return "UMC에서 열정적으로 활동할 것을 동의해주세요";
     }
 
     return null; // 모든 검증 통과
   };
+
+  // 지원서 페이지의 제출하기 버튼 함수
   const submitButtonClick = () => {
     if (validateForm()) {
       setMissingField(validateForm());
@@ -402,13 +426,16 @@ const ApplicationPage = () => {
   };
 
   // 약관 동의 여부 상태 관리
-  const [infoAgree, setInfoAgree] = useState(false);
+  const [information, setInformation] = useState(false);
   const [passion, setPassion] = useState(false);
-  const updateAgreeChange = (infoAgree, passion) => {
-    setInfoAgree(infoAgree);
+  const updateAgreeChange = (information, passion) => {
+    setInformation(information);
     setPassion(passion);
   };
-  const isAllAgreed = infoAgree && passion;
+  const agreeRefs = {
+    infoRef: useRef(null),
+    passionRef: useRef(null),
+  };
 
   return (
     <ApplicationContent>
@@ -432,14 +459,13 @@ const ApplicationPage = () => {
         refs={questionRefs.current}
       />
 
-      <ApplicationAgree updateAgreeChange={updateAgreeChange} />
+      <ApplicationAgree
+        updateAgreeChange={updateAgreeChange}
+        refs={agreeRefs}
+      />
 
       <ButtonWrapper>
-        <Button
-          type="submit"
-          disabled={!isAllAgreed}
-          onClick={submitButtonClick}
-        >
+        <Button type="submit" onClick={submitButtonClick}>
           제출
         </Button>
         <Modal isOpen={open} onClose={() => setOpen(false)}>
@@ -467,13 +493,25 @@ const ApplicationPage = () => {
             </ModalHomeButton>
           </ModalWrapper>
         </Modal>
+        <Modal isOpen={failOpen} onClose={() => setFailOpen(false)}>
+          <ModalWrapper>
+            <ModalImg src={warning} />
+            <ModalText>
+              <ModalTitle>제출에 실패했습니다</ModalTitle>
+              <ModalDetail>인증되지 않은 사용자입니다</ModalDetail>
+            </ModalText>
+            <ModalHomeButton onClick={handleHomeClick}>
+              홈으로 이동
+            </ModalHomeButton>
+          </ModalWrapper>
+        </Modal>
       </ButtonWrapper>
 
       <ToastWrapper>
         {toast && (
           <ToastPopup
             setToast={setToast}
-            title="모든 항목에 내용을 작성해주세요"
+            title={title}
             message={missingField}
           />
         )}

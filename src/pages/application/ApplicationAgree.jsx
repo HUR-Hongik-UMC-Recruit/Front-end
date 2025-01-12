@@ -127,7 +127,7 @@ const Checkbox = styled(ScreenReaderCheckbox)`
   }
 `;
 
-const ApplicationAgree = ({ updateAgreeChange }) => {
+const ApplicationAgree = ({ updateAgreeChange, refs }) => {
   // 약관 동의 여부 상태 관리
   const [infoAgree, setInfoAgree] = useState(false);
   const [passion, setPassion] = useState(false);
@@ -135,7 +135,7 @@ const ApplicationAgree = ({ updateAgreeChange }) => {
   return (
     <AgreeContainer>
       <AgreeBorder />
-      <AgreeListWrapper>
+      <AgreeListWrapper ref={refs.infoRef}>
         <AgreeTitle>1. 개인정보 수집 및 이용 동의</AgreeTitle>
         <AgreeDeatilWrapper>
           <AgreeText>
@@ -166,7 +166,7 @@ const ApplicationAgree = ({ updateAgreeChange }) => {
           </CheckBoxWrapper>
         </AgreeDeatilWrapper>
       </AgreeListWrapper>
-      <AgreeListWrapper>
+      <AgreeListWrapper ref={refs.passionRef}>
         <AgreeTitle>
           2. UMC의 모든 활동에 열정적으로 참여하실 수 있습니까?
         </AgreeTitle>
