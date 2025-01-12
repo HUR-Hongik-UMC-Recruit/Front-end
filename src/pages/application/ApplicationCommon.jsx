@@ -291,8 +291,9 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             placeholder="500자 이하로 얘기해주세요"
             onChange={(e) => handleAnswerChange(0, e)}
             maxLength={499}
+            ref={refs.question0}
           />
-          <CountText>{charCounts[1]}/500자</CountText>
+          <CountText>{charCounts[0]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -303,7 +304,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             onChange={(e) => handleAnswerChange(1, e)}
             maxLength={499}
           />
-          <CountText>{charCounts[2]}/500자</CountText>
+          <CountText>{charCounts[1]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -314,7 +315,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             onChange={(e) => handleAnswerChange(2, e)}
             maxLength={499}
           />
-          <CountText>{charCounts[3]}/500자</CountText>
+          <CountText>{charCounts[2]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -329,7 +330,7 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
             onChange={(e) => handleAnswerChange(3, e)}
             maxLength={499}
           />
-          <CountText>{charCounts[4]}/500자</CountText>
+          <CountText>{charCounts[3]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
