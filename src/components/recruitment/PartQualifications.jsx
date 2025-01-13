@@ -19,15 +19,15 @@ const PartQualifications = ({ part }) => {
 
   const variants = {
     initial: { scale: 0.8, opacity: 0 },
-    animate: { 
-      scale: 1, 
+    animate: {
+      scale: 1,
       opacity: 1,
-      transition: { 
+      transition: {
         type: "spring",
-        duration: 0.9 
-      }
-    }
-  }
+        duration: 0.9,
+      },
+    },
+  };
 
   return (
     <QualificationsContainer
@@ -79,7 +79,7 @@ const QualificationText = styled.p`
   margin-bottom: 0.5rem;
   font-weight: 400;
   font-size: 18px;
-  line-height: 145%;
+  line-height: 170%;
   margin-top: 0rem;
   color: ${(props) => (props.$note ? "#818989" : "#BCC6C6")};
 `;

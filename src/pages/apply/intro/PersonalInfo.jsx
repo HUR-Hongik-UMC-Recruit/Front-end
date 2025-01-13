@@ -17,7 +17,7 @@ import {
   FormItem,
 } from "../../../components/apply/intro/SectionStyles";
 
-const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
+const PersonalInfo = ({ applicantDTO, updateApplicantDTO, refs }) => {
   // 재학 상태
   const [status, setStatus] = useState("");
   const [grade, setGrade] = useState("");
@@ -53,6 +53,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               placeholder="유엠씨"
               value={applicantDTO.name}
               onChange={(e) => updateApplicantDTO("name", e.target.value)}
+              ref={refs.name}
             />
           </FormGroup>
 
@@ -65,6 +66,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               placeholder="YYYY-MM-DD"
               value={applicantDTO.birth}
               onChange={(e) => updateApplicantDTO("birth", e.target.value)}
+              ref={refs.birth}
             />
           </FormGroup>
 
@@ -72,7 +74,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             <Label>
               성별 <RequiredDot />
             </Label>
-            <RadioGroup>
+            <RadioGroup ref={refs.gender}>
               <RadioButton
                 $active={selectedOption === "남"}
                 onClick={() => handleRadioClick("남")}
@@ -97,7 +99,13 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               닉네임 <RequiredDot />
             </Label>
             <FormItem>
-              <Input type="text" placeholder="예) 밍밍" />
+              <Input
+                type="text"
+                placeholder="예) 밍밍"
+                value={applicantDTO.nickName}
+                onChange={(e) => updateApplicantDTO("nickName", e.target.value)}
+                ref={refs.nickName}
+              />
               <InfoText>사용할 닉네임을 적어주세요!</InfoText>
             </FormItem>
           </FormGroup>
@@ -111,6 +119,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               placeholder="C123456"
               value={applicantDTO.studentId}
               onChange={(e) => updateApplicantDTO("studentId", e.target.value)}
+              ref={refs.studentId}
             />
           </FormGroup>
 
@@ -132,6 +141,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
                 updateApplicantDTO("gradeStatus", statusMap[e]); // 상태에 따라 적절한 값으로 업데이트
               }}
               type="status"
+              ref={refs.gradeStatus}
             />
           </FormGroup>
         </Grid>
@@ -147,6 +157,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
               placeholder="컴퓨터공학과"
               value={applicantDTO.major}
               onChange={(e) => updateApplicantDTO("major", e.target.value)}
+              ref={refs.major}
             />
           </FormGroup>
 
@@ -170,6 +181,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
                   updateApplicantDTO("grade", statusMap[e]); // 상태에 따라 적절한 값으로 업데이트
                 }}
                 type="grade"
+                ref={refs.grade}
               />
               <InfoText>2학년을 마치고 휴학한 경우 '2학년 휴학' 선택</InfoText>
             </FormItem>
@@ -192,6 +204,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
                 updateApplicantDTO("experience", statusMap[e]); // 상태에 따라 적절한 값으로 업데이트
               }}
               type="experience"
+              ref={refs.experience}
             />
           </FormGroup>
         </Grid>
@@ -206,6 +219,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             placeholder="010-0000-0000"
             value={applicantDTO.phone}
             onChange={(e) => updateApplicantDTO("phone", e.target.value)}
+            ref={refs.phone}
           />
         </FormGroup>
 
@@ -219,6 +233,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             placeholder="example123@gmail.com"
             value={applicantDTO.discordEmail}
             onChange={(e) => updateApplicantDTO("discordEmail", e.target.value)}
+            ref={refs.discordEmail}
           />
         </FormGroup>
 
@@ -232,6 +247,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             placeholder="example123@gmail.com"
             value={applicantDTO.notionEmail}
             onChange={(e) => updateApplicantDTO("notionEmail", e.target.value)}
+            ref={refs.notionEmail}
           />
         </FormGroup>
 
@@ -245,6 +261,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             placeholder="예) 에브리타임, 인스타그램, 지인 등"
             value={applicantDTO.umcRoute}
             onChange={(e) => updateApplicantDTO("umcRoute", e.target.value)}
+            ref={refs.umcRoute}
           />
         </FormGroup>
 
@@ -258,6 +275,7 @@ const PersonalInfo = ({ applicantDTO, updateApplicantDTO }) => {
             placeholder="과 내 학술 소모임 1개"
             value={applicantDTO.currentClub}
             onChange={(e) => updateApplicantDTO("currentClub", e.target.value)}
+            ref={refs.currentClub}
           />
         </FormGroup>
       </ContentWrapper>

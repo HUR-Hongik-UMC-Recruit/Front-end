@@ -1,15 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import upload from "../../assets/icons/Upload.png";
-import axios from "axios";
+import upload from "../../assets/icons/FileUpload.svg";
+import close from "../../assets/icons/FileClose.svg";
 
 const CommonContainer = styled.div`
   width: 100%;
-  margin-top: 4rem;
-`;
-
-const CommonWrapper = styled.div`
-  margin: 0rem 12.3rem;
+  margin-top: 5rem;
 `;
 
 const CommonTitle = styled.div`
@@ -181,9 +177,9 @@ const FileInput = styled.label`
 
 const UploadedFile = styled.div`
   display: flex;
+  gap: 1.5rem;
   width: 23.3125rem;
   height: 6.375rem;
-  padding: 0 1.5rem;
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
@@ -192,9 +188,6 @@ const UploadedFile = styled.div`
 `;
 
 const FileInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   color: #353838;
   font-size: 1.2rem;
   font-weight: 500;
@@ -204,25 +197,16 @@ const DeleteButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
-const CountText = styled.p`
+const CountText = styled.p``;
 
-`
-
-const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
-  
-  // 리더 희망 여부
-  const [selectLeader, setSelectLeader] = useState("예");
-  const leader = ["예", "아니요"];
-  const handleRadioChange = (e) => {
-    setSelectLeader(e.target.value);
-  };
-
+const ApplicationCommon = ({
+  handleAnswerChange,
+  setFileDTO,
+  charCounts,
+  refs,
+}) => {
   // 파일 첨부
   const [file, setFile] = useState(null);
   const handleFileChange = (e) => {
@@ -244,46 +228,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
     setFile(null);
   };
 
-  // 질문 조회 api
-  const [questions, setQuestions] = useState([]);
-
-  const apiUrl = process.env.REACT_APP_API_URL;
-
-  const getQuestions = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/applicant/questions/COMMON`);
-      if (response.data.isSuccess) {
-        setQuestions(response.data.result.questions); // questions 배열로 설정
-        console.log(response.data.result.questions);
-      } else {
-        console.error("API 호출 실패: ", response.data.message);
-        setQuestions([]); // 실패 시 빈 배열로 설정
-      }
-    } catch (e) {
-      console.log("공통질문 에러 발생: ", e);
-    }
-  };
-  // useEffect(() => {
-  //   getQuestions();
-  // }, []);
-
   return (
     <CommonContainer>
-      <CommonWrapper>
         <CommonTitle>공통 질문</CommonTitle>
 
         <CommonBorder />
-
-        {/* 
-        {questions.map((question) => (
-          <QuestionWrapper key={question.questionId}>
-            <Question>
-              {question.questionId}. {question.questionText}
-            </Question>
-            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
-          </QuestionWrapper>
-        ))} 
-        */}
 
         <QuestionWrapper>
           <Question>
@@ -292,10 +241,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(1, e)}
+            onChange={(e) => handleAnswerChange(0, e)}
             maxLength={499}
+            ref={refs[0]}
           />
-          <CountText>{charCounts[1]}/500자</CountText>
+          <CountText>{charCounts[0]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -303,10 +253,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(2, e)}
+            onChange={(e) => handleAnswerChange(1, e)}
             maxLength={499}
+            ref={refs[1]}
           />
-          <CountText>{charCounts[2]}/500자</CountText>
+          <CountText>{charCounts[1]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -314,10 +265,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(3, e)}
+            onChange={(e) => handleAnswerChange(2, e)}
             maxLength={499}
+            ref={refs[2]}
           />
-          <CountText>{charCounts[3]}/500자</CountText>
+          <CountText>{charCounts[2]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -329,10 +281,11 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerBig
             type="text"
             placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(4, e)}
+            onChange={(e) => handleAnswerChange(3, e)}
             maxLength={499}
+            ref={refs[3]}
           />
-          <CountText>{charCounts[4]}/500자</CountText>
+          <CountText>{charCounts[3]}/500자</CountText>
         </QuestionWrapper>
 
         <QuestionWrapper>
@@ -350,8 +303,6 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
                     src={upload}
                     style={{ height: "1.75rem", width: "1.75rem" }}
                   />
-                  파일 첨부
-                </FileInput>
                 <input
                   type="file"
                   accept="application/pdf"
@@ -359,15 +310,19 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
                   onChange={handleFileChange}
                   style={{ display: "none" }}
                 />
+                파일 첨부
+                </FileInput>
               </>
             ) : (
               <UploadedFile>
-                <FileInfo>
-                  <img src={upload} />
-                  {file.name}
-                </FileInfo>
-                <DeleteButton onClick={handleDeleteFile}>✕</DeleteButton>
-              </UploadedFile>
+              <FileInfo>{file.name}</FileInfo>
+              <DeleteButton onClick={handleDeleteFile}>
+                <img
+                  src={close}
+                  style={{ height: "1.75rem", width: "1.75rem" }}
+                />
+              </DeleteButton>
+             </UploadedFile>
             )}
             <Guide>
               하나의 PDF 파일로 병합 후 제출 부탁드립니다.
@@ -384,35 +339,10 @@ const ApplicationCommon = ({ handleAnswerChange, setFileDTO, charCounts }) => {
           <AnswerSmall
             type="text"
             placeholder="예) http://github.com/example"
-            onChange={(e) => handleAnswerChange(6, e)}
+            onChange={(e) => handleAnswerChange(4, e)}
+            ref={refs[4]}
           />
         </QuestionWrapper>
-
-        <QuestionWrapper>
-          <Question>7. 스터디 리더를 희망하시나요?</Question>
-          <Guide>
-            스터디 리더란 매주 진행되는 스터디의 리더를 의미합니다. 선수 지식이
-            있지 않아도 열심히 공부할 열정과 책임감이 있다면 스터디 리더 지원이
-            가능합니다. 이후에 스터디 리더 지원을 따로 받을 예정이며, 스터디
-            리더 확정이 아니니 부담가지지 않으셔도 됩니다.
-          </Guide>
-          <RadioPartWrapper>
-            {leader.map((answer, idx) => (
-              <RadioLabel key={idx}>
-                <Radio
-                  type="radio"
-                  name="leader"
-                  value={answer}
-                  onChange={handleRadioChange}
-                />
-                <RadioWrapper checked={idx === selectLeader} key={answer}>
-                  {answer}
-                </RadioWrapper>
-              </RadioLabel>
-            ))}
-          </RadioPartWrapper>
-        </QuestionWrapper>
-      </CommonWrapper>
     </CommonContainer>
   );
 };

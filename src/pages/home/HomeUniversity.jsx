@@ -60,7 +60,7 @@ const Top = styled.div`
   align-items: center;
 
   will-change: transform;
-  animation: ${scrollingLeft} 30s linear infinite;
+  animation: ${scrollingLeft} 60s linear infinite;
 `;
 
 const scrollingRight = keyframes`
@@ -81,7 +81,7 @@ const Down = styled.div`
   align-items: center;
 
   will-change: transform;
-  animation: ${scrollingRight} 30s linear infinite;
+  animation: ${scrollingRight} 60s linear infinite;
 `;
 
 const CardWrapper = styled.div`

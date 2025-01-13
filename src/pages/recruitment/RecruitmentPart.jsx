@@ -4,6 +4,7 @@ import Requirements from "../../components/recruitment/PartRequirements";
 import Qualifications from "../../components/recruitment/PartQualifications";
 import SectionHeader from "../../components/common/SectionHeader";
 import parts from "../../data/common/PartList";
+import { motion } from "framer-motion";
 
 const RecruitmentPart = () => {
   const [activePart, setActivePart] = useState("Plan");
@@ -13,22 +14,33 @@ const RecruitmentPart = () => {
       <ContentWrapper>
         <SectionHeader title="모집 분야" subtitle="Recruitment Part" />
 
-        <ButtonContainer>
-          {parts.map((part) => (
-            <PartButton
-              key={part}
-              onClick={() => setActivePart(part)}
-              $isActive={activePart === part}
-            >
-              {part} {/* 버튼 텍스트 */}
-            </PartButton>
-          ))}
-        </ButtonContainer>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            ease: "easeInOut",
+            duration: 1,
+            y: { duration: 1 },
+          }}
+        >
+          <ButtonContainer>
+            {parts.map((part) => (
+              <PartButton
+                key={part}
+                onClick={() => setActivePart(part)}
+                $isActive={activePart === part}
+              >
+                {part} {/* 버튼 텍스트 */}
+              </PartButton>
+            ))}
+          </ButtonContainer>
 
-        <DetailsContainer>
-          <Qualifications part={activePart} />
-          <Requirements part={activePart} />
-        </DetailsContainer>
+          <DetailsContainer>
+            <Qualifications part={activePart} />
+            <Requirements part={activePart} />
+          </DetailsContainer>
+        </motion.div>
       </ContentWrapper>
     </BackgroundContainer>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ArrowDown from "../../../assets/icons/ArrowDown.png";
+import ArrowDown from "../../../assets/icons/arrow/ArrowDownSelect.svg";
 
 const Select = ({ options, defaultValue, value, onChange, type }) => {
   const [isOpen, setIsOpen] = useState(false);
