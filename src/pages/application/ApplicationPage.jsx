@@ -194,12 +194,6 @@ const ApplicationPage = () => {
 
   const { authenticatedEmail, emailAuthStatus } = useEmail();
 
-  // const handleSubmit = async () => {
-  //   if (!isEmailVerified) {
-  //     alert("이메일 인증이 필요합니다.");
-  //     return;
-  //   }
-
   const [charCounts, setCharCounts] = useState({
     1: 0,
     2: 0,
@@ -286,6 +280,7 @@ const ApplicationPage = () => {
     { field: "currentClub", text: "현재 활동 중이거나 활동 예정인 동아리" },
   ];
   const refs = {
+    email: useRef(null), // 이메일도 추가
     name: useRef(null),
     nickName: useRef(null),
     birth: useRef(null),
@@ -354,6 +349,13 @@ const ApplicationPage = () => {
     //     return `${question.text}에 대한 답변이 누락되었습니다.`;
     //   }
     // }
+
+    // 이메일 인증 상태 검증
+    if (!emailAuthStatus) {
+      setTitle("이메일 인증이 필요합니다");
+      scrollToField(refs.email); // 이메일 인증 섹션으로 스크롤
+      return "이메일 인증을 완료해주세요";
+    }
 
     if (!information) {
       setTitle("모든 약관 항목에 동의해주세요");
@@ -440,7 +442,7 @@ const ApplicationPage = () => {
   return (
     <ApplicationContent>
       <Title />
-      <Verification />
+      <Verification emailRefs={refs.email} />
       <PersonalInfo
         applicantDTO={applicantDTO}
         updateApplicantDTO={updateApplicantDTO}
