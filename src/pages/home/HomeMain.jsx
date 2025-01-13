@@ -113,7 +113,7 @@ const flick = keyframes`
   }
   20.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.25);
   }
   20.6% {
     opacity: 0;
@@ -125,11 +125,11 @@ const flick = keyframes`
   }
   30.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.45), 0 0 3.75rem rgba(255, 255, 255, 0.25);
   }
   30.5% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.45), 0 0 3.75rem rgba(255, 255, 255, 0.25);
   }
   30.6% {
     opacity: 0;
@@ -141,15 +141,15 @@ const flick = keyframes`
   }
   45.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.45), 0 0 3.75rem rgba(255, 255, 255, 0.25);
   }
   50% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.45), 0 0 3.75rem rgba(255, 255, 255, 0.25);
   }
   55% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.45), 0 0 60px rgba(255, 255, 255, 0.25);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.45), 0 0 3.75rem rgba(255, 255, 255, 0.25);
   }
   55.1% {
     opacity: 0;
@@ -161,11 +161,11 @@ const flick = keyframes`
   }
   57.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.55), 0 0 3.75rem rgba(255, 255, 255, 0.35);
   }
   60% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.55), 0 0 3.75rem rgba(255, 255, 255, 0.35);
   }
   60.1% {
     opacity: 0;
@@ -177,11 +177,11 @@ const flick = keyframes`
   }
   65.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.55), 0 0 3.75rem rgba(255, 255, 255, 0.35), 0 0 6.25rem rgba(255, 255, 255, 0.1);
   }
   75% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.35), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.55), 0 0 3.75rem rgba(255, 255, 255, 0.35), 0 0 6.25rem rgba(255, 255, 255, 0.1);
   }
   75.1% {
     opacity: 0;
@@ -193,11 +193,11 @@ const flick = keyframes`
   }
   77.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.55), 0 0 3.75rem rgba(255, 255, 255, 0.4), 0 0 6.875rem rgba(255, 255, 255, 0.2), 0 0 6.25rem rgba(255, 255, 255, 0.1);
   }
   85% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.55), 0 0 60px rgba(255, 255, 255, 0.4), 0 0 110px rgba(255, 255, 255, 0.2), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.55), 0 0 3.75rem rgba(255, 255, 255, 0.4), 0 0 6.875rem rgba(255, 255, 255, 0.2), 0 0 6.25rem rgba(255, 255, 255, 0.1);
   }
   85.1% {
     opacity: 0;
@@ -209,11 +209,11 @@ const flick = keyframes`
   }
   86.1% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.6), 0 0 3.75rem rgba(255, 255, 255, 0.45), 0 0 6.875rem rgba(255, 255, 255, 0.25), 0 0 6.25rem rgba(255, 255, 255, 0.1);
   }
   100% {
     opacity: 1;
-    text-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 1.875rem rgba(255, 255, 255, 0.6), 0 0 3.75rem rgba(255, 255, 255, 0.45), 0 0 6.875rem rgba(255, 255, 255, 0.25), 0 0 6.25rem rgba(255, 255, 255, 0.1);
   }
 }
 `;
@@ -306,9 +306,9 @@ const RecruitButton = styled.button`
   height: 4rem;
 
   border-radius: 5rem;
-  border: 1px solid #90e6c9;
+  border: 0.063rem solid #90e6c9;
   background: #fcffff;
-  box-shadow: 0px 0px 33.3px 0px rgba(144, 224, 230, 0.2);
+  box-shadow: 0rem 0rem 2.081rem 0rem rgba(144, 224, 230, 0.2);
   cursor: pointer;
 
   color: #353838;

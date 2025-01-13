@@ -47,13 +47,13 @@ const RequirementsContainer = styled.div`
   gap: 0.625rem;
   width: 52.5rem;
   background: #1d201e;
-  border: 1px solid #353838;
-  border-radius: 10px;
+  border: 0.063rem solid #353838;
+  border-radius: 0.625rem;
 `;
 
 const RequirementsHeading = styled.h1`
   font-weight: 575;
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 135%;
   color: #fcffff;
   margin-right: 3rem;
@@ -61,7 +61,7 @@ const RequirementsHeading = styled.h1`
 
 const RequirementsText = styled.p`
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 145%;
   color: #a2abab;
   white-space: pre;

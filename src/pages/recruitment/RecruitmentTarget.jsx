@@ -117,13 +117,13 @@ const Card = styled(motion.div)`
   width: 20rem;
   height: 11.813rem;
   background: #1d201e;
-  border: 1px solid #353838;
-  border-radius: 10px;
+  border: 0.063rem solid #353838;
+  border-radius: 0.625rem;
 `;
 
 const CardText = styled.p`
   font-weight: 400;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 140%;
   text-align: center;
   color: #e1e9ea;

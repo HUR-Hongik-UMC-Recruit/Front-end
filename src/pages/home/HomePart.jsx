@@ -131,7 +131,7 @@ const PartButton = styled.div`
   cursor: pointer;
 
   &.active {
-    border-bottom: 1px solid #fcffff;
+    border-bottom: 0.063rem solid #fcffff;
     color: #fcffff;
   }
 `;
