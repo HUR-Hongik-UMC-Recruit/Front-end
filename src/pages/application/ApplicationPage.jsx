@@ -43,7 +43,7 @@ const Button = styled.button`
   background-color: ${(props) => (props.disabled ? "#E1E9EA" : "#5fbda1;")};
   color: ${(props) => (props.disabled ? "#A2ABAB" : "#fff")};
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  border:1px solid;
+  border:0.063rem solid;
   border-color:${(props) => (props.disabled ? "#ccc" : "#2b9176;")}
 
   &:hover {
@@ -163,7 +163,7 @@ const ModalHomeButton = styled.button`
 
   background: none;
   border-radius: 0.75rem;
-  border: 1.5px solid #edf4f5;
+  border: 0.094rem solid #edf4f5;
 
   color: #818989;
   font-family: "Pretendard Variable";

@@ -54,15 +54,15 @@ const NoticeContainer = styled(motion.div)`
   padding: 2.5rem;
   width: 61.75rem;
   background: rgba(29, 32, 30, 1);
-  border: 1px solid #353838;
-  border-radius: 10px;
+  border: 0.063rem solid #353838;
+  border-radius: 0.625rem;
   box-sizing: border-box;
 `;
 
 const NoticeText = styled.p`
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 160%;
   color: #e1e9ea;
   opacity: 0.8;

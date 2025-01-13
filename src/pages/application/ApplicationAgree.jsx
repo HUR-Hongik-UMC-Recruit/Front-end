@@ -58,7 +58,7 @@ const CheckBoxWrapper = styled.div`
   justify-content: center;
   gap: 1.5625rem;
   border-radius: 0.75rem;
-  // border: 1.5px solid;
+  // border: 0.094rem solid;
   border-color: ${(props) => (props.checked ? "#2B9176" : "#d1dadb")};
   // background: ${(props) => (props.checked ? "#dffaf1" : "#fcffff")};
   transition: background-color 0.3s;
@@ -66,12 +66,12 @@ const CheckBoxWrapper = styled.div`
 
 const ScreenReaderCheckbox = styled.input`
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.063rem;
+  height: 0.063rem;
   padding: 0;
   border: 0;
   overflow: hidden;
-  margin: -1px;
+  margin: -0.063rem;
   clip-path: inset(50%);
 `;
 
@@ -84,7 +84,7 @@ const CheckIcon = styled.span`
   height: 1.1875rem;
   border-radius: 50%;
   background-color: #fff;
-  border: 1.5px solid #bcc6c6;
+  border: 0.094rem solid #bcc6c6;
   position: absolute;
   left: 0;
   top: 50%;
@@ -99,8 +99,8 @@ const CheckIcon = styled.span`
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-70%) rotateZ(40deg);
-    border-right: 1.7px solid #bcc6c6;
-    border-bottom: 1.7px solid #bcc6c6;
+    border-right: 0.106rem solid #bcc6c6;
+    border-bottom: 0.106rem solid #bcc6c6;
   }
 `;
 

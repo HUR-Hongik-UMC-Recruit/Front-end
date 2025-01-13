@@ -94,7 +94,7 @@ const CardWrapper = styled.div`
 
   border-radius: 9.375rem;
   background: #fff;
-  box-shadow: 0px 0px 20px 0px #009bcb;
+  box-shadow: 0rem 0rem 1.25rem 0rem #009bcb;
 `;
 
 const Card = styled.img`

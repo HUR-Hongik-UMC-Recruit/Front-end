@@ -86,7 +86,7 @@ const JoinButton = styled.div`
   width: 100%;
   height: 4rem;
   border-radius: 0.625rem;
-  border: 1px solid #818989;
+  border: 0.063rem solid #818989;
   display: flex;
   justify-content: center;
   align-items: center;
