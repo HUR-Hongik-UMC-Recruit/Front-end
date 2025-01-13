@@ -31,6 +31,8 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 0.75rem;
+  border: 0.063rem solid #2b9176;
+  background: #5fbda1;
 
   font-family: "Pretendard Variable";
   font-size: 1.25rem;
@@ -45,8 +47,9 @@ const Button = styled.button`
   border-color:${(props) => (props.disabled ? "#ccc" : "#2b9176;")}
 
   &:hover {
-    border-color:${(props) => (props.disabled ? "" : "#2b9176;")}
-    background: #4e977f;
+    border-radius: 0.75rem;
+    border: 0.094rem solid #2b9176;
+    background: #67b299;
   }
 `;
 
@@ -60,7 +63,7 @@ const ModalWrapper = styled.div`
   gap: 2rem;
 
   border-radius: 0.75rem;
-  border: 1px solid #e1e9ea;
+  border: 0.063rem solid #e1e9ea;
   background: #fcffff;
 `;
 
@@ -113,7 +116,7 @@ const Cancel = styled.button`
 
   background: none;
   border-radius: 0.75rem;
-  border: 1.5px solid #edf4f5;
+  border: 0.094rem solid #edf4f5;
 
   color: #818989;
   font-family: "Pretendard Variable";
@@ -145,8 +148,8 @@ const Submit = styled.button`
   letter-spacing: 0.00875rem;
 
   &:hover {
-    border: 1.5px solid #2b9176;
-    background: #4e977f;
+    border: 0.094rem solid #2b9176;
+    background: #67b299;
   }
 `;
 

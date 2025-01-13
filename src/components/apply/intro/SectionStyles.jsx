@@ -33,7 +33,7 @@ export const Label = styled.label`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
   color: #1d201e;
 `;
@@ -51,7 +51,7 @@ export const Input = styled.input`
   height: 3.75rem;
   padding: 0.938rem 1.125rem;
   background: #fcffff;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   font-size: 1rem;
   color: #353838;
@@ -64,7 +64,7 @@ export const Input = styled.input`
 
 export const InputGroup = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
   width: 100%;
 `;
 
@@ -72,7 +72,7 @@ export const Button = styled.button`
   width: 10rem;
   height: 3.75rem;
   background: #5fbda1;
-  border: 1px solid #2b9176;
+  border: 0.063rem solid #2b9176;
   border-radius: 0.75rem;
   color: white;
   font-weight: 500;
@@ -98,7 +98,7 @@ export const Grid = styled.div`
 
 export const RadioGroup = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 0.5rem;
 `;
 
 export const RadioButton = styled.button`
@@ -113,9 +113,9 @@ export const RadioButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 1rem;
   background: ${(props) => (props.$active ? "#DFFAF1" : "#FCFFFF")};
-  border: 2px solid ${(props) => (props.$active ? "#2B9176" : "#D1DADB")};
+  border: 0.125rem solid ${(props) => (props.$active ? "#2B9176" : "#D1DADB")};
   border-radius: 0.75rem;
   font-weight: ${(props) => (props.$active ? "600" : "400")};
   color: #353838;
@@ -126,7 +126,7 @@ export const TextArea = styled.textarea`
   height: 15.063rem;
   padding: 0.938rem 1.125rem;
   background: #fcffff;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   resize: none;
   font-size: 1rem;
@@ -163,7 +163,7 @@ export const FormItem = styled.div`
 
 export const StyledRadioGroup = styled(RadioGroup)`
   ${RadioButton} {
-    width: 210px;
+    width: 13.125rem;
     flex: 13.125rem;
   }
 `;
