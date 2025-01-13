@@ -23,8 +23,8 @@ const StyledTitle = styled.div`
   margin-bottom: 7.375rem;
   text-align: center;
   font-family: "Pretendard Variable";
-  letter-spacing: -0.4px;
-  line-height: 30px;
+  letter-spacing: -0.025rem;
+  line-height: 1.875rem;
 
   h1 {
     font-size: 2.5rem;
@@ -36,7 +36,7 @@ const StyledTitle = styled.div`
   p {
     font-size: 1.25rem;
     color: #111412;
-    margin: 0px;
+    margin: 0rem;
     white-space: pre-wrap;
   }
 `;
