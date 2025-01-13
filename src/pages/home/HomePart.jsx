@@ -127,7 +127,8 @@ const PartButton = styled.div`
   font-weight: 400;
   line-height: 135%; /* 2.025rem */
   letter-spacing: -0.015rem;
-
+  text-align: center;
+  width: 7.25rem;
   cursor: pointer;
 
   &.active {
