@@ -16,7 +16,6 @@ const RecommandWrapper = styled.div`
 const RecommandTitile = styled.div`
   display: flex;
   width: 5.75rem;
-  flex-direction: column;
   justify-content: center;
 
   color: #e1e9ea;
