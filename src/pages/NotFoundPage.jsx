@@ -64,7 +64,7 @@ const ToHomeButton = styled.button`
   gap: 0.75rem;
 
   border-radius: 4.1875rem;
-  border: 1px solid #bcc6c6;
+  border: 0.063rem solid #bcc6c6;
   background: transparent;
   cursor: pointer;
 

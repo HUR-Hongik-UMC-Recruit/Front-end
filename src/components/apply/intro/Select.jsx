@@ -65,7 +65,7 @@ const SelectButton = styled.button`
   align-items: center;
   justify-content: space-between;
   background: #fcffff;
-  border: 1.5px solid ${(props) => (props.isOpen ? "#BCC6C6" : "#D1DADB")};
+  border: 0.094rem solid ${(props) => (props.isOpen ? "#BCC6C6" : "#D1DADB")};
   border-radius: 0.75rem;
   cursor: pointer;
 
@@ -91,7 +91,7 @@ const OptionList = styled.div`
   height: height: ${(props) => props.height};  // 동적 높이 설정
   margin-top: 0.25rem;
   background: #FCFFFF;
-  border: 1.5px solid #BCC6C6;
+  border: 0.094rem solid #BCC6C6;
   border-radius: 0.75rem;
   padding: 1.125rem;
   box-sizing: border-box;

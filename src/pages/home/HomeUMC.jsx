@@ -28,7 +28,7 @@ const SectionWrapper = styled(motion.div)`
   flex-direction: column;
   background: #1d201e;
   border-radius: 0.625rem;
-  border: 1px solid #353838;
+  border: 0.063rem solid #353838;
 `;
 
 const SectionDetail = styled.div`

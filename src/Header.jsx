@@ -77,7 +77,7 @@ const MenuList = styled.a`
     position: absolute;
     content: "";
     display: block;
-    border-bottom: 2px solid;
+    border-bottom: 0.125rem solid;
     border-bottom-color: ${(props) =>
       props.$isApplyPage ? "#1D201E" : "#fff"};
     transition: all 0.3s ease-out;
@@ -94,7 +94,7 @@ const MenuButton = styled.button`
   cursor: pointer;
 
   border-radius: 0.3125rem;
-  border: 1px solid #90e6c9;
+  border: 0.063rem solid #90e6c9;
 
   font-size: 0.875rem;
   font-style: normal;

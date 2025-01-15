@@ -38,12 +38,74 @@ const Question = styled.label`
   line-height: 1.875rem; /* 150% */
 `;
 
+const RadioPartWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.62rem;
+  justify-content: flex-end;
+`;
+
+const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8.75rem;
+  height: 3.75rem;
+  gap: 1.9rem;
+`;
+
+const RadioWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 0.75rem;
+  border: 0.094rem solid #d1dadb;
+  background: #fcffff;
+
+  position: relative;
+  cursor: pointer;
+
+  font-family: "Pretendard Variable";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.875rem; /* 187.5% */
+
+  &:hover {
+    border: 0.094rem solid #2b9176;
+    background: #b1e9d6;
+  }
+`;
+
+const Radio = styled.input`
+  position: absolute;
+  width: 0.063rem;
+  height: 0.063rem;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  margin: -0.063rem;
+  clip-path: inset(50%);
+
+  /* 체크된 상태일 때 스타일 변경 */
+  &: checked + ${RadioWrapper} {
+    font-weight: 550;
+    background: #dffaf1;
+    border-color: #2b9176;
+    color: #353838;
+  }
+`;
+
 const AnswerBig = styled.textarea`
   font-family: "Pretendard Variable";
   height: 15.063rem;
   padding: 0.938rem 1.125rem;
   background: #fcffff;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   resize: none;
   font-size: 1rem;
@@ -70,7 +132,7 @@ const AnswerSmall = styled.textarea`
   height: 1.88rem;
   padding: 0.9375rem 1.4375rem;
   background: #fcffff;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   resize: none;
   font-family: "Pretendard Variable";
@@ -102,7 +164,7 @@ const FileInput = styled.label`
   cursor: pointer;
 
   border-radius: 0.75rem;
-  border: 1.5px dashed #a2abab;
+  border: 0.094rem dashed #a2abab;
   background: #fcffff;
 
   color: #818989;
@@ -121,7 +183,7 @@ const UploadedFile = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 0.75rem;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   background: #fcffff;
 `;
 
