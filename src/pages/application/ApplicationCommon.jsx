@@ -168,79 +168,78 @@ const ApplicationCommon = ({
 
   return (
     <CommonContainer>
-        <CommonTitle>공통 질문</CommonTitle>
+      <CommonTitle>공통 질문</CommonTitle>
 
-        <CommonBorder />
+      <CommonBorder />
 
-        <QuestionWrapper>
-          <Question>
-            1. UMC 지원 동기와 UMC 활동을 통해 기대하는 바를 서술해주세요.
-          </Question>
-          <AnswerBig
-            type="text"
-            placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(0, e)}
-            maxLength={499}
-            ref={refs[0]}
-          />
-          <CountText>{charCounts[0]}/500자</CountText>
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>
+          1. UMC 지원 동기와 UMC 활동을 통해 기대하는 바를 서술해주세요.
+        </Question>
+        <AnswerBig
+          type="text"
+          placeholder="500자 이하로 얘기해주세요"
+          onChange={(e) => handleAnswerChange(0, e)}
+          maxLength={499}
+          ref={refs[0]}
+        />
+        <CountText>{charCounts[0]}/500자</CountText>
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>2. 본인의 장단점에 대해 서술해주세요.</Question>
-          <AnswerBig
-            type="text"
-            placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(1, e)}
-            maxLength={499}
-            ref={refs[1]}
-          />
-          <CountText>{charCounts[1]}/500자</CountText>
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>2. 본인의 장단점에 대해 서술해주세요.</Question>
+        <AnswerBig
+          type="text"
+          placeholder="500자 이하로 얘기해주세요"
+          onChange={(e) => handleAnswerChange(1, e)}
+          maxLength={499}
+          ref={refs[1]}
+        />
+        <CountText>{charCounts[1]}/500자</CountText>
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>3. UMC에 임하는 각오를 서술해주세요.</Question>
-          <AnswerBig
-            type="text"
-            placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(2, e)}
-            maxLength={499}
-            ref={refs[2]}
-          />
-          <CountText>{charCounts[2]}/500자</CountText>
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>3. UMC에 임하는 각오를 서술해주세요.</Question>
+        <AnswerBig
+          type="text"
+          placeholder="500자 이하로 얘기해주세요"
+          onChange={(e) => handleAnswerChange(2, e)}
+          maxLength={499}
+          ref={refs[2]}
+        />
+        <CountText>{charCounts[2]}/500자</CountText>
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>
-            4. UMC는 학기 중에 배운 것을 바탕으로 방학 동안 팀을 구성해 앱
-            런칭을 진행합니다. 실제로 어떤 서비스를 개발하고 싶은지
-            서술해주세요.
-          </Question>
-          <AnswerBig
-            type="text"
-            placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(3, e)}
-            maxLength={499}
-            ref={refs[3]}
-          />
-          <CountText>{charCounts[3]}/500자</CountText>
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>
+          4. UMC는 학기 중에 배운 것을 바탕으로 방학 동안 팀을 구성해 앱 런칭을
+          진행합니다. 실제로 어떤 서비스를 개발하고 싶은지 서술해주세요.
+        </Question>
+        <AnswerBig
+          type="text"
+          placeholder="500자 이하로 얘기해주세요"
+          onChange={(e) => handleAnswerChange(3, e)}
+          maxLength={499}
+          ref={refs[3]}
+        />
+        <CountText>{charCounts[3]}/500자</CountText>
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>
-            5. (포트폴리오 첨부) 협업하면서 어려웠던 점과 협업을 어떻게
-            진행했는지, 해당 프로젝트를 진행한 이유와 프로젝트 내 나의 파트 등을
-            자세하게 서술해주세요. 디자인 혹은 협업 경험이 없는 경우
-            자기소개서를 제출하셔도 괜찮습니다.
-          </Question>
-          <FileWrapper>
-            {!file ? (
-              <>
-                <FileInput htmlFor="file">
-                  <img
-                    src={upload}
-                    style={{ height: "1.75rem", width: "1.75rem" }}
-                  />
+      <QuestionWrapper>
+        <Question>
+          5. (포트폴리오 첨부) 협업하면서 어려웠던 점과 협업을 어떻게
+          진행했는지, 해당 프로젝트를 진행한 이유와 프로젝트 내 나의 파트 등을
+          자세하게 서술해주세요. 디자인 혹은 협업 경험이 없는 경우 자기소개서를
+          제출하셔도 괜찮습니다.
+        </Question>
+        <FileWrapper>
+          {!file ? (
+            <>
+              <FileInput htmlFor="file">
+                <img
+                  src={upload}
+                  style={{ height: "1.75rem", width: "1.75rem" }}
+                />
                 <input
                   type="file"
                   accept="application/pdf"
@@ -249,10 +248,10 @@ const ApplicationCommon = ({
                   style={{ display: "none" }}
                 />
                 파일 첨부
-                </FileInput>
-              </>
-            ) : (
-              <UploadedFile>
+              </FileInput>
+            </>
+          ) : (
+            <UploadedFile>
               <FileInfo>{file.name}</FileInfo>
               <DeleteButton onClick={handleDeleteFile}>
                 <img
@@ -260,27 +259,25 @@ const ApplicationCommon = ({
                   style={{ height: "1.75rem", width: "1.75rem" }}
                 />
               </DeleteButton>
-             </UploadedFile>
-            )}
-            <Guide>
-              하나의 PDF 파일로 병합 후 제출 부탁드립니다.
-              <br />
-              최대 파일 크기는 10MB입니다.
-            </Guide>
-          </FileWrapper>
-        </QuestionWrapper>
+            </UploadedFile>
+          )}
+          <Guide>
+            하나의 PDF 파일로 병합 후 제출 부탁드립니다.
+            <br />
+            최대 파일 크기는 10MB입니다.
+          </Guide>
+        </FileWrapper>
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>
-            6. GitHub를 이용해 프로젝한 경험이 있다면 GitHub 주소를 남겨주세요.
-          </Question>
-          <AnswerSmall
-            type="text"
-            placeholder="예) http://github.com/example"
-            onChange={(e) => handleAnswerChange(4, e)}
-            ref={refs[4]}
-          />
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>6. 본인의 경험을 드러낼수 있는 링크를 첨부해주세요.</Question>
+        <AnswerSmall
+          type="text"
+          placeholder="예) 깃허브, 노션, 기술블로그"
+          onChange={(e) => handleAnswerChange(4, e)}
+          ref={refs[4]}
+        />
+      </QuestionWrapper>
     </CommonContainer>
   );
 };
