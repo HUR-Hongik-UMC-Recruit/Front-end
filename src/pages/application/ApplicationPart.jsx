@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import parts from "../../data/common/PartList";
 import APIConverter from "../../data/application/APIConverter";
@@ -7,10 +6,7 @@ import partContent from "../../data/application/PartQuestionData";
 
 const PartContainer = styled.div`
   width: 100%;
-`;
-
-const PartWrapper = styled.div`
-  margin: 0rem 12.3rem;
+  margin-top: 3rem;
 `;
 
 const PartTitle = styled.div`
@@ -67,7 +63,7 @@ const RadioWrapper = styled.span`
   height: 100%;
 
   border-radius: 0.75rem;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   background: #fcffff;
 
   position: relative;
@@ -80,19 +76,19 @@ const RadioWrapper = styled.span`
   line-height: 1.875rem; /* 187.5% */
 
   &:hover {
-    border: 1.5px solid #2b9176;
+    border: 0.094rem solid #2b9176;
     background: #b1e9d6;
   }
 `;
 
 const Radio = styled.input`
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.063rem;
+  height: 0.063rem;
   padding: 0;
   border: 0;
   overflow: hidden;
-  margin: -1px;
+  margin: -0.063rem;
   clip-path: inset(50%);
 
   /* 체크된 상태일 때 스타일 변경 */
@@ -109,7 +105,7 @@ const AnswerBig = styled.textarea`
   height: 15.063rem;
   padding: 0.938rem 1.125rem;
   background: #fcffff;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   resize: none;
   font-size: 1rem;
@@ -134,7 +130,7 @@ const AnswerSmall = styled.textarea`
   height: 1.88rem;
   padding: 0.9375rem 1.4375rem;
   background: #fcffff;
-  border: 1.5px solid #d1dadb;
+  border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   resize: none;
   font-family: "Pretendard Variable";
@@ -148,94 +144,63 @@ const AnswerSmall = styled.textarea`
   }
 `;
 
-const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange }) => {
+const ApplicationPart = ({ updateApplicantDTO, handleAnswerChange, refs }) => {
   // 파트 선택 여부
   const [selectPart, setSelectPart] = useState("Plan");
   const handlePartChange = (e) => {
     setSelectPart(e.target.value);
     updateApplicantDTO("part", APIConverter[e.target.value]);
+    handleAnswerChange(5, e);
   };
-  const apiUrl = process.env.REACT_APP_API_URL;
-
-  // 질문 조회 api
-  const [questions, setQuestions] = useState([]);
-  const getQuestions = async () => {
-    try {
-      const response = await axios.get(
-        `${apiUrl}/applicant/questions/${APIConverter[selectPart]}`
-      );
-      if (response.data.isSuccess) {
-        setQuestions(response.data.result.questions); // questions 배열로 설정
-        console.log(response.data.result.questions);
-      } else {
-        console.error("API 호출 실패: ", response.data.message);
-        setQuestions([]); // 실패 시 빈 배열로 설정
-      }
-    } catch (e) {
-      console.log("파트별질문 에러 발생: ", e);
-    }
-  };
-  // useEffect(() => {
-  //   getQuestions();
-  // }, [selectPart]);
 
   return (
     <PartContainer>
-      <PartWrapper>
-        <PartTitle>파트별 질문</PartTitle>
+      <PartTitle>파트별 질문</PartTitle>
 
-        <PartBorder />
+      <PartBorder />
 
-        <QuestionWrapper>
-          <Question>1. 지원하고 싶은 트랙을 선택해주세요.</Question>
-          <RadioPartWrapper>
-            {parts.map((part, idx) => (
-              <RadioLabel key={idx}>
-                <Radio
-                  type="radio"
-                  name="part"
-                  value={part}
-                  onChange={handlePartChange}
-                />
-                <RadioWrapper checked={idx === selectPart} key={part}>
-                  {part}
-                </RadioWrapper>
-              </RadioLabel>
-            ))}
-          </RadioPartWrapper>
-        </QuestionWrapper>
+      <QuestionWrapper>
+        <Question>1. 지원하고 싶은 트랙을 선택해주세요.</Question>
+        <RadioPartWrapper>
+          {parts.map((part, idx) => (
+            <RadioLabel key={idx}>
+              <Radio
+                type="radio"
+                name="part"
+                value={part}
+                onChange={handlePartChange}
+                ref={refs[5]}
+              />
+              <RadioWrapper checked={idx === selectPart} key={part}>
+                {part}
+              </RadioWrapper>
+            </RadioLabel>
+          ))}
+        </RadioPartWrapper>
+      </QuestionWrapper>
 
-        {/*
-        {questions.map((question) => (
-          <QuestionWrapper key={question.questionId}>
-            {question.questionId}. {question.questionText}
-            <Question></Question>
-            <AnswerBig placeholder="500자 이하로 얘기해주세요"></AnswerBig>
-          </QuestionWrapper>
-        ))}
-        */}
+      <QuestionWrapper>
+        <Question>2. {selectPart} 트랙에 지원하는 이유는 무엇인가요?</Question>
+        <AnswerBig
+          type="text"
+          placeholder="500자 이하로 얘기해주세요"
+          onChange={(e) => handleAnswerChange(6, e)}
+          ref={refs[6]}
+        />
+      </QuestionWrapper>
 
-        <QuestionWrapper>
-          <Question>
-            2. {selectPart} 트랙에 지원하는 이유는 무엇인가요?
-          </Question>
-          <AnswerBig
-            type="text"
-            placeholder="500자 이하로 얘기해주세요"
-            onChange={(e) => handleAnswerChange(9, e)}
-          />
-        </QuestionWrapper>
-
-        <QuestionWrapper>
-          <Question>3. {partContent[selectPart].question}</Question>
-          <Guide>{partContent[selectPart].guide}</Guide>
-          <AnswerSmall
-            type="text"
-            placeholder={partContent[selectPart].example}
-            onChange={(e) => handleAnswerChange(10, e)}
-          />
-        </QuestionWrapper>
-      </PartWrapper>
+      <QuestionWrapper>
+        <Question>3. {partContent[selectPart].question}</Question>
+        <Guide>{partContent[selectPart].guide}</Guide>
+        <AnswerSmall
+          type="text"
+          placeholder={partContent[selectPart].example}
+          onChange={(e) => {
+            handleAnswerChange(7, e);
+          }}
+          ref={refs[7]}
+        />
+      </QuestionWrapper>
     </PartContainer>
   );
 };

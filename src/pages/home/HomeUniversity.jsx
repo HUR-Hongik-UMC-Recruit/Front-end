@@ -60,7 +60,7 @@ const Top = styled.div`
   align-items: center;
 
   will-change: transform;
-  animation: ${scrollingLeft} 30s linear infinite;
+  animation: ${scrollingLeft} 60s linear infinite;
 `;
 
 const scrollingRight = keyframes`
@@ -81,7 +81,7 @@ const Down = styled.div`
   align-items: center;
 
   will-change: transform;
-  animation: ${scrollingRight} 30s linear infinite;
+  animation: ${scrollingRight} 60s linear infinite;
 `;
 
 const CardWrapper = styled.div`
@@ -94,7 +94,7 @@ const CardWrapper = styled.div`
 
   border-radius: 9.375rem;
   background: #fff;
-  box-shadow: 0px 0px 20px 0px #009bcb;
+  box-shadow: 0rem 0rem 1.25rem 0rem #009bcb;
 `;
 
 const Card = styled.img`

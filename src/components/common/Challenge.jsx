@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import arrowNext from "../../assets/icons/ArrowNext.png";
+import arrowNext from "../../assets/icons/arrow/ArrowNextMint.svg";
 import background from "../../assets/icons/BgChallenge.png";
 import { useNavigate } from "react-router-dom";
 
@@ -80,7 +80,7 @@ const ChallengeButton = styled.button`
   &: hover {
     transform: scale(1.1);
     transition: transform 0.5s ease;
-    animation: ${shake} 1s;
+    animation: ${shake} 0.7s;
   }
 `;
 

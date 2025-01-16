@@ -57,6 +57,26 @@ const MenuList = styled.a`
   font-style: normal;
   font-weight: 500;
   line-height: 145%; /* 1.54063rem */
+
+  display: inline-block;
+  position: relative;
+
+  &:hover::after {
+    left: 0%;
+    width: 100%;
+  }
+
+  &::after {
+    position: absolute;
+    content: "";
+    display: block;
+    border-bottom: 0.125rem solid;
+    border-bottom-color: ${(props) =>
+      props.$isApplyPage ? "#1D201E" : "#fff"};
+    transition: all 0.3s ease-out;
+    left: 50%;
+    width: 0;
+  }
 `;
 
 const MenuButton = styled.button`
@@ -67,7 +87,7 @@ const MenuButton = styled.button`
   cursor: pointer;
 
   border-radius: 0.3125rem;
-  border: 1px solid #90e6c9;
+  border: 0.063rem solid #90e6c9;
 
   font-size: 0.875rem;
   font-style: normal;
@@ -76,8 +96,8 @@ const MenuButton = styled.button`
   letter-spacing: 0.00875rem;
 
   &:hover {
-    border: 1.5px solid #2b9176;
-    background: #5fbda1;
+    border: ${(props) => (props.$isApplyPage ? "" : "#2b9176")};
+    background: ${(props) => (props.$isApplyPage ? "#B1E9D6" : "#5fbda1")};
     color: #ffffff;
     transform: scale(1.1);
     transition: all ease 0.5s;
@@ -96,7 +116,7 @@ const Header = () => {
   };
 
   const location = useLocation();
-  const isApplyPage = location.pathname === "/apply-common";
+  const isApplyPage = location.pathname === "/apply";
 
   return (
     <HeaderContainer $isApplyPage={isApplyPage}>
@@ -115,7 +135,9 @@ const Header = () => {
               운영진
             </MenuList>
           </MenuListWrapper>
-          <MenuButton onClick={toRecruit}>지원하기</MenuButton>
+          <MenuButton $isApplyPage={isApplyPage} onClick={toRecruit}>
+            지원하기
+          </MenuButton>
         </MenuWrapper>
       </HeaderWrapper>
     </HeaderContainer>

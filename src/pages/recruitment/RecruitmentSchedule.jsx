@@ -203,10 +203,9 @@ const ScheduleTitle = styled.h3`
 
 const ScheduleDate = styled.p`
   font-weight: 300;
-  font-size: 1.188rem;
-  line-height: 140%;
+  font-size: 1.125rem;
+  line-height: 145%;
   text-align: center;
-  letter-spacing: -0.01em;
   color: #e1e9ea;
   width: 13.188rem;
   margin-top: 0.5rem;
@@ -214,10 +213,9 @@ const ScheduleDate = styled.p`
 
 const Note = styled.p`
   font-weight: 400;
-  font-size: 1.25rem;
+  font-size: 0.938rem;
   line-height: 140%;
   text-align: right;
-  letter-spacing: -0.01em;
   color: #bcc6c6;
   width: 100%;
   margin-top: 6.75rem;

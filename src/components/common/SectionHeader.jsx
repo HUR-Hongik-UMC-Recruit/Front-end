@@ -21,17 +21,17 @@ const Section = styled.div`
 
 const SectionTitle = styled.h2`
   margin-top: 0;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 700;
-  line-height: 52px;
+  line-height: 3.25rem;
   color: rgba(255, 255, 255, 1);
   margin-bottom: 0.25rem;
 `;
 
 const RecruitmentText = styled.p`
-  font-size: 15px;
+  font-size: 0.938rem;
   font-weight: 400;
-  line-height: 22px;
+  line-height: 1.375rem;
   text-align: center;
   color: #90e6c9;
   margin-bottom: 4.25rem;

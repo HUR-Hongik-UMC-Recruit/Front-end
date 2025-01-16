@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FAQItem = ({ question, answer, description }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
 
   return (
     <QuestionWrapper>
@@ -89,14 +88,15 @@ const QuestionHeader = styled.div`
 `;
 
 const QuestionText = styled.span`
+  display: flex;
+  align-items: center;
   white-space: pre;
   width: 32.5rem;
   height: 1.875rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 1.375rem;
-  line-height: 135%;
-  letter-spacing: -0.01em;
+  font-size: 1.125rem;
+  line-height: 145%;
   color: ${({ $isOpen }) => ($isOpen ? "#818989" : "#E1E9EA")};
   transition: color 0.3s ease;
 `;
@@ -111,9 +111,8 @@ const AnswerTitle = styled.p`
   width: 34.063rem;
   font-style: normal;
   font-weight: 600;
-  font-size: 1.375rem;
-  line-height: 135%;
-  letter-spacing: -0.01em;
+  font-size: 1.125rem;
+  line-height: 145%;
   color: #90e6c9;
   margin: 0;
   white-space: pre;
@@ -123,9 +122,8 @@ const AnswerDescription = styled.p`
   width: 55rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 1.375rem;
-  line-height: 135%;
-  letter-spacing: -0.01em;
+  font-size: 1rem;
+  line-height: 160%;
   color: #e1e9ea;
   margin: 0;
 `;

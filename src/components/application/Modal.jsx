@@ -13,7 +13,7 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  border-radius: 8px;
+  border-radius: 0.5rem;
   position: relative;
 `;
 

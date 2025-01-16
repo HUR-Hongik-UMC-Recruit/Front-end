@@ -28,7 +28,7 @@ const SectionWrapper = styled(motion.div)`
   flex-direction: column;
   background: #1d201e;
   border-radius: 0.625rem;
-  border: 1px solid #353838;
+  border: 0.063rem solid #353838;
 `;
 
 const SectionDetail = styled.div`
@@ -82,29 +82,6 @@ const SectionNum = styled.p`
 `;
 
 const HomeUMC = React.forwardRef((props, scrollRef) => {
-  const contents = [
-    {
-      id: "01",
-      title: "도전",
-      detail: "배움에 있어 두려움과\n망설임이 없는 사람",
-    },
-    {
-      id: "02",
-      title: "협업",
-      detail: "실패를 두려워하지 않고\n도전을 즐기는 사람",
-    },
-    {
-      id: "03",
-      title: "성장",
-      detail: "불가능할 이유보다\n가능할 이유를\n먼저 찾는 사람",
-    },
-    {
-      id: "04",
-      title: "혁신",
-      detail: "UMC의 모든 활동에\n적극적으로 참여할\n의사가 있는 사람",
-    },
-  ];
-
   // 해당 파트가 사용자의 화면에 들어왔을 때 애니메이션 시작할 수 있게 하는 코드
   const [visibleSections, setVisibleSections] = useState(
     Array(contents.length).fill(false)
