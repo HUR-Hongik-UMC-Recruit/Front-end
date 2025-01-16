@@ -18,31 +18,37 @@ const PartQualifications = ({ part }) => {
   };
 
   const variants = {
-    initial: { scale: 0.8, opacity: 0 },
-    animate: { 
-      scale: 1, 
+    initial: {
+      opacity: 0,
+      scale: 1,
+    },
+    animate: {
       opacity: 1,
-      transition: { 
+      scale: 1,
+      transition: {
         type: "spring",
-        duration: 0.9 
-      }
-    }
-  }
+        stiffness: 80,
+        duration: 0.1,
+      },
+    },
+  };
 
   return (
-    <QualificationsContainer
-      as={motion.div}
-      key={part} // part가 변경될 때마다 애니메이션 재실행
-      variants={variants}
-      initial="initial"
-      animate="animate"
-    >
+    <QualificationsContainer>
       <QualificationsContent>
         <QualificationHeading>지원 자격</QualificationHeading>
         {Partqualifications[part].split("\n").map((line, index) => (
-          <QualificationText key={index} $note={line.startsWith("※")}>
-            {line}
-          </QualificationText>
+          <motion.div
+            key={`${part}-${index}`}
+            variants={variants}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: index * 0.1 }}
+          >
+            <QualificationText $note={line.startsWith("※")}>
+              {line}
+            </QualificationText>
+          </motion.div>
         ))}
       </QualificationsContent>
       <QualificationImage />
@@ -79,7 +85,7 @@ const QualificationText = styled.p`
   margin-bottom: 0.5rem;
   font-weight: 400;
   font-size: 1.125rem;
-  line-height: 145%;
+  line-height: 170%;
   margin-top: 0rem;
   color: ${(props) => (props.$note ? "#818989" : "#BCC6C6")};
 `;

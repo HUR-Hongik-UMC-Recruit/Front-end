@@ -14,27 +14,40 @@ const PartRequirements = ({ part }) => {
   };
 
   const variants = {
-    initial: { scale: 0.8, opacity: 0 },
-    animate: { 
-      scale: 1, 
+    initial: { 
+      opacity: 0,
+      scale: 1
+    },
+    animate: {
       opacity: 1,
-      transition: { 
+      scale: 1,
+      transition: {
         type: "spring",
-        duration: 0.9,
+        stiffness: 80, // 스프링 강도
+        duration: 0.1
       }
     }
   };
 
   return (
-    <RequirementsContainer
-    as={motion.div}
-    key={part}
-    variants={variants}
-    initial="initial"
-    animate="animate"
-  >
-      <RequirementsHeading>요구 역량</RequirementsHeading>
-      <RequirementsText>{PartRequirements[part]}</RequirementsText>
+    <RequirementsContainer>
+      <motion.div
+        key={`${part}-req-heading`}
+        variants={variants}
+        initial="initial"
+        animate="animate"
+      >
+        <RequirementsHeading>요구 역량</RequirementsHeading>
+      </motion.div>
+      <motion.div
+        key={`${part}-req-text`}
+        variants={variants}
+        initial="initial"
+        animate="animate"
+        transition={{ delay: 0.2 }}
+      >
+        <RequirementsText>{PartRequirements[part]}</RequirementsText>
+      </motion.div>
     </RequirementsContainer>
   );
 };
