@@ -198,10 +198,10 @@ const ApplicationPage = () => {
   const { authenticatedEmail, emailAuthStatus } = useEmail();
 
   const [charCounts, setCharCounts] = useState({
+    0: 0,
     1: 0,
     2: 0,
     3: 0,
-    4: 0,
   }); // 글자수 카운트
 
   // applicantDTO, file 상태 관리
