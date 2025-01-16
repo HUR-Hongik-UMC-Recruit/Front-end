@@ -1,22 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import {PartRequirementsData} from "../../data/recruitment/PartRequirementsData";
 
 const PartRequirements = ({ part }) => {
-  const PartRequirements = {
-    Plan: "Figma",
-    Design: "Figma",
-    Android: "Kotlin",
-    iOS: "Swift",
-    Web: "HTML\tCSS\tJavaScript",
-    Spring: "Java",
-    "Node.js": "JavaScript",
-  };
-
   const variants = {
-    initial: { 
+    initial: {
       opacity: 0,
-      scale: 1
+      scale: 1,
     },
     animate: {
       opacity: 1,
@@ -24,9 +15,9 @@ const PartRequirements = ({ part }) => {
       transition: {
         type: "spring",
         stiffness: 80, // 스프링 강도
-        duration: 0.1
-      }
-    }
+        duration: 0.1,
+      },
+    },
   };
 
   return (
@@ -46,7 +37,7 @@ const PartRequirements = ({ part }) => {
         animate="animate"
         transition={{ delay: 0.2 }}
       >
-        <RequirementsText>{PartRequirements[part]}</RequirementsText>
+        <RequirementsText>{PartRequirementsData[part]}</RequirementsText>
       </motion.div>
     </RequirementsContainer>
   );

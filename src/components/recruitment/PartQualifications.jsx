@@ -1,22 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import {PartQualificationsData} from "../../data/recruitment/PartQualificationsData";
 
 const PartQualifications = ({ part }) => {
-  const Partqualifications = {
-    Plan: "자신만의 아이디어로 앱/웹 프로젝트를 진행하고 싶은 사람\n프로젝트를 포기하지 않고 이끌어갈 책임감이 있는 사람\n※ Plan 파트는 반드시 프로젝트 팀장을 맡아야 합니다.",
-    Design:
-      "UI/UX에 관심이 있는 사람\n포기하지 않고 적극적으로 앱/웹 디자인 공부할 사람",
-    Android:
-      "포기하지 않고 자기주도적으로 공부할 수 있는 사람\n지원하는 분야의 언어 기초가 있고, 개발 경험이 있는 사람\n※ UMC에서는 '언어'를 알려드리지 않습니다.",
-    iOS: "포기하지 않고 자기주도적으로 공부할 수 있는 사람\n지원하는 분야의 언어 기초가 있고, 개발 경험이 있는 사람\n※ UMC에서는 '언어'를 알려드리지 않습니다.",
-    Web: "포기하지 않고 자기주도적으로 공부할 수 있는 사람\n지원하는 분야의 언어 기초가 있고, 개발 경험이 있는 사람\n※ UMC에서는 '언어'를 알려드리지 않습니다.",
-    Spring:
-      "포기하지 않고 자기주도적으로 공부할 수 있는 사람\n지원하는 분야의 언어 기초가 있고, 개발 경험이 있는 사람\n※ UMC에서는 '언어'를 알려드리지 않습니다.",
-    "Node.js":
-      "포기하지 않고 자기주도적으로 공부할 수 있는 사람\n지원하는 분야의 언어 기초가 있고, 개발 경험이 있는 사람\n※ UMC에서는 '언어'를 알려드리지 않습니다.",
-  };
-
   const variants = {
     initial: {
       opacity: 0,
@@ -37,7 +24,7 @@ const PartQualifications = ({ part }) => {
     <QualificationsContainer>
       <QualificationsContent>
         <QualificationHeading>지원 자격</QualificationHeading>
-        {Partqualifications[part].split("\n").map((line, index) => (
+        {PartQualificationsData[part].split("\n").map((line, index) => (
           <motion.div
             key={`${part}-${index}`}
             variants={variants}
