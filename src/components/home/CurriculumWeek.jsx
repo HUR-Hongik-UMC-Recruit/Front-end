@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import contents from "../../data/home/CurriculumWeekData";
+import { motion } from "framer-motion";
 
-const WeekWrapper = styled.div`
+const WeekWrapper = styled(motion.div)`
   width: 65.375rem;
   display: flex;
   flex-direction: column;
@@ -50,9 +51,15 @@ const CurriculumWeek = ({ part }) => {
   const curriculums = contents[part];
 
   return (
-    <WeekWrapper>
+    <WeekWrapper
+      key={part}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       {curriculums.map((curriculum) => (
-        <WeekList key={curriculum.week}>
+        <WeekList key={curriculum}>
           <Week>Week {curriculum.week}</Week>
           {curriculum.content.map((detail, index) => (
             <WeekContent
