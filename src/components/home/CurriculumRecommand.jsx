@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import contents from "../../data/home/CurriculumRecommandData";
+import { motion } from "framer-motion";
 
 const RecommandWrapper = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const RecommandWrapper = styled.div`
   background: rgba(53, 56, 56, 0.4);
 `;
 
-const RecommandTitile = styled.div`
+const RecommandTitile = styled(motion.div)`
   display: flex;
   width: 5.75rem;
   justify-content: center;
@@ -27,7 +28,7 @@ const RecommandTitile = styled.div`
   letter-spacing: -0.0125rem;
 `;
 
-const RecommandText = styled.div`
+const RecommandText = styled(motion.div)`
   display: flex;
   height: 1.875rem;
   justify-content: center;
@@ -48,9 +49,24 @@ const CurriculumRecommand = ({ part }) => {
 
   return (
     <RecommandWrapper>
-      <RecommandTitile>권장</RecommandTitile>
+      <RecommandTitile
+        key={part}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        권장
+      </RecommandTitile>
       {recommnads.map((recommand, index) => (
-        <RecommandText key={index} isLast={index === recommnads.length - 1}>
+        <RecommandText
+          key={recommand}
+          isLast={index === recommnads.length - 1}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           {recommand}
         </RecommandText>
       ))}

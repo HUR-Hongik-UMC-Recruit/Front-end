@@ -99,7 +99,7 @@ const HomeActivity = () => {
     <ActivityContainer>
       <ActivityWrapper>
         <SectionHeader
-          title="활동 소개"
+          title="활동 일정"
           subtitle="UMC는 6개월동안 다양한 활동을 진행해요"
         />
         <ActivityList>

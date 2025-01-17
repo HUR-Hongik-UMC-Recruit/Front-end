@@ -110,7 +110,7 @@ const AnswerWrapper = styled.div`
 const AnswerTitle = styled.p`
   width: 34.063rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 575;
   font-size: 1.125rem;
   line-height: 145%;
   color: #90e6c9;

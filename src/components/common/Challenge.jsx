@@ -25,9 +25,9 @@ const ChallengeText = styled.h1`
   margin: 0;
   color: #fff;
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 3.25rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 650;
   line-height: 128%; /* 4.48rem */
   letter-spacing: -0.035rem;
 `;
