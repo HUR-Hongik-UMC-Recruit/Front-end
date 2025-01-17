@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { useLocation } from "react-router-dom";
+import logoW from "../src/assets/icons/LogoWhite.svg";
+import logoB from "../src/assets/icons/LogoBlack.svg";
 
 const HeaderContainer = styled.div`
   background: ${(props) => (props.$isApplyPage ? "#FFFFFF" : "#111412")};
@@ -35,6 +37,11 @@ const Home = styled.a`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+`;
+
+const LogoImg = styled.img`
+  width: 5.09263rem;
+  height: 1.56238rem;
 `;
 
 const MenuWrapper = styled.div`
@@ -123,7 +130,7 @@ const Header = () => {
       <HeaderWrapper>
         <HomeWrapper>
           <Home href="/" $isApplyPage={isApplyPage}>
-            UMC
+            {isApplyPage ? <LogoImg src={logoB} /> : <LogoImg src={logoW} />}
           </Home>
         </HomeWrapper>
         <MenuWrapper>
