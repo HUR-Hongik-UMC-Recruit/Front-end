@@ -48,7 +48,7 @@ const SectionTitle = styled.p`
   font-family: "Pretendard Variable";
   font-size: 1.75rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 575;
   line-height: 135%; /* 2.3625rem */
   letter-spacing: -0.0175rem;
 `;
@@ -60,7 +60,7 @@ const SectionText = styled.p`
   font-family: "Pretendard Variable";
   font-size: 1.5rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 350;
   line-height: 135%; /* 2.025rem */
   letter-spacing: -0.015rem;
   align-self: stretch;

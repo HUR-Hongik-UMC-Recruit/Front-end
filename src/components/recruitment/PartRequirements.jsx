@@ -15,24 +15,24 @@ const PartRequirements = ({ part }) => {
 
   const variants = {
     initial: { scale: 0.8, opacity: 0 },
-    animate: { 
-      scale: 1, 
+    animate: {
+      scale: 1,
       opacity: 1,
-      transition: { 
+      transition: {
         type: "spring",
         duration: 0.9,
-      }
-    }
+      },
+    },
   };
 
   return (
     <RequirementsContainer
-    as={motion.div}
-    key={part}
-    variants={variants}
-    initial="initial"
-    animate="animate"
-  >
+      as={motion.div}
+      key={part}
+      variants={variants}
+      initial="initial"
+      animate="animate"
+    >
       <RequirementsHeading>요구 역량</RequirementsHeading>
       <RequirementsText>{PartRequirements[part]}</RequirementsText>
     </RequirementsContainer>
@@ -60,7 +60,7 @@ const RequirementsHeading = styled.h1`
 `;
 
 const RequirementsText = styled.p`
-  font-weight: 500;
+  font-weight: 400;
   font-size: 1.125rem;
   line-height: 145%;
   color: #a2abab;

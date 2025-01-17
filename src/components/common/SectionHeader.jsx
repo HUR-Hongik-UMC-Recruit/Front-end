@@ -21,8 +21,8 @@ const Section = styled.div`
 
 const SectionTitle = styled.h2`
   margin-top: 0;
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 650;
   line-height: 3.25rem;
   color: rgba(255, 255, 255, 1);
   margin-bottom: 0.25rem;
@@ -31,7 +31,8 @@ const SectionTitle = styled.h2`
 const RecruitmentText = styled.p`
   font-size: 0.938rem;
   font-weight: 400;
-  line-height: 1.375rem;
+  font-size: 1.375rem;
+  line-height: 135%;
   text-align: center;
   color: #90e6c9;
   margin-bottom: 4.25rem;
