@@ -12,7 +12,7 @@ const CustomToast = styled.div`
   align-items: center;
   border-radius: 1.25rem;
   background: #111412;
-  box-shadow: 0px 0px 10px 0px #8a8a8a;
+  box-shadow: 0rem 0rem 0.625rem 0rem #8a8a8a;
 `;
 
 const ToastImg = styled.img`

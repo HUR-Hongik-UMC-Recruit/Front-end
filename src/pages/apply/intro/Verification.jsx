@@ -15,9 +15,9 @@ import {
 } from "../../../components/apply/intro/SectionStyles";
 import axios from "axios";
 
-import { useEmail } from '../../../contexts/EmailContext'; 
+import { useEmail } from "../../../contexts/EmailContext";
 
-const Verification = () => {
+const Verification = ({ emailRefs }) => {
   const { setAuthenticatedEmail, setEmailAuthStatus } = useEmail();
 
   const [email, setEmail] = useState(""); // 이메일 입력값
@@ -39,7 +39,9 @@ const Verification = () => {
     }
 
     try {
-      const response = await axios.post(`${apiUrl}/applicant/email/send?email=${email}`);
+      const response = await axios.post(
+        `${apiUrl}/applicant/email/send?email=${email}`
+      );
       console.log("인증 요청 응답: ", response);
 
       if (response.status === 200) {
@@ -87,6 +89,7 @@ const Verification = () => {
 
           <InputGroup>
             <Input
+              ref={emailRefs}
               type="email"
               placeholder="본인 이메일 주소를 입력해주세요."
               value={email}

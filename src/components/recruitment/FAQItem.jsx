@@ -57,7 +57,7 @@ const QuestionContainer = styled.div`
   background: #1d201e;
   opacity: 0.8;
   border: ${({ $isOpen }) =>
-    $isOpen ? "1.5px solid #5C6161" : "1px solid #353838"};
+    $isOpen ? "0.094rem solid #5C6161" : "0.063rem solid #353838"};
   border-radius: ${({ $isOpen }) => ($isOpen ? "0.938rem" : "0.625rem")};
   cursor: pointer;
 `;
@@ -95,7 +95,7 @@ const QuestionText = styled.span`
   height: 1.875rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 145%;
   color: ${({ $isOpen }) => ($isOpen ? "#818989" : "#E1E9EA")};
   transition: color 0.3s ease;
@@ -111,7 +111,7 @@ const AnswerTitle = styled.p`
   width: 34.063rem;
   font-style: normal;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 145%;
   color: #90e6c9;
   margin: 0;
@@ -122,7 +122,7 @@ const AnswerDescription = styled.p`
   width: 55rem;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 160%;
   color: #e1e9ea;
   margin: 0;

@@ -69,9 +69,8 @@ const BTRTitleTyping = styled.h1`
 const BTRDetail = styled.p`
   margin: 0;
 
-  color: var(--Grey-200, #edf4f5);
+  color: #edf4f5;
   text-align: center;
-  font-feature-settings: "ss10" on;
   font-family: "Pretendard Variable";
   font-size: 1.125rem;
   font-style: normal;
@@ -105,9 +104,9 @@ const RecruitButton = styled.button`
   height: 4rem;
 
   border-radius: 5rem;
-  border: 1px solid #90e6c9;
+  border: 0.063rem solid #90e6c9;
   background: #fcffff;
-  box-shadow: 0px 0px 33.3px 0px rgba(144, 224, 230, 0.2);
+  box-shadow: 0rem 0rem 2.081rem 0rem rgba(144, 224, 230, 0.2);
   cursor: pointer;
 
   color: #353838;
