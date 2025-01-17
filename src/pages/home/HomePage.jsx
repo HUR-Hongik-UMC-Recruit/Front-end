@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import Challenge from "../../components/common/Challenge";
 import HomeActivity from "./HomeActivity";
 import HomeMain from "./HomeMain";
-import HomePart from "./HomePart";
+import HomeCurriculum from "./HomeCurriculum";
 import HomeService from "./HomeService";
 import HomeUMC from "./HomeUMC";
 import HomeUniversity from "./HomeUniversity";
@@ -44,7 +44,7 @@ const HomePage = () => {
       <HomeMain downClick={scrollToUMC} />
       <HomeUMC ref={umcRef} />
       <HomeService />
-      <HomePart />
+      <HomeCurriculum />
       <HomeActivity />
       <HomeUniversity />
       <Challenge />

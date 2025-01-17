@@ -353,12 +353,10 @@ const ApplicationCommon = ({
       </QuestionWrapper>
 
       <QuestionWrapper>
-        <Question>
-          6. GitHub를 이용해 프로젝한 경험이 있다면 GitHub 주소를 남겨주세요.
-        </Question>
+        <Question>6. 본인의 경험을 드러낼수 있는 링크를 첨부해주세요.</Question>
         <AnswerSmall
           type="text"
-          placeholder="예) http://github.com/example"
+          placeholder="예) 깃허브, 노션, 기술블로그"
           onChange={(e) => handleAnswerChange(4, e)}
           ref={refs[4]}
         />
