@@ -102,15 +102,17 @@ const Radio = styled.input`
 
 const AnswerBig = styled.textarea`
   font-family: "Pretendard Variable";
+  width: 100%;
   height: 15.063rem;
   padding: 0.938rem 1.125rem;
+  padding-bottom: 2.5rem;
   background: #fcffff;
   border: 0.094rem solid #d1dadb;
   border-radius: 0.75rem;
   resize: none;
   font-size: 1rem;
   font-weight: 400;
-  line-height: 1.875rem; /* 187.5% */
+  line-height: 1.875rem;
   color: #353838;
 
   &::placeholder {
@@ -199,7 +201,18 @@ const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-const CountText = styled.p``;
+const CountText = styled.span`
+  position: absolute;
+  right: -1rem;
+  bottom: 1rem;
+  color: #818989;
+  font-size: 1rem;
+`;
+
+const AnswerWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
 
 const ApplicationCommon = ({
   handleAnswerChange,
@@ -238,38 +251,44 @@ const ApplicationCommon = ({
         <Question>
           1. UMC 지원 동기와 UMC 활동을 통해 기대하는 바를 서술해주세요.
         </Question>
-        <AnswerBig
-          type="text"
-          placeholder="500자 이하로 얘기해주세요"
-          onChange={(e) => handleAnswerChange(0, e)}
-          maxLength={499}
-          ref={refs[0]}
-        />
-        <CountText>{charCounts[0]}/500자</CountText>
+        <AnswerWrapper>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(0, e)}
+            maxLength={500}
+            ref={refs[0]}
+          />
+          <CountText>{charCounts[0] || 0}/500자</CountText>
+        </AnswerWrapper>
       </QuestionWrapper>
 
       <QuestionWrapper>
         <Question>2. 본인의 장단점에 대해 서술해주세요.</Question>
-        <AnswerBig
-          type="text"
-          placeholder="500자 이하로 얘기해주세요"
-          onChange={(e) => handleAnswerChange(1, e)}
-          maxLength={499}
-          ref={refs[1]}
-        />
-        <CountText>{charCounts[1]}/500자</CountText>
+        <AnswerWrapper>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(1, e)}
+            maxLength={500}
+            ref={refs[1]}
+          />
+          <CountText>{charCounts[1] || 0}/500자</CountText>
+        </AnswerWrapper>
       </QuestionWrapper>
 
       <QuestionWrapper>
         <Question>3. UMC에 임하는 각오를 서술해주세요.</Question>
-        <AnswerBig
-          type="text"
-          placeholder="500자 이하로 얘기해주세요"
-          onChange={(e) => handleAnswerChange(2, e)}
-          maxLength={499}
-          ref={refs[2]}
-        />
-        <CountText>{charCounts[2]}/500자</CountText>
+        <AnswerWrapper>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(2, e)}
+            maxLength={500}
+            ref={refs[2]}
+          />
+          <CountText>{charCounts[2] || 0}/500자</CountText>
+        </AnswerWrapper>
       </QuestionWrapper>
 
       <QuestionWrapper>
@@ -277,14 +296,16 @@ const ApplicationCommon = ({
           4. UMC는 학기 중에 배운 것을 바탕으로 방학 동안 팀을 구성해 앱 런칭을
           진행합니다. 실제로 어떤 서비스를 개발하고 싶은지 서술해주세요.
         </Question>
-        <AnswerBig
-          type="text"
-          placeholder="500자 이하로 얘기해주세요"
-          onChange={(e) => handleAnswerChange(3, e)}
-          maxLength={499}
-          ref={refs[3]}
-        />
-        <CountText>{charCounts[3]}/500자</CountText>
+        <AnswerWrapper>
+          <AnswerBig
+            type="text"
+            placeholder="500자 이하로 얘기해주세요"
+            onChange={(e) => handleAnswerChange(3, e)}
+            maxLength={500}
+            ref={refs[3]}
+          />
+          <CountText>{charCounts[3] || 0}/500자</CountText>
+        </AnswerWrapper>
       </QuestionWrapper>
 
       <QuestionWrapper>
