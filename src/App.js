@@ -9,6 +9,8 @@ import ApplicationPage from "./pages/application/ApplicationPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AdminJoinPage from "./pages/admin/AdminJoinPage";
 import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import RecruitAlertEmailPage from "./pages/admin/RecruitAlertEmailPage";
+import DocPassEmailPage from "./pages/admin/DocPassEmailPage";
 
 import { EmailProvider } from "./contexts/EmailContext";
 
@@ -33,6 +35,8 @@ function App() {
         <Route path="/join" element={<AdminJoinPage />} />
         <Route path="/login" element={<AdminLoginPage />} />
         {/* <Route path="/admin" element={} /> */}
+        <Route path="/admin-recruit-email" element={<RecruitAlertEmailPage />} />
+        <Route path="/admin-docpass-email" element={<DocPassEmailPage />} />
       </Routes>
       <Footer />
     </Router>
