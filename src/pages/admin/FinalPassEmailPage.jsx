@@ -1,12 +1,12 @@
 import { useState } from "react";
 import TableLayout from "../../components/admin/TableLayout";
-import DocFailTable from "../../components/admin/DocFailTable";
-import DocFailEmailData from "../../data/admin/DocFailEmailData";
+import FinalPassTable from "../../components/admin/FinalPassTable";
+import FinalPassEmailData from "../../data/admin/FinalPassEmailData";
 import styled from "styled-components";
 
-const DocFailEmailPage = () => {
+const FinalPassEmailPage = () => {
   const [activePage, setActivePage] = useState(1);
-  const emails = DocFailEmailData;
+  const emails = FinalPassEmailData;
 
   const totalItemsCount = emails.length;
   const indexOfLastPost = activePage * 7;
@@ -19,11 +19,11 @@ const DocFailEmailPage = () => {
   };
 
   const tableProps = {
-    title: "서류 불합격 이메일",
-    subtitle: "서류 불합격자 확인 및 이메일 전송",
-    actionButton: <SendButton>서류 불합격 메일 보내기</SendButton>,
-    headers: ["이름", "이메일", "전화번호", "파트", "서류합/불", "상태"],
-    renderRow: (item) => <DocFailTable items={[item]} />, // 개별 아이템 단위로 렌더링
+    title: "최종 합격 이메일",
+    subtitle: "최종 합격자 확인 및 이메일 전송",
+    actionButton: <SendButton>최종 합격 메일 보내기</SendButton>,
+    headers: ["이름", "이메일", "전화번호", "파트", "최종합/불", "상태"],
+    renderRow: (item) => <FinalPassTable items={[item]} />, // 개별 아이템 단위로 렌더링
     currentItems: currentEmails,
     paginationProps: {
       activePage,
@@ -35,7 +35,7 @@ const DocFailEmailPage = () => {
   return <TableLayout {...tableProps} />;
 };
 
-export default DocFailEmailPage;
+export default FinalPassEmailPage;
 
 const SendButton = styled.button`
   display: flex;
@@ -43,8 +43,8 @@ const SendButton = styled.button`
   align-items: center;
   width: 10.938rem;
   height: 2.813rem;
-  padding: 0.063rem 1rem;
-  background: #FF948A;
+  padding: 0.063rem 1.375rem;
+  background: #60C1C3;
   border-radius: 0.313rem;
   border: none;
   cursor: pointer;

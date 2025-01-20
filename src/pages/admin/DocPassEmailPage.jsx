@@ -41,21 +41,21 @@ const SendButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 175px;
-  height: 45px;
-  padding: 11px 22px;
+  width: 10.938rem;
+  height: 2.813rem;
+  padding: 0.063rem 1.375rem;
   background: #60C1C3;
-  border-radius: 5px;
+  border-radius: 0.313rem;
   border: none;
   cursor: pointer;
   margin-left: auto;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   color: #ffffff;
 
   font-family: "Pretendard Variable";
-  font-size: 15px;
+  font-size: 0.938rem;
   font-style: normal;
   font-weight: 600;
   line-height: 145%;
-  letter-spacing: 0.15px;
+  letter-spacing: 0.009rem;
 `;

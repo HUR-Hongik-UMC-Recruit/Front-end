@@ -78,20 +78,20 @@ const PaginationWrapper = styled.div`
     border-radius: 0.75rem;
     color: #a2abab;
     font-family: "Pretendard Variable";
-    font-size: 19.25px;
+    font-size: 1.203rem;
     font-style: normal;
     font-weight: 600;
     line-height: 145%; /* 27.913px */
-    letter-spacing: 0.193px;
+    letter-spacing: 0.012rem;
   }
 
   ul.pagination li.active a {
     font-family: "Pretendard Variable";
-    font-size: 19.25px;
+    font-size: 1.203rem;
     font-style: normal;
     font-weight: 600;
     line-height: 145%; /* 27.913px */
-    letter-spacing: 0.193px;
+    letter-spacing: 0.012rem;
     color: #1d201e;
     background-color: #90e6c9;
   }

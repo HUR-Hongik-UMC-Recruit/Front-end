@@ -28,8 +28,8 @@ export default DocFailTable;
 
 const TableRow = styled.div`
   display: flex;
-  padding: 10px 27px 10px 35px;
-  border-bottom: 1px solid #e1e9ea;
+  padding: 0.625rem 1.688rem 0.625rem 2.188rem;
+  border-bottom: 0.063rem solid #e1e9ea;
 
   display: grid;
   grid-template-columns: 0.9fr 3fr 2fr 1.2fr 4fr 0.8fr;
@@ -37,16 +37,18 @@ const TableRow = styled.div`
 
 const TableCell = styled.div`
   font-family: "Pretendard Variable";
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: ${(props) =>
     props.$isPassed === false ? 600 : 400}; /* docPassStatus가 fail일 경우 600 */
-  line-height: 24px;
+  line-height: 1.5rem;
   color: ${(props) =>
     props.$isPassed === false
       ? "#FF948A"
-      : "#5C6161"}; /* docPassStatus가 fail일 경우 #FF948A (불합격) */
-  padding: 5px;
+      : props.$completed
+      ? "#2B9176"  
+      : "#5C6161"};
+  padding: 0.313rem;
 
   span:last-child {
     // 마지막 요소만 중앙 정렬

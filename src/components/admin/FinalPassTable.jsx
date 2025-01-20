@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const DocPassTable = ({ items }) => {
+const FinalPassEmail = ({ items }) => {
   return (
     <>
       {items.map((item) => (
@@ -22,12 +22,12 @@ const DocPassTable = ({ items }) => {
   );
 };
 
-export default DocPassTable;
+export default FinalPassEmail;
 
 const TableRow = styled.div`
   display: flex;
   padding: 0.625rem 1.688rem 0.625rem 2.188rem;
-  border-bottom: 0.063rem solid #e1e9ea;
+  border-bottom:0.063rem solid #e1e9ea;
 
   display: grid;
   grid-template-columns: 0.9fr 3fr 2fr 1.2fr 4fr 0.8fr;
@@ -44,7 +44,7 @@ const TableCell = styled.div`
     props.$isPassed
       ? "#60C1C3"
       :props.$completed ? "#2B9176"
-      : "#5C6161"}; /* docPassStatus가 true일 경우 #60C1C3 (합격) */
+      : "#5C6161"};/* docPassStatus가 true일 경우 #60C1C3 (합격) */
   padding: 0.313rem;
 
   span:last-child {

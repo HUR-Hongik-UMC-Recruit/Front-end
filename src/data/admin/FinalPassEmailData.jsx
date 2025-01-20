@@ -1,4 +1,4 @@
-const DocPassEmailData = [
+const FinalPassEmailData = [
     {
       name: "손서우",
       email: "a01074177955@gmail.com",
@@ -136,4 +136,4 @@ const DocPassEmailData = [
     },
   ];
   
-  export default DocPassEmailData;
+  export default FinalPassEmailData;

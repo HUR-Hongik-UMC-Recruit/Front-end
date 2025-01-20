@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
-const DocPassTable = ({ items }) => {
+const FinalFailTable = ({ items }) => {
+    console.log('items에 뭐가 담겼냐', items);
+
   return (
     <>
       {items.map((item) => (
         <TableRow key={item.id}>
-          <TableCell>{item.name}</TableCell> {/* 이름름 (1번 헤더 아래) */}
+          <TableCell>{item.name}</TableCell> {/* 이름 (1번 헤더 아래) */}
           <TableCell>{item.email}</TableCell> {/* 이메일 (2번 헤더 아래) */}
           <TableCell>{item.phone}</TableCell>
           <TableCell>{item.part}</TableCell>
           <TableCell $isPassed={item.docPassStatus}>
-            {item.docPassStatus ? "합격" : ""}
+            {item.docPassStatus === false ? "불합격" : ""}
           </TableCell>
           <TableCell $completed={item.completed}>
             {item.completed ? "전송 완료" : "전송 대기"}
@@ -22,7 +24,7 @@ const DocPassTable = ({ items }) => {
   );
 };
 
-export default DocPassTable;
+export default FinalFailTable;
 
 const TableRow = styled.div`
   display: flex;
@@ -38,13 +40,14 @@ const TableCell = styled.div`
   font-size: 1rem;
   font-style: normal;
   font-weight: ${(props) =>
-    props.isPassed ? 600 : 400}; /* docPassStatus가 true일 경우 600 */
+    props.$isPassed === false ? 600 : 400};
   line-height: 1.5rem;
-  color: ${(props) =>
-    props.$isPassed
-      ? "#60C1C3"
-      :props.$completed ? "#2B9176"
-      : "#5C6161"}; /* docPassStatus가 true일 경우 #60C1C3 (합격) */
+  color:  ${(props) =>
+    props.$isPassed === false
+      ? "#FF948A"
+      : props.$completed
+      ? "#2B9176"  
+      : "#5C6161"};
   padding: 0.313rem;
 
   span:last-child {
